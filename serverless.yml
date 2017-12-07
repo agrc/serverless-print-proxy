@@ -19,7 +19,7 @@ package:
     - .git/**
 
 functions:
-  proxy:
-    handler: http
+  printproxy:
+    handler: GPServer
     events:
       - http: path

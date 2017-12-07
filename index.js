@@ -1,5 +1,5 @@
 'use strict';
 
-exports.http = (request, response) => {
-  response.status(200).send('Hello World!');
-};
+exports.GPServer = (request, response) => {
+  response.status(200).send('Print Proxy');
+}
