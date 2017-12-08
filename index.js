@@ -12,17 +12,17 @@ app.use((req, res, next) => {
 });
 
 // general arcgis server info
-app.get('/:accountNumber/arcgis/rest/info', (fReq, fRes) => {
-  const account = accounts[fReq.params.accountNumber];
+app.get('/:accountNumber/arcgis/rest/info', (functionRequest, functionResponse) => {
+  const account = accounts[functionRequest.params.accountNumber];
   const servicesDirectoryPath = 'arcgis/rest/services';
 
   const url = account.serviceUrl.split(servicesDirectoryPath)[0] + servicesDirectoryPath;
   request({
     url: url,
-    qs: fReq.query
+    qs: functionRequest.query
   }, (error, res, body) => {
-    fRes.status(res && res.statusCode);
-    fRes.send(body);
+    functionResponse.status(res && res.statusCode);
+    functionResponse.send(body);
   });
 });
 
