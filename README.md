@@ -1,5 +1,15 @@
 # serverless-print-proxy
 
+## Usage
+Use the following url in place of an Esri Print service (e.g. [default AGOL service](https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task)):
+
+```url
+https://us-central1-printproxyserverless.cloudfunctions.net/printproxy/<accountNumber>/arcgis/rest/services/GPServer/export
+```
+
+The account number must have a corresponding key in `accounts.js`.
+
+
 ## Local Emulation via [Google's emulator](https://cloud.google.com/functions/docs/emulator)
 `serverless invoke local` doesn't seem to be supported with the Google provider.
 

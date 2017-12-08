@@ -46,6 +46,8 @@ const getHandler = function (taskName) {
       url: url,
       qs: functionRequest.query,
       headers: {
+        // trying to help with the invalid URL issue with default AGOL print service
+        // doesn't look like it's working
         Referer: functionRequest.headers.Referer,
         Origin: functionRequest.headers.Origin
       }
