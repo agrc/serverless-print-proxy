@@ -9,6 +9,8 @@
   "author": "serverless.com",
   "license": "MIT",
   "dependencies": {
+    "express": "^4.16.2",
+    "request": "^2.83.0",
     "serverless-google-cloudfunctions": "^1.1.0"
   }
 }

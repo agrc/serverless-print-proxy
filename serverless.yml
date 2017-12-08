@@ -20,6 +20,6 @@ package:
 
 functions:
   printproxy:
-    handler: GPServer
+    handler: printproxy
     events:
       - http: path

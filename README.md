@@ -13,4 +13,4 @@ The print widget performs validation on the URL in the properties form. It appea
 /https?:\/\/.+\/GPServer\/.*/
 ```
 
-If the URL passes validation, then it makes a CORS GET request to it passing: `f=json`.
+If the URL passes validation, then it makes a GET request (`arcgis/rest/info?f=json`) to get info about the server.
