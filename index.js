@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+
 'use strict';
 const app = require('express')();
 const request = require('request');
@@ -52,6 +54,10 @@ const getHandler = function (taskName) {
     // adding formData to GET requests causes errors with ArcGIS Server
     if (options.method === POST) {
       options.formData = functionRequest.body;
+
+      // switch out quad words
+      options.formData.Web_Map_as_JSON = options.formData.Web_Map_as_JSON.replace(
+        new RegExp(account.lockedQuadWord, 'g'), account.wideOpenQuadWord);
     }
 
     request(options, (error, agsResponse, body) => {
