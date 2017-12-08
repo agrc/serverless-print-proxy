@@ -2,6 +2,9 @@
 const app = require('express')();
 const request = require('request');
 const accounts = require('./accounts');
+const bodyParser = require('body-parser');
+
+const POST = 'POST';
 
 
 // enable CORS on all requests
@@ -10,6 +13,9 @@ app.use((req, res, next) => {
   res.set('Access-Control-Allow-Methods', 'GET');
   next();
 });
+
+// required for parsing submitted form data
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // general arcgis server info
 app.get('/:accountNumber/arcgis/rest/info', (functionRequest, functionResponse) => {
@@ -30,14 +36,25 @@ const getHandler = function (taskName) {
   return function (functionRequest, functionResponse) {
     const account = accounts[functionRequest.params.accountNumber];
     let url = `${account.serviceUrl}/${encodeURIComponent(account[taskName])}`
-    if (functionRequest.params.method) {
-      url += `/${functionRequest.params.method}`;
+    if (functionRequest.params.service) {
+      url += `/${functionRequest.params.service}`;
+    }
+    const options = {
+      method: functionRequest.method,
+      url: url,
+      qs: functionRequest.query,
+      headers: {
+        Referer: functionRequest.headers.Referer,
+        Origin: functionRequest.headers.Origin
+      }
+    };
+
+    // adding formData to GET requests causes errors with ArcGIS Server
+    if (options.method === POST) {
+      options.formData = functionRequest.body;
     }
 
-    request({
-      url: url,
-      qs: functionRequest.query
-    }, (error, agsResponse, body) => {
+    request(options, (error, agsResponse, body) => {
       functionResponse.status(agsResponse && agsResponse.statusCode);
       functionResponse.send(body);
     });
@@ -45,11 +62,13 @@ const getHandler = function (taskName) {
 };
 
 // get templates request
-app.get('/:accountNumber/arcgis/rest/services/GPServer/Get%20Layout%20Templates%20Info/:method?',
+app.get('/:accountNumber/arcgis/rest/services/GPServer/Get%20Layout%20Templates%20Info/:service?',
   getHandler('getTemplatesTaskName'));
 
 // main export request
-app.get('/:accountNumber/arcgis/rest/services/GPServer/export/:method?',
+app.get('/:accountNumber/arcgis/rest/services/GPServer/export',
+  getHandler('exportTaskName'));
+app.post('/:accountNumber/arcgis/rest/services/GPServer/export/:service',
   getHandler('exportTaskName'));
 
 exports.printproxy = app;
