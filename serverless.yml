@@ -3,9 +3,9 @@ service: serverless-print-proxy
 provider:
   name: google
   runtime: nodejs
-  project: printproxyserverless
+  project: utahkoopserver
   # the path to the credentials file needs to be absolute
-  credentials: ~/.gcloud/PrintProxyServerless-2ebb153832b6.json
+  credentials: ~/.gcloud/UtahKoopServer-cb9863cc94b9.json
 
 plugins:
   - serverless-google-cloudfunctions
