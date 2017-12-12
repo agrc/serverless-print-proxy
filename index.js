@@ -4,8 +4,8 @@
 const app = require('express')();
 const request = require('request');
 const accounts = require('./accounts');
-const secrets = require('./secrets');
 const bodyParser = require('body-parser');
+require('dotenv').config();
 
 const POST = 'POST';
 
@@ -60,7 +60,7 @@ const getHandler = function (taskName) {
 
       // switch out quad words
       options.formData.Web_Map_as_JSON = options.formData.Web_Map_as_JSON.replace(
-        new RegExp(account.quadWord, 'g'), secrets.wideOpenQuadWord);
+        new RegExp(account.quadWord, 'g'), process.env.OPEN_QUAD_WORD);
     }
 
     request(options, (error, agsResponse, body) => {
