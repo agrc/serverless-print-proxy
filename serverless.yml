@@ -21,5 +21,6 @@ package:
 functions:
   printproxy:
     handler: printproxy
+    timeout: 300s
     events:
       - http: path
