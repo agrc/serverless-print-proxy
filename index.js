@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 require('dotenv').config();
 
 const POST = 'POST';
+const WEB_MAP_AS_JSON = 'Web_Map_as_JSON';
 
 
 // enable CORS on all requests
@@ -54,12 +55,15 @@ const getHandler = function (taskName) {
       }
     };
 
-    // adding formData to GET requests causes errors with ArcGIS Server
+    // POST is used for requests with too much data to fit in query parameters
     if (options.method === POST) {
+      // adding formData to GET requests causes errors with ArcGIS Server
       options.formData = functionRequest.body;
 
-      // switch out quad words
-      options.formData.Web_Map_as_JSON = options.formData.Web_Map_as_JSON.replace(
+      options.formData[WEB_MAP_AS_JSON] = options.formData[WEB_MAP_AS_JSON].replace(
+        new RegExp(account.quadWord, 'g'), process.env.OPEN_QUAD_WORD);
+    } else if (options.qs[WEB_MAP_AS_JSON]){
+      options.qs[WEB_MAP_AS_JSON] = options.qs[WEB_MAP_AS_JSON].replace(
         new RegExp(account.quadWord, 'g'), process.env.OPEN_QUAD_WORD);
     }
 
@@ -78,6 +82,8 @@ app.get('/:accountNumber/arcgis/rest/services/GPServer/Get%20Layout%20Templates%
 app.get('/:accountNumber/arcgis/rest/services/GPServer/export',
   getHandler('exportTaskName'));
 app.post('/:accountNumber/arcgis/rest/services/GPServer/export/:service',
+  getHandler('exportTaskName'));
+app.get('/:accountNumber/arcgis/rest/services/GPServer/export/:service',
   getHandler('exportTaskName'));
 
 exports.printproxy = app;
