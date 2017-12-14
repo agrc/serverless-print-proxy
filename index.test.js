@@ -86,10 +86,10 @@ test('hide open quad word in response', () => {
           minScale: 0,
           maxScale: 0,
           type: 'WebTiledLayer',
-          urlTemplate: 'https://discover.agrc.utah.gov/login/path/famous-florida-quiet-passive/wmts?SERVICE=WMTS&VERSION=1.0.0&REQUEST=GetTile&LAYER=terrain_basemap&STYLE=default&FORMAT=image/png&TILEMATRIXSET=5to19&TILEMATRIX={level}&TILEROW={row}&TILECOL={col}',
+          urlTemplate: 'https://discover.agrc.utah.gov/login/path/test-quad-word/wmts?SERVICE=WMTS&VERSION=1.0.0&REQUEST=GetTile&LAYER=terrain_basemap&STYLE=default&FORMAT=image/png&TILEMATRIXSET=5to19&TILEMATRIX={level}&TILEROW={row}&TILECOL={col}',
           credits: '',
           wmtsInfo: {
-            url: 'https://discover.agrc.utah.gov/login/path/famous-florida-quiet-passive/wmts',
+            url: 'https://discover.agrc.utah.gov/login/path/test-quad-word/wmts',
             layerIdentifier: 'terrain_basemap',
             tileMatrixSet: '5to19'
           }

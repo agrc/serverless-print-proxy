@@ -5,7 +5,7 @@ module.exports = {
     serviceUrl: 'https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer',
     exportTaskName: 'Export Web Map Task',
     getTemplatesTaskName: 'Get Layout Templates Info Task',
-    quadWord: 'temple-memphis-medusa-corner'
+    quadWord: 'test-quad-word'
   },
   1: {
     // Created for Tom Thompson at DOGM
