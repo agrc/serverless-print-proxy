@@ -76,8 +76,14 @@ const getHandler = function (taskName) {
     console.log(`Method: ${options.method}`);
 
     request(options, (error, agsResponse, body) => {
-      functionResponse.status(agsResponse && agsResponse.statusCode);
-      functionResponse.send(body);
+      if (error) {
+        functionResponse.status(500);
+        return functionResponse.send(error);
+      }
+
+      functionResponse.status(agsResponse.statusCode);
+      body = body.replace(new RegExp(process.env.OPEN_QUAD_WORD, 'g'), '<open-quad-word-hidden>');
+      return functionResponse.send(body);
     });
   };
 };
