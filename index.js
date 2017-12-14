@@ -41,7 +41,6 @@ app.get('/:accountNumber/arcgis/rest/info', (functionRequest, functionResponse) 
 const getHandler = function (taskName) {
   return function (functionRequest, functionResponse) {
     const account = accounts[functionRequest.params.accountNumber];
-    console.log(`Account Number: ${functionRequest.params.accountNumber}`);
 
     let url = `${account.serviceUrl}/${encodeURIComponent(account[taskName])}`
     if (functionRequest.params.service) {
@@ -72,8 +71,11 @@ const getHandler = function (taskName) {
         new RegExp(account.quadWord, 'g'), process.env.OPEN_QUAD_WORD);
     }
 
-    console.log(`Proxied URL: ${url}`);
-    console.log(`Method: ${options.method}`);
+    console.log({
+      accountNumber: functionREquest.params.accountNumber,
+      url: url,
+      method: options.method
+    });
 
     request(options, (error, agsResponse, body) => {
       if (error) {
