@@ -72,7 +72,7 @@ const getHandler = function (taskName) {
     }
 
     console.log({
-      accountNumber: functionREquest.params.accountNumber,
+      accountNumber: functionRequest.params.accountNumber,
       url: url,
       method: options.method
     });
