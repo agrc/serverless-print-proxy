@@ -1,14 +1,14 @@
 {
-  "name": "google-nodejs",
-  "version": "0.1.0",
-  "description": "",
+  "name": "serverless-print-proxy",
+  "version": "1.0.0",
+  "description": "A Google Cloud Function for switching out quad words in print requests to ArcGIS Server",
   "main": "index.js",
   "scripts": {
     "test": "jest --watch",
     "test-debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
     "test-travis": "jest"
   },
-  "author": "serverless.com",
+  "author": "Scott Davis <stdavis@utah.gov>",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.2",
