@@ -21,6 +21,6 @@ package:
 functions:
   printproxy:
     handler: printproxy
-    timeout: 300s
+    timeout: ${file(./config.json):TIMEOUT}s
     events:
       - http: path

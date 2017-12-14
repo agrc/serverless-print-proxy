@@ -6,6 +6,7 @@ const request = require('request');
 const accounts = require('./accounts');
 const bodyParser = require('body-parser');
 require('dotenv').config();
+const config = require('./config');
 
 const POST = 'POST';
 const WEB_MAP_AS_JSON = 'Web_Map_as_JSON';
@@ -29,7 +30,8 @@ app.get('/:accountNumber/arcgis/rest/info', (functionRequest, functionResponse) 
   const url = account.serviceUrl.split(servicesDirectoryPath)[0] + servicesDirectoryPath;
   request({
     url: url,
-    qs: functionRequest.query
+    qs: functionRequest.query,
+    timeout: config.TIMEOUT
   }, (error, res, body) => {
     functionResponse.status(res && res.statusCode);
     functionResponse.send(body);
@@ -54,7 +56,8 @@ const getHandler = function (taskName) {
         // doesn't look like it's working
         Referer: functionRequest.headers.Referer,
         Origin: functionRequest.headers.Origin
-      }
+      },
+      timeout: config.TIMEOUT * 1000
     };
 
     // POST is used for requests with too much data to fit in query parameters
