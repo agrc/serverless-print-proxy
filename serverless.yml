@@ -21,5 +21,7 @@ package:
 functions:
   printproxy:
     handler: printproxy
+    timeout: ${file(./config.json):TIMEOUT}s
+    memorySize: 128
     events:
       - http: path
