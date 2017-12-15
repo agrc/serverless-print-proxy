@@ -11,6 +11,9 @@ https://us-central1-printproxyserverless.cloudfunctions.net/printproxy/<accountN
 The account number must have a corresponding key in `accounts.js`.
 
 
+## Setup for local development
+1. Define `GOOGLE_APPLICATION_CREDENTIALS` as an environment variable with a path to your google keycode Json file.
+
 ## Local Emulation via [Google's emulator](https://cloud.google.com/functions/docs/emulator)
 `serverless invoke local` doesn't seem to be supported with the Google provider.
 

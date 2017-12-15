@@ -3,7 +3,7 @@ node_js: '8'
 cache: yarn
 
 env:
-- GOOGLE_APPLICATION_CREDENTIALS=$TRAVIS_BUILD_DIR/UtahKoopServer-cb9863cc94b9.json
+  - GOOGLE_APPLICATION_CREDENTIALS=$TRAVIS_BUILD_DIR/UtahKoopServer-cb9863cc94b9.json
 
 before_install:
   - openssl aes-256-cbc -K $encrypted_8d463ba1c33d_key -iv $encrypted_8d463ba1c33d_iv

@@ -5,7 +5,7 @@ provider:
   runtime: nodejs
   project: utahkoopserver
   # the path to the credentials file needs to be absolute
-  credentials: ~/.gcloud/UtahKoopServer-cb9863cc94b9.json
+  credentials: ${env:GOOGLE_APPLICATION_CREDENTIALS}
 
 plugins:
   - serverless-google-cloudfunctions
