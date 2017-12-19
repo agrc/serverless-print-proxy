@@ -40,6 +40,11 @@ app.get('/:accountNumber/arcgis/rest/info', (functionRequest, functionResponse) 
 
 const getHandler = function (taskName) {
   return function (functionRequest, functionResponse) {
+    if (!process.env.OPEN_QUAD_WORD) {
+      functionResponse.status(500);
+
+      return functionResponse.send('OPEN_QUAD_WORD environment variable is not defined!');
+    }
     const account = accounts[functionRequest.params.accountNumber];
 
     let url = `${account.serviceUrl}/${encodeURIComponent(account[taskName])}`;

@@ -109,3 +109,17 @@ test('hide open quad word in response', () => {
     })
   ;
 });
+
+test('return 500 error if no OPEN_QUAD_WORD env var is present', () => {
+  const originalQuadWord = process.env.OPEN_QUAD_WORD;
+  delete process.env.OPEN_QUAD_WORD;
+
+  return request(server)
+    .get('/-1/arcgis/rest/services/GPServer/export/execute')
+    .expect(500)
+    .expect(/defined/)
+    .then(() => {
+      process.env.OPEN_QUAD_WORD = originalQuadWord;
+    })
+  ;
+});
