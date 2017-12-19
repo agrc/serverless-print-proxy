@@ -13,6 +13,7 @@ let server;
 beforeEach(() => {
   const app = require('./index').printproxy;
   server = http.createServer(app);
+
   return server.listen(TEST_PORT);
 });
 
@@ -61,7 +62,8 @@ test('post to export execute', () => {
     .send({
       f: 'json',
       Web_Map_as_JSON: JSON.stringify({
-        exportOptions: {outputSize: [670,500], dpi: 96}
+        exportOptions: { outputSize: [670, 500],
+          dpi: 96 }
       }),
       Format: 'PDF',
       Layout_Template: 'MAP_ONLY',
@@ -78,7 +80,8 @@ test('hide open quad word in response', () => {
     .query({
       f: 'json',
       Web_Map_as_JSON: JSON.stringify({
-        exportOptions: {outputSize: [670,500], dpi: 96},
+        exportOptions: { outputSize: [670, 500],
+          dpi: 96 },
         operationalLayers: [{
           id: 'WMTS_6557',
           title: 'terrain-basemap',
@@ -100,7 +103,6 @@ test('hide open quad word in response', () => {
       printFlag: 'true'
     })
     .expect((res) => {
-      debugger;
       if (res.res.text.match(new RegExp(process.env.OPEN_QUAD_WORD, 'g'))) {
         throw new Error('does not hide open quad word');
       }

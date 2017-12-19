@@ -1,0 +1,9 @@
+{
+  "extends": "agrc",
+  "globals": {
+    "test": true
+  },
+  "rules": {
+    "indent": ["error", 2]
+  }
+}
