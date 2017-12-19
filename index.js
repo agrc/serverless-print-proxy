@@ -9,6 +9,7 @@ const config = require('./config');
 
 const POST = 'POST';
 const WEB_MAP_AS_JSON = 'Web_Map_as_JSON';
+const SECONDS_TO_MILLISECONDS = 1000;
 
 
 // enable CORS on all requests
@@ -41,7 +42,7 @@ const getHandler = function (taskName) {
   return function (functionRequest, functionResponse) {
     const account = accounts[functionRequest.params.accountNumber];
 
-    let url = `${account.serviceUrl}/${encodeURIComponent(account[taskName])}`
+    let url = `${account.serviceUrl}/${encodeURIComponent(account[taskName])}`;
     if (functionRequest.params.service) {
       url += `/${functionRequest.params.service}`;
     }
@@ -55,7 +56,7 @@ const getHandler = function (taskName) {
         Referer: functionRequest.headers.Referer,
         Origin: functionRequest.headers.Origin
       },
-      timeout: config.TIMEOUT * 1000
+      timeout: config.TIMEOUT * SECONDS_TO_MILLISECONDS
     };
 
     // POST is used for requests with too much data to fit in query parameters
@@ -65,7 +66,7 @@ const getHandler = function (taskName) {
 
       options.formData[WEB_MAP_AS_JSON] = options.formData[WEB_MAP_AS_JSON].replace(
         new RegExp(account.quadWord, 'g'), process.env.OPEN_QUAD_WORD);
-    } else if (options.qs[WEB_MAP_AS_JSON]){
+    } else if (options.qs[WEB_MAP_AS_JSON]) {
       options.qs[WEB_MAP_AS_JSON] = options.qs[WEB_MAP_AS_JSON].replace(
         new RegExp(account.quadWord, 'g'), process.env.OPEN_QUAD_WORD);
     }
@@ -79,11 +80,13 @@ const getHandler = function (taskName) {
     request(options, (error, agsResponse, body) => {
       if (error) {
         functionResponse.status(500);
+
         return functionResponse.send(error);
       }
 
       functionResponse.status(agsResponse.statusCode);
       body = body.replace(new RegExp(process.env.OPEN_QUAD_WORD, 'g'), '<open-quad-word-hidden>');
+
       return functionResponse.send(body);
     });
   };
