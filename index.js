@@ -5,7 +5,6 @@ const app = require('express')();
 const request = require('request');
 const accounts = require('./accounts');
 const bodyParser = require('body-parser');
-require('dotenv').config();
 const config = require('./config');
 
 const POST = 'POST';
