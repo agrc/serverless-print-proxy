@@ -5,7 +5,7 @@
 Use the following url in place of an Esri Print service (e.g. [default AGOL service](https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task)):
 
 ```url
-https://us-central1-printproxyserverless.cloudfunctions.net/printproxy/<accountNumber>/arcgis/rest/services/GPServer/export
+https://us-central1-utahkoopserver.cloudfunctions.net/printproxy/<accountNumber>/arcgis/rest/services/GPServer/export
 ```
 
 The account number must have a corresponding key in `accounts.js`.
