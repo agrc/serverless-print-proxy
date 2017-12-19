@@ -20,8 +20,6 @@ package:
 
 functions:
   printproxy:
-    environment:
-      OPEN_QUAD_WORD: ${env:OPEN_QUAD_WORD}
     handler: printproxy
     timeout: ${file(./config.json):TIMEOUT}s
     memorySize: 128

@@ -6,6 +6,7 @@ const request = require('request');
 const accounts = require('./accounts');
 const bodyParser = require('body-parser');
 const config = require('./config');
+require('dotenv').config();
 
 const POST = 'POST';
 const WEB_MAP_AS_JSON = 'Web_Map_as_JSON';
