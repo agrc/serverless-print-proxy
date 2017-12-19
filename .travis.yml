@@ -2,19 +2,18 @@ language: node_js
 node_js: '8'
 cache: yarn
 env:
-- GOOGLE_APPLICATION_CREDENTIALS=$TRAVIS_BUILD_DIR/UtahKoopServer-cb9863cc94b9.json
+  - GOOGLE_APPLICATION_CREDENTIALS=$TRAVIS_BUILD_DIR/UtahKoopServer-cb9863cc94b9.json
 before_install:
-- openssl aes-256-cbc -K $encrypted_8d463ba1c33d_key -iv $encrypted_8d463ba1c33d_iv
-  -in .env.enc -out .env -d
-- openssl aes-256-cbc -K $encrypted_8d463ba1c33d_key -iv $encrypted_8d463ba1c33d_iv
-  -in UtahKoopServer-cb9863cc94b9.json.enc -out UtahKoopServer-cb9863cc94b9.json -d
+  - openssl aes-256-cbc -K $encrypted_8d463ba1c33d_key -iv $encrypted_8d463ba1c33d_iv
+    -in secrets.tar.enc -out secrets.tar -d
+  - tar xvf secrets.tar
 install:
-- yarn
-- yarn global add serverless
+  - yarn
+  - yarn global add serverless
 script:
-- yarn test-travis
+  - yarn test-travis
 after_success:
-- test $TRAVIS_BRANCH = "master" && sls deploy
+  - test $TRAVIS_BRANCH = "master" && sls deploy
 notifications:
   email:
     on_success: change
