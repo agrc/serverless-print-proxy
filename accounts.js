@@ -16,7 +16,7 @@ module.exports = {
   },
   2: {
     // agrc org
-    serviceUrl: 'https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer',
+    serviceUrl: 'http://mapserv.utah.gov/arcgis/rest/services/Utilities/PrintingTools/GPServer',
     exportTaskName: 'Export Web Map Task',
     getTemplatesTaskName: 'Get Layout Templates Info Task',
     quadWord: 'temple-memphis-medusa-corner'
