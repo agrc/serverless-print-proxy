@@ -23,7 +23,7 @@ module.exports = {
   },
   3: {
     // salt lake county
-    serviceUrl: 'https://gis.slco.org/slcogis/rest/services/Utilities/PrintingTools/GPServer',
+    serviceUrl: 'https://slco.org/slcogis/rest/services/Utilities/PrintingTools/GPServer',
     exportTaskName: 'Export Web Map Task',
     getTemplatesTaskName: 'Get Layout Templates Info Task',
     quadWord: 'optimal-polygon-contour-local'
