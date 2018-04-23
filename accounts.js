@@ -34,5 +34,12 @@ module.exports = {
     exportTaskName: 'Export Web Map Task',
     getTemplatesTaskName: 'Get Layout Templates Info Task',
     quadWord: 'sonata-henry-fractal-orion'
+  },
+  5: {
+    // parcels.utah.gov
+    serviceUrl: 'http://mapserv.utah.gov/arcgis/rest/services/Utilities/PrintingTools/GPServer',
+    exportTaskName: 'Export Web Map Task',
+    getTemplatesTaskName: 'Get Layout Templates Info Task',
+    quadWord: 'alfred-plaster-crystal-dexter'
   }
 };
