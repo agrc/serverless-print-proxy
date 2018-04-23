@@ -67,10 +67,10 @@ const getHandler = function (taskName) {
 
     // POST is used for requests with too much data to fit in query parameters
     if (options.method === POST) {
-      // adding formData to GET requests causes errors with ArcGIS Server
-      options.formData = functionRequest.body;
+      // adding form to GET requests causes errors with ArcGIS Server
+      options.form = functionRequest.body;
 
-      options.formData[WEB_MAP_AS_JSON] = options.formData[WEB_MAP_AS_JSON].replace(
+      options.form[WEB_MAP_AS_JSON] = options.form[WEB_MAP_AS_JSON].replace(
         new RegExp(account.quadWord, 'g'), process.env.OPEN_QUAD_WORD);
     } else if (options.qs[WEB_MAP_AS_JSON]) {
       options.qs[WEB_MAP_AS_JSON] = options.qs[WEB_MAP_AS_JSON].replace(

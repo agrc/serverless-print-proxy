@@ -4,7 +4,7 @@
 'use strict';
 const request = require('supertest');
 const http = require('http');
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 20000;
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 40000;
 
 
 const TEST_PORT = 3000;
@@ -62,12 +62,14 @@ test('post to export execute', () => {
     .send({
       f: 'json',
       Web_Map_as_JSON: JSON.stringify({
-        exportOptions: { outputSize: [670, 500],
-          dpi: 96 }
+        exportOptions: {
+          outputSize: [670, 500],
+          dpi: 96
+        },
+        mapOptions: { extent: {} }
       }),
       Format: 'PDF',
-      Layout_Template: 'MAP_ONLY',
-      printFlag: 'true'
+      Layout_Template: 'MAP_ONLY'
     })
     .expect(/GPDataFile/)
     .expect(200)
