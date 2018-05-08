@@ -125,3 +125,10 @@ test('return 500 error if no OPEN_QUAD_WORD env var is present', () => {
     })
   ;
 });
+
+test('general base task info', () => {
+  return request(server)
+    .get('/-1/arcgis/rest/services/GPServer?f=json')
+    .expect(200)
+    .expect(/serviceDescription/);
+});
