@@ -13,7 +13,7 @@ install:
 script:
   - yarn test-travis
 after_success:
-  - test $TRAVIS_BRANCH = "master" && sls deploy
+  - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH = "master" && sls deploy printproxy
 notifications:
   email:
     on_success: change
