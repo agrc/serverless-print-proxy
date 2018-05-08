@@ -4,7 +4,7 @@
 'use strict';
 const request = require('supertest');
 const http = require('http');
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 40000;
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 80000;
 
 
 const TEST_PORT = 3000;
