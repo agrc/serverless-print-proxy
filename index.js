@@ -23,20 +23,32 @@ app.use((req, res, next) => {
 // required for parsing submitted form data
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const simpleRequest = function (url, functionRequest, functionResponse) {
+  request({
+    url,
+    qs: functionRequest.query,
+    timeout: config.TIMEOUT * SECONDS_TO_MILLISECONDS
+  }, (error, res, body) => {
+    functionResponse.status(res && res.statusCode);
+    functionResponse.send(body);
+  });
+};
+
 // general arcgis server info
 app.get('/:accountNumber/arcgis/rest/info', (functionRequest, functionResponse) => {
   const account = accounts[functionRequest.params.accountNumber];
   const servicesDirectoryPath = 'arcgis/rest/services';
 
   const url = account.serviceUrl.split(servicesDirectoryPath)[0] + servicesDirectoryPath;
-  request({
-    url: url,
-    qs: functionRequest.query,
-    timeout: config.TIMEOUT
-  }, (error, res, body) => {
-    functionResponse.status(res && res.statusCode);
-    functionResponse.send(body);
-  });
+
+  simpleRequest(url, functionRequest, functionResponse);
+});
+
+// general base task route
+app.get('/:accountNumber/arcgis/rest/services/GPServer', (functionRequest, functionResponse) => {
+  const account = accounts[functionRequest.params.accountNumber];
+
+  simpleRequest(account.serviceUrl, functionRequest, functionResponse);
 });
 
 const getHandler = function (taskName) {
@@ -103,11 +115,8 @@ app.get('/:accountNumber/arcgis/rest/services/GPServer/Get%20Layout%20Templates%
   getHandler('getTemplatesTaskName'));
 
 // main export request
-app.get('/:accountNumber/arcgis/rest/services/GPServer/export',
-  getHandler('exportTaskName'));
-app.post('/:accountNumber/arcgis/rest/services/GPServer/export/:service',
-  getHandler('exportTaskName'));
-app.get('/:accountNumber/arcgis/rest/services/GPServer/export/:service',
-  getHandler('exportTaskName'));
+app.get('/:accountNumber/arcgis/rest/services/GPServer/export', getHandler('exportTaskName'));
+app.post('/:accountNumber/arcgis/rest/services/GPServer/export/:service', getHandler('exportTaskName'));
+app.get('/:accountNumber/arcgis/rest/services/GPServer/export/:service', getHandler('exportTaskName'));
 
 exports.printproxy = app;

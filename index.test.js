@@ -4,7 +4,7 @@
 'use strict';
 const request = require('supertest');
 const http = require('http');
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 40000;
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 80000;
 
 
 const TEST_PORT = 3000;
@@ -124,4 +124,11 @@ test('return 500 error if no OPEN_QUAD_WORD env var is present', () => {
       process.env.OPEN_QUAD_WORD = originalQuadWord;
     })
   ;
+});
+
+test('general base task info', () => {
+  return request(server)
+    .get('/-1/arcgis/rest/services/GPServer?f=json')
+    .expect(200)
+    .expect(/serviceDescription/);
 });
