@@ -47,6 +47,6 @@ module.exports = {
     serviceUrl: 'https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer',
     exportTaskName: 'Export Web Map Task',
     getTemplatesTaskName: 'Get Layout Templates Info Task',
-    quadWord: 'slogan-emerald-slalom-nevada'
+    quadWord: 'chance-source-liquid-nelson'
   }
 };
