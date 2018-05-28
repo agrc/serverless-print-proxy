@@ -48,5 +48,12 @@ module.exports = {
     exportTaskName: 'Export Web Map Task',
     getTemplatesTaskName: 'Get Layout Templates Info Task',
     quadWord: 'chance-source-liquid-nelson'
+  },
+  7: {
+    // atlas.utah.gov
+    serviceUrl: 'http://mapserv.utah.gov/arcgis/rest/services/Utilities/PrintingTools/GPServer',
+    exportTaskName: 'Export Web Map Task',
+    getTemplatesTaskName: 'Get Layout Templates Info Task',
+    quadWord: 'career-exhibit-panel-stadium'
   }
 };
