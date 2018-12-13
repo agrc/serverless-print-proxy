@@ -55,5 +55,12 @@ module.exports = {
     exportTaskName: 'Export Web Map Task',
     getTemplatesTaskName: 'Get Layout Templates Info Task',
     quadWord: 'career-exhibit-panel-stadium'
+  },
+  8: {
+    // carbon county
+    serviceUrl: 'https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer',
+    exportTaskName: 'Export Web Map Task',
+    getTemplatesTaskName: 'Get Layout Templates Info Task',
+    quadWord: 'gloria-corona-bombay-prize'
   }
 };
