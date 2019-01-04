@@ -83,5 +83,12 @@ module.exports = {
     exportTaskName: 'Export Web Map',
     getTemplatesTaskName: '',
     quadWord: 'delete-prefix-stretch-giant'
+  },
+  12: {
+    // summit county
+    serviceUrl: 'https://maps.summitcounty.org/arcgis2/rest/services/Geoprocessing/ExportWebMap/GPServer/',
+    exportTaskName: 'Export Web Map',
+    getTemplatesTaskName: 'Get Layout Templates Info',
+    quadWord: 'spark-sardine-domain-telecom'
   }
 };
