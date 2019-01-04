@@ -62,5 +62,26 @@ module.exports = {
     exportTaskName: 'Export Web Map Task',
     getTemplatesTaskName: 'Get Layout Templates Info Task',
     quadWord: 'gloria-corona-bombay-prize'
+  },
+  9: {
+    // wri - dev
+    serviceUrl: 'https://wrimaps.at.utah.gov/arcgis/rest/services/WRI_DEV/Print/GPServer',
+    exportTaskName: 'Export Web Map',
+    getTemplatesTaskName: '',
+    quadWord: 'fractal-crack-beach-cello'
+  },
+  10: {
+    // wri - at
+    serviceUrl: 'https://wrimaps.at.utah.gov/arcgis/rest/services/WRI_AT/Print/GPServer',
+    exportTaskName: 'Export Web Map',
+    getTemplatesTaskName: '',
+    quadWord: 'fractal-crack-beach-cello'
+  },
+  11: {
+    // wri - prod
+    serviceUrl: 'https://wrimaps.utah.gov/arcgis/rest/services/WRI/Print/GPServer',
+    exportTaskName: 'Export Web Map',
+    getTemplatesTaskName: '',
+    quadWord: 'delete-prefix-stretch-giant'
   }
 };
