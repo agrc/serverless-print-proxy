@@ -76,6 +76,40 @@ test('post to export execute', () => {
   ;
 });
 
+test('submitJob and check job requests (async gp task)', () => {
+  let jobId;
+
+  return request(server)
+    .post('/11/arcgis/rest/services/GPServer/export/submitJob')
+    .type('form')
+    .send({
+      f: 'json',
+      Web_Map_as_JSON: JSON.stringify({
+        exportOptions: {
+          outputSize: [670, 500],
+          dpi: 96
+        },
+        mapOptions: { extent: {} }
+      }),
+      Format: 'PDF',
+      Layout_Template: 'MAP_ONLY'
+    })
+    .expect(/jobId/)
+    .expect(res => {
+      jobId = JSON.parse(res.res.text).jobId;
+    })
+    .expect(200)
+    .then(() => {
+      request(server)
+        .get(`/11/arcgis/rest/services/GPServer/export/jobs/${jobId}`)
+        .query({ f: 'json' })
+        .expect(/jobStatus/)
+        .expect(200)
+      ;
+    })
+  ;
+});
+
 test('hide open quad word in response', () => {
   return request(server)
     .get('/-1/arcgis/rest/services/GPServer/export/execute')

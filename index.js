@@ -51,6 +51,21 @@ app.get('/:accountNumber/arcgis/rest/services/GPServer', (functionRequest, funct
   simpleRequest(account.serviceUrl, functionRequest, functionResponse);
 });
 
+const makeRequest = (options, functionResponse) => {
+  request(options, (error, agsResponse, body) => {
+    if (error) {
+      functionResponse.status(500);
+
+      return functionResponse.send(error);
+    }
+
+    functionResponse.status(agsResponse.statusCode);
+    body = body.replace(new RegExp(process.env.OPEN_QUAD_WORD, 'g'), '<open-quad-word-hidden>');
+
+    return functionResponse.send(body);
+  });
+};
+
 const getHandler = function (taskName) {
   return function (functionRequest, functionResponse) {
     if (!process.env.OPEN_QUAD_WORD) {
@@ -95,19 +110,27 @@ const getHandler = function (taskName) {
       method: options.method
     });
 
-    request(options, (error, agsResponse, body) => {
-      if (error) {
-        functionResponse.status(500);
-
-        return functionResponse.send(error);
-      }
-
-      functionResponse.status(agsResponse.statusCode);
-      body = body.replace(new RegExp(process.env.OPEN_QUAD_WORD, 'g'), '<open-quad-word-hidden>');
-
-      return functionResponse.send(body);
-    });
+    makeRequest(options, functionResponse);
   };
+};
+
+const jobStatusHandler = (functionRequest, functionResponse) => {
+  const account = accounts[functionRequest.params.accountNumber];
+
+  let url = `${account.serviceUrl}/${encodeURIComponent(account.exportTaskName)}/jobs/${functionRequest.params.jobId}`;
+  const options = {
+    url: url,
+    qs: functionRequest.query,
+    timeout: config.TIMEOUT * SECONDS_TO_MILLISECONDS
+  };
+
+  console.log({
+    accountNumber: functionRequest.params.accountNumber,
+    url: url,
+    method: options.method
+  });
+
+  makeRequest(options, functionResponse);
 };
 
 // get templates request
@@ -118,5 +141,8 @@ app.get('/:accountNumber/arcgis/rest/services/GPServer/Get%20Layout%20Templates%
 app.get('/:accountNumber/arcgis/rest/services/GPServer/export', getHandler('exportTaskName'));
 app.post('/:accountNumber/arcgis/rest/services/GPServer/export/:service', getHandler('exportTaskName'));
 app.get('/:accountNumber/arcgis/rest/services/GPServer/export/:service', getHandler('exportTaskName'));
+
+// get job status request
+app.get('/:accountNumber/arcgis/rest/services/GPServer/export/jobs/:jobId', jobStatusHandler);
 
 exports.printproxy = app;
