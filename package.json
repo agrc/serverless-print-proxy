@@ -9,6 +9,9 @@
     "test-travis": "eslint *.js && jest",
     "test": "jest --watch"
   },
+  "jest": {
+    "testEnvironment": "node"
+  },
   "author": "Scott Davis <stdavis@utah.gov>",
   "license": "MIT",
   "dependencies": {
