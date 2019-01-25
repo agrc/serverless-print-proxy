@@ -34,23 +34,6 @@ const simpleRequest = function (url, functionRequest, functionResponse) {
   });
 };
 
-// general arcgis server info
-app.get('/:accountNumber/arcgis/rest/info', (functionRequest, functionResponse) => {
-  const account = accounts[functionRequest.params.accountNumber];
-  const servicesDirectoryPath = 'arcgis/rest/services';
-
-  const url = account.serviceUrl.split(servicesDirectoryPath)[0] + servicesDirectoryPath;
-
-  simpleRequest(url, functionRequest, functionResponse);
-});
-
-// general base task route
-app.get('/:accountNumber/arcgis/rest/services/GPServer', (functionRequest, functionResponse) => {
-  const account = accounts[functionRequest.params.accountNumber];
-
-  simpleRequest(account.serviceUrl, functionRequest, functionResponse);
-});
-
 const makeRequest = (options, functionResponse) => {
   request(options, (error, agsResponse, body) => {
     if (error) {
@@ -114,35 +97,58 @@ const getHandler = function (taskName) {
   };
 };
 
-const jobStatusHandler = (functionRequest, functionResponse) => {
-  const account = accounts[functionRequest.params.accountNumber];
+// handler for calls to the jobs service
+const getJobsHandler = (jobPath) => {
+  return (functionRequest, functionResponse) => {
+    const account = accounts[functionRequest.params.accountNumber];
 
-  let url = `${account.serviceUrl}/${encodeURIComponent(account.exportTaskName)}/jobs/${functionRequest.params.jobId}`;
-  const options = {
-    url: url,
-    qs: functionRequest.query,
-    timeout: config.TIMEOUT * SECONDS_TO_MILLISECONDS
+    let url = `${account.serviceUrl}/${encodeURIComponent(account.exportTaskName)}` +
+      `/jobs/${functionRequest.params.jobId}${(jobPath) ? jobPath : ''}`;
+    const options = {
+      url: url,
+      qs: functionRequest.query,
+      timeout: config.TIMEOUT * SECONDS_TO_MILLISECONDS
+    };
+
+    console.log({
+      accountNumber: functionRequest.params.accountNumber,
+      url: url,
+      method: 'GET'
+    });
+
+    makeRequest(options, functionResponse);
   };
-
-  console.log({
-    accountNumber: functionRequest.params.accountNumber,
-    url: url,
-    method: options.method
-  });
-
-  makeRequest(options, functionResponse);
 };
 
+const baseRoute = '/:accountNumber/arcgis/rest/services/GPServer/';
+
+// general arcgis server info
+app.get('/:accountNumber/arcgis/rest/info', (functionRequest, functionResponse) => {
+  const account = accounts[functionRequest.params.accountNumber];
+  const servicesDirectoryPath = 'arcgis/rest/services';
+
+  const url = account.serviceUrl.split(servicesDirectoryPath)[0] + servicesDirectoryPath;
+
+  simpleRequest(url, functionRequest, functionResponse);
+});
+
+// general base task route
+app.get(baseRoute, (functionRequest, functionResponse) => {
+  const account = accounts[functionRequest.params.accountNumber];
+
+  simpleRequest(account.serviceUrl, functionRequest, functionResponse);
+});
+
 // get templates request
-app.get('/:accountNumber/arcgis/rest/services/GPServer/Get%20Layout%20Templates%20Info/:service?',
-  getHandler('getTemplatesTaskName'));
+app.get(`${baseRoute}Get%20Layout%20Templates%20Info/:service?`, getHandler('getTemplatesTaskName'));
 
 // main export request
-app.get('/:accountNumber/arcgis/rest/services/GPServer/export', getHandler('exportTaskName'));
-app.post('/:accountNumber/arcgis/rest/services/GPServer/export/:service', getHandler('exportTaskName'));
-app.get('/:accountNumber/arcgis/rest/services/GPServer/export/:service', getHandler('exportTaskName'));
+app.get(`${baseRoute}export`, getHandler('exportTaskName'));
+app.post(`${baseRoute}export/:service`, getHandler('exportTaskName'));
+app.get(`${baseRoute}export/:service`, getHandler('exportTaskName'));
 
-// get job status request
-app.get('/:accountNumber/arcgis/rest/services/GPServer/export/jobs/:jobId', jobStatusHandler);
+// get job status and output file requests (async print tasks)
+app.get(`${baseRoute}export/jobs/:jobId`, getJobsHandler());
+app.get(`${baseRoute}export/jobs/:jobId/results/Output_File`, getJobsHandler('/results/Output_File'));
 
 exports.printproxy = app;

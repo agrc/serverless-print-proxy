@@ -8,6 +8,7 @@ jasmine.DEFAULT_TIMEOUT_INTERVAL = 80000;
 
 
 const TEST_PORT = 3000;
+const sleep = require('util').promisify(setTimeout);
 let server;
 
 beforeEach(() => {
@@ -76,38 +77,54 @@ test('post to export execute', () => {
   ;
 });
 
-test('submitJob and check job requests (async gp task)', () => {
+describe('async print task', () => {
   let jobId;
+  test('submitJob', () => {
+    return request(server)
+      .post('/11/arcgis/rest/services/GPServer/export/submitJob')
+      .type('form')
+      .send({
+        f: 'json',
+        Web_Map_as_JSON: JSON.stringify({
+          exportOptions: {
+            outputSize: [670, 500],
+            dpi: 96
+          },
+          mapOptions: { extent: {} }
+        }),
+        Format: 'PDF',
+        Layout_Template: 'MAP_ONLY'
+      })
+      .expect(/jobId/)
+      .expect(res => {
+        jobId = JSON.parse(res.res.text).jobId;
+      })
+      .expect(200)
+    ;
+  });
 
-  return request(server)
-    .post('/11/arcgis/rest/services/GPServer/export/submitJob')
-    .type('form')
-    .send({
-      f: 'json',
-      Web_Map_as_JSON: JSON.stringify({
-        exportOptions: {
-          outputSize: [670, 500],
-          dpi: 96
-        },
-        mapOptions: { extent: {} }
-      }),
-      Format: 'PDF',
-      Layout_Template: 'MAP_ONLY'
-    })
-    .expect(/jobId/)
-    .expect(res => {
-      jobId = JSON.parse(res.res.text).jobId;
-    })
-    .expect(200)
-    .then(() => {
+  test('check job requests', () => {
+    return request(server)
+      .get(`/11/arcgis/rest/services/GPServer/export/jobs/${jobId}`)
+      .query({ f: 'json' })
+      .expect(/jobStatus/)
+      .expect(200)
+    ;
+  });
+
+  test('get output file', () => {
+    return sleep(500).then(() => {
       request(server)
-        .get(`/11/arcgis/rest/services/GPServer/export/jobs/${jobId}`)
-        .query({ f: 'json' })
-        .expect(/jobStatus/)
+        .get(`/11/arcgis/rest/services/GPServer/export/jobs/${jobId}/results/Output_File`)
+        .query({
+          f: 'json',
+          returnType: 'data'
+        })
+        .expect(/GPDataFile/)
         .expect(200)
       ;
-    })
-  ;
+    });
+  });
 });
 
 test('hide open quad word in response', () => {
