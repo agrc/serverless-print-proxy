@@ -1,5 +1,5 @@
 # serverless-print-proxy
-[![Build Status](https://travis-ci.org/agrc/serverless-print-proxy.svg?branch=master)](https://travis-ci.org/agrc/serverless-print-proxy)
+[![Build Status](https://travis-ci.com/agrc/serverless-print-proxy.svg?branch=master)](https://travis-ci.com/agrc/serverless-print-proxy)
 
 ## Usage
 Use the following url in place of an Esri Print service (e.g. [default AGOL service](https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task)):
