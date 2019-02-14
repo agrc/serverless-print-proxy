@@ -90,5 +90,12 @@ module.exports = {
     exportTaskName: 'Export Web Map',
     getTemplatesTaskName: 'Get Layout Templates Info',
     quadWord: 'spark-sardine-domain-telecom'
+  },
+  13: {
+    // south davis sewer district
+    serviceUrl: 'https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/',
+    exportTaskName: 'Export Web Map',
+    getTemplatesTaskName: 'Get Layout Templates Info',
+    quadWord: 'congo-fuji-philips-bucket'
   }
 };
