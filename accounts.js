@@ -94,8 +94,8 @@ module.exports = {
   13: {
     // south davis sewer district
     serviceUrl: 'https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/',
-    exportTaskName: 'Export Web Map',
-    getTemplatesTaskName: 'Get Layout Templates Info',
+    exportTaskName: 'Export Web Map Task',
+    getTemplatesTaskName: 'Get Layout Templates Info Task',
     quadWord: 'congo-fuji-philips-bucket'
   }
 };
