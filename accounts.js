@@ -86,16 +86,23 @@ module.exports = {
   },
   12: {
     // summit county
-    serviceUrl: 'https://maps.summitcounty.org/arcgis2/rest/services/Geoprocessing/ExportWebMap/GPServer/',
+    serviceUrl: 'https://maps.summitcounty.org/arcgis2/rest/services/Geoprocessing/ExportWebMap/GPServer',
     exportTaskName: 'Export Web Map',
     getTemplatesTaskName: 'Get Layout Templates Info',
     quadWord: 'spark-sardine-domain-telecom'
   },
   13: {
     // south davis sewer district
-    serviceUrl: 'https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/',
+    serviceUrl: 'https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer',
     exportTaskName: 'Export Web Map Task',
     getTemplatesTaskName: 'Get Layout Templates Info Task',
     quadWord: 'congo-fuji-philips-bucket'
+  },
+  14: {
+    // enviro.deq.utah.gov
+    serviceUrl: 'https://mapserv.utah.gov/arcgis/rest/services/DEQEnviro/ExportWebMap/GPServer',
+    exportTaskName: 'Export Web Map',
+    getTemplatesTaskName: '',
+    quadWord: 'result-table-secure-antenna'
   }
 };
