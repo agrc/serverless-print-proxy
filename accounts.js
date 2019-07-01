@@ -86,7 +86,7 @@ module.exports = {
   },
   12: {
     // summit county
-    serviceUrl: 'https://maps.summitcounty.org/arcgis3/rest/services/Geoprocessing/ExportWebMap/GPServer',
+    serviceUrl: 'https://maps.summitcounty.org/arcgis/rest/services/Geoprocessing/ExportWebMap/GPServer',
     exportTaskName: 'Export Web Map',
     getTemplatesTaskName: 'Get Layout Templates Info',
     quadWord: 'spark-sardine-domain-telecom'
