@@ -104,5 +104,12 @@ module.exports = {
     exportTaskName: 'Export Web Map',
     getTemplatesTaskName: '',
     quadWord: 'result-table-secure-antenna'
+  },
+  15: {
+    // broadband.utah.gov/map
+    serviceUrl: 'https://mapserv.utah.gov/arcgis/rest/Broadband/ExportWebMap/GPServer',
+    exportTaskName: 'Export Web Map',
+    getTemplatesTaskName: '',
+    quadWord: 'reserve-tactic-cricket-spider'
   }
 };
