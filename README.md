@@ -36,3 +36,7 @@ If the URL passes validation, then it makes a GET request (`arcgis/rest/info?f=j
 Run `yarn test` to run jest tests.
 
 There's also an [AGOL web app](http://utah.maps.arcgis.com/apps/webappbuilder/index.html?id=177c2b166a8d4cb79d888f28f950b33a) that you can test with.
+
+## Deployment
+
+Commits to master are automatically deployed to production pending passing tests via TravisCI because 🤓.
