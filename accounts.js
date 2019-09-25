@@ -107,7 +107,7 @@ module.exports = {
   },
   15: {
     // broadband.utah.gov/map
-    serviceUrl: 'https://mapserv.utah.gov/arcgis/rest/Broadband/ExportWebMap/GPServer',
+    serviceUrl: 'http://mapserv.utah.gov/arcgis/rest/services/Broadband/ExportWebMap/GPServer',
     exportTaskName: 'Export Web Map',
     getTemplatesTaskName: '',
     quadWord: 'reserve-tactic-cricket-spider'
