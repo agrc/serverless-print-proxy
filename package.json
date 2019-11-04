@@ -2,6 +2,7 @@
   "name": "serverless-print-proxy",
   "version": "1.0.0",
   "description": "A Google Cloud Function for switching out quad words in print requests to ArcGIS Server",
+  "repository": "https://github.com/agrc/serverless-print-proxy",
   "main": "index.js",
   "scripts": {
     "lint": "eslint *.js",
