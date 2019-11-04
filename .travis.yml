@@ -1,6 +1,6 @@
 language: node_js
-node_js: '8'
-cache: yarn
+node_js: '10'
+cache: npm
 env:
   - GOOGLE_APPLICATION_CREDENTIALS=$TRAVIS_BUILD_DIR/UtahKoopServer-cb9863cc94b9.json
 before_install:
@@ -8,10 +8,9 @@ before_install:
     -in secrets.tar.enc -out secrets.tar -d
   - tar xvf secrets.tar
 install:
-  - yarn
-  - yarn global add serverless
+  - npm i -g serverless
 script:
-  - yarn test-travis
+  - npm run test-travis
 after_success:
   - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH = "master" && sls deploy
 notifications:
