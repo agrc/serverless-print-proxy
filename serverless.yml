@@ -2,7 +2,7 @@ service: serverless-print-proxy
 
 provider:
   name: google
-  runtime: nodejs
+  runtime: google-nodejs
   project: utahkoopserver
   # the path to the credentials file needs to be absolute
   credentials: ${env:GOOGLE_APPLICATION_CREDENTIALS}
