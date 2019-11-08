@@ -47,6 +47,14 @@ test('export task info', () => {
     .expect(/parameters/)
   ;
 });
+test('export task info (post)', () => {
+  return request(server)
+    .get('/-1/arcgis/rest/services/GPServer/Export%20Web%20Map%20Task?f=json')
+    .expect(200)
+    .expect(/category/)
+    .expect(/parameters/)
+  ;
+});
 
 test('get templates task info', () => {
   return request(server)
@@ -180,6 +188,13 @@ test('return 500 error if no OPEN_QUAD_WORD env var is present', () => {
 test('general base task info', () => {
   return request(server)
     .get('/-1/arcgis/rest/services/GPServer?f=json')
+    .expect(200)
+    .expect(/serviceDescription/);
+});
+
+test('general base task info (post)', () => {
+  return request(server)
+    .post('/-1/arcgis/rest/services/GPServer?f=json')
     .expect(200)
     .expect(/serviceDescription/);
 });

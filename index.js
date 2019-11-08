@@ -80,8 +80,10 @@ const getHandler = function (taskName) {
       // adding form to GET requests causes errors with ArcGIS Server
       options.form = functionRequest.body;
 
-      options.form[WEB_MAP_AS_JSON] = options.form[WEB_MAP_AS_JSON].replace(
-        new RegExp(account.quadWord, 'g'), process.env.OPEN_QUAD_WORD);
+      if (options.form[WEB_MAP_AS_JSON]) {
+        options.form[WEB_MAP_AS_JSON] = options.form[WEB_MAP_AS_JSON].replace(
+          new RegExp(account.quadWord, 'g'), process.env.OPEN_QUAD_WORD);
+      }
     } else if (options.qs[WEB_MAP_AS_JSON]) {
       options.qs[WEB_MAP_AS_JSON] = options.qs[WEB_MAP_AS_JSON].replace(
         new RegExp(account.quadWord, 'g'), process.env.OPEN_QUAD_WORD);
@@ -133,17 +135,22 @@ app.get('/:accountNumber/arcgis/rest/info', (functionRequest, functionResponse) 
 });
 
 // general base task route
-app.get(baseRoute, (functionRequest, functionResponse) => {
+const baseHandler = (functionRequest, functionResponse) => {
   const account = accounts[functionRequest.params.accountNumber];
 
   simpleRequest(account.serviceUrl, functionRequest, functionResponse);
-});
+};
+app.get(baseRoute, baseHandler);
+app.post(baseRoute, baseHandler);
 
 // get templates request
 app.get(`${baseRoute}Get%20Layout%20Templates%20Info/:service?`, getHandler('getTemplatesTaskName'));
 
 // main export request
 app.get(`${baseRoute}export`, getHandler('exportTaskName'));
+app.post(`${baseRoute}export`, getHandler('exportTaskName'));
+app.get(`${baseRoute}:service`, getHandler('exportTaskName'));
+app.post(`${baseRoute}:service`, getHandler('exportTaskName'));
 app.post(`${baseRoute}export/:service`, getHandler('exportTaskName'));
 app.get(`${baseRoute}export/:service`, getHandler('exportTaskName'));
 
