@@ -145,6 +145,7 @@ app.post(baseRoute, baseHandler);
 
 // get templates request
 app.get(`${baseRoute}Get%20Layout%20Templates%20Info/:service?`, getHandler('getTemplatesTaskName'));
+app.post(`${baseRoute}Export%20Web%20Map%20Task/:service`, getHandler('exportTaskName'));
 
 // main export request
 app.get(`${baseRoute}export`, getHandler('exportTaskName'));
