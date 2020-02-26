@@ -15,8 +15,8 @@ module.exports = {
     quadWord: 'famous-florida-quiet-passive'
   },
   2: {
-    // agrc org
-    serviceUrl: 'http://mapserv.utah.gov/arcgis/rest/services/Utilities/PrintingTools/GPServer',
+    // agrc agol org
+    serviceUrl: 'https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer',
     exportTaskName: 'Export Web Map Task',
     getTemplatesTaskName: 'Get Layout Templates Info Task',
     quadWord: 'temple-memphis-medusa-corner'
