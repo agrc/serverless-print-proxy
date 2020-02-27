@@ -1,5 +1,5 @@
 language: node_js
-node_js: '10'
+node_js: lts/*
 cache: npm
 env:
   - GOOGLE_APPLICATION_CREDENTIALS=$TRAVIS_BUILD_DIR/UtahKoopServer-cb9863cc94b9.json
