@@ -12,8 +12,13 @@ install:
   - npm i -g serverless
 script:
   - npm run test-travis
-after_success:
-  - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH = "master" && sls deploy
+deploy:
+  provider: script
+  script: sls deploy
+  skip_cleanup: true
+  on:
+    branch: master
+  edge: true
 notifications:
   email:
     on_success: change
