@@ -111,5 +111,12 @@ module.exports = {
     exportTaskName: 'Export Web Map',
     getTemplatesTaskName: '',
     quadWord: 'reserve-tactic-cricket-spider'
+  },
+  16: {
+    // dnr agol
+    serviceUrl: 'https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer',
+    exportTaskName: 'Export Web Map Task',
+    getTemplatesTaskName: 'Get Layout Templates Info Task',
+    quadWord: 'famous-florida-quiet-passive'
   }
 };
