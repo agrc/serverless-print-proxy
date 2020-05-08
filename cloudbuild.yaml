@@ -1,0 +1,18 @@
+steps:
+- name: 'gcr.io/cloud-builders/npm:node-10.10.0'
+  entrypoint: npm
+  args: ['install']
+- name: 'gcr.io/cloud-builders/npm:node-10.10.0'
+  entrypoint: npm
+  args: ['run', 'test-ci']
+  env:
+    - 'OPEN_QUAD_WORD=${gcloud secrets versions access latest --secret=printproxy-wide-open-quad-word}'
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['functions', 'deploy', 'printproxy',
+    '--trigger-http',
+    '--runtime', 'nodejs10',
+    '--entry-point', 'printproxy',
+    '--memory', '256MB',
+    '--allow-unauthenticated']
+  env:
+    - 'OPEN_QUAD_WORD=${gcloud secrets versions access latest --secret=printproxy-wide-open-quad-word}'

@@ -1,6 +1,8 @@
 {
   "cSpell.words": [
+    "autodeploy",
     "cloudfunctions",
+    "entrypoint",
     "enviro",
     "printproxy",
     "promisify",
