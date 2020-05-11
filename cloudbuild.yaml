@@ -13,6 +13,7 @@ steps:
     '--runtime', 'nodejs10',
     '--entry-point', 'printproxy',
     '--memory', '256MB',
-    '--allow-unauthenticated']
-  env:
-    - 'OPEN_QUAD_WORD=${gcloud secrets versions access latest --secret=printproxy-wide-open-quad-word}'
+    '--allow-unauthenticated',
+    '--timeout', '300',
+    '--set-env-vars', 'OPEN_QUAD_WORD=${gcloud secrets versions access latest --secret=printproxy-wide-open-quad-word}'
+  ]
