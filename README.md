@@ -36,3 +36,5 @@ There's also an [AGOL web app](http://utah.maps.arcgis.com/apps/webappbuilder/in
 ## Deployment
 
 Commits to master are automatically deployed to production pending passing tests via Cloud Build because 🤓. [This document](https://cloud.google.com/functions/docs/testing/test-cicd) was used to get this wired up.
+
+The `OPEN_QUAD_WORD` environment variable is managed in GCP via the Secret Manager.
