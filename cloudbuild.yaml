@@ -1,4 +1,7 @@
 steps:
+- name: 'gcr.io/cloud-builders/gcloud'
+  entrypoint: 'bash'
+  args: ['-c', 'gcloud secrets versions access latest --secret=printproxy-wide-open-quad-word > quad-word.txt']
 - name: 'gcr.io/cloud-builders/npm:node-10.10.0'
   entrypoint: npm
   args: ['install']
@@ -6,14 +9,7 @@ steps:
   entrypoint: npm
   args: ['run', 'test-ci']
   env:
-    - 'OPEN_QUAD_WORD=${gcloud secrets versions access latest --secret=printproxy-wide-open-quad-word}'
+    - 'OPEN_QUAD_WORD=fake-quad-word'
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['functions', 'deploy', 'printproxy',
-    '--trigger-http',
-    '--runtime', 'nodejs10',
-    '--entry-point', 'printproxy',
-    '--memory', '256MB',
-    '--allow-unauthenticated',
-    '--timeout', '300',
-    '--set-env-vars', 'OPEN_QUAD_WORD=${gcloud secrets versions access latest --secret=printproxy-wide-open-quad-word}'
-  ]
+  entrypoint: 'bash'
+  args: ['-c', 'gcloud functions deploy printproxy --trigger-http --runtime nodejs10 --entry-point printproxy --memory 256MB --allow-unauthenticated --timeout 300 --set-env-vars OPEN_QUAD_WORD=$(< quad-word.txt)']
