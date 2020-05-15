@@ -1,24 +1,19 @@
 /* eslint-disable no-use-before-define, camelcase, max-len, no-magic-numbers */
-
-// concepts from: https://glebbahmutov.com/blog/how-to-correctly-unit-test-express-server/
 'use strict';
 const request = require('supertest');
+const app = require('./index');
 const http = require('http');
 
-
-const TEST_PORT = 3000;
 const sleep = require('util').promisify(setTimeout);
 let server;
 
-beforeEach(() => {
-  const app = require('./index').printproxy;
+beforeAll(done => {
   server = http.createServer(app);
-
-  return server.listen(TEST_PORT);
+  server.listen(done);
 });
 
-afterEach(() => {
-  return server.close();
+afterAll(done => {
+  server.close(done);
 });
 
 test('CORS headers', () => {

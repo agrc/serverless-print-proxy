@@ -1,13 +1,11 @@
 # serverless-print-proxy
 
-[![Build Status](https://travis-ci.com/agrc/serverless-print-proxy.svg?branch=master)](https://travis-ci.com/agrc/serverless-print-proxy)
-
 ## Usage
 
 Use the following url in place of an Esri Print service (e.g. [default AGOL service](https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task)):
 
 ```url
-https://us-central1-utahkoopserver.cloudfunctions.net/printproxy/<accountNumber>/arcgis/rest/services/GPServer/export
+https://print.agrc.utah.gov/printproxy/<accountNumber>/arcgis/rest/services/GPServer/export
 ```
 
 The account number must have a corresponding key in `accounts.js`.
@@ -35,6 +33,6 @@ There's also an [AGOL web app](http://utah.maps.arcgis.com/apps/webappbuilder/in
 
 ## Deployment
 
-Commits to master are automatically deployed to production pending passing tests via Cloud Build because 🤓. [This document](https://cloud.google.com/functions/docs/testing/test-cicd) was used to get this wired up.
+Commits to master are automatically deployed to production pending passing tests via Cloud Build because 🤓.
 
 The `OPEN_QUAD_WORD` environment variable is managed in GCP via the Secret Manager.

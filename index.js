@@ -11,6 +11,7 @@ require('dotenv').config();
 const POST = 'POST';
 const WEB_MAP_AS_JSON = 'Web_Map_as_JSON';
 const SECONDS_TO_MILLISECONDS = 1000;
+const DEFAULT_PORT = 8080;
 
 
 // enable CORS on all requests
@@ -159,4 +160,11 @@ app.get(`${baseRoute}export/:service`, getHandler('exportTaskName'));
 app.get(`${baseRoute}export/jobs/:jobId`, getJobsHandler());
 app.get(`${baseRoute}export/jobs/:jobId/results/Output_File`, getJobsHandler('/results/Output_File'));
 
-exports.printproxy = app;
+const port = process.env.PORT || DEFAULT_PORT;
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(port, () => {
+    console.log(`printproxy listing on port ${port}`);
+  });
+}
+
+module.exports = app;
