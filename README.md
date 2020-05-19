@@ -1,11 +1,13 @@
 # serverless-print-proxy
 
+A Google Cloud Run project for proxying requests to the Esri print service switching out locked down quad words for wide open ones.
+
 ## Usage
 
 Use the following url in place of an Esri Print service (e.g. [default AGOL service](https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task)):
 
 ```url
-https://print.agrc.utah.gov/printproxy/<accountNumber>/arcgis/rest/services/GPServer/export
+https://print.agrc.utah.gov/<accountNumber>/arcgis/rest/services/GPServer/export
 ```
 
 The account number must have a corresponding key in `accounts.js`.
@@ -35,4 +37,4 @@ There's also an [AGOL web app](http://utah.maps.arcgis.com/apps/webappbuilder/in
 
 Commits to master are automatically deployed to production pending passing tests via Cloud Build because 🤓.
 
-The `OPEN_QUAD_WORD` environment variable is managed in GCP via the Secret Manager.
+Make sure to set the `OPEN_QUAD_WORD` environment variable for the container in Cloud Run.
