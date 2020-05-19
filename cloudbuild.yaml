@@ -1,15 +1,26 @@
 steps:
-- name: 'gcr.io/cloud-builders/gcloud'
-  entrypoint: 'bash'
-  args: ['-c', 'gcloud secrets versions access latest --secret=printproxy-wide-open-quad-word > quad-word.txt']
-- name: 'gcr.io/cloud-builders/npm:node-10.10.0'
+- name: 'gcr.io/cloud-builders/npm:current'
   entrypoint: npm
   args: ['install']
-- name: 'gcr.io/cloud-builders/npm:node-10.10.0'
+- name: 'gcr.io/cloud-builders/npm:current'
   entrypoint: npm
   args: ['run', 'test-ci']
   env:
     - 'OPEN_QUAD_WORD=fake-quad-word'
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/printproxy:$COMMIT_SHA', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/$PROJECT_ID/printproxy:$COMMIT_SHA']
 - name: 'gcr.io/cloud-builders/gcloud'
-  entrypoint: 'bash'
-  args: ['-c', 'gcloud functions deploy printproxy --trigger-http --runtime nodejs10 --entry-point printproxy --memory 256MB --allow-unauthenticated --timeout 300 --set-env-vars OPEN_QUAD_WORD=$(< quad-word.txt)']
+  args:
+  - 'run'
+  - 'deploy'
+  - 'printproxy'
+  - '--image'
+  - 'gcr.io/$PROJECT_ID/printproxy:$COMMIT_SHA'
+  - '--region'
+  - 'us-central1'
+  - '--platform'
+  - 'managed'
+images:
+- 'gcr.io/$PROJECT_ID/printproxy:$COMMIT_SHA'
