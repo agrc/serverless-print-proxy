@@ -125,5 +125,12 @@ module.exports = {
     exportTaskName: 'Export Web Map Task',
     getTemplatesTaskName: 'Get Layout Templates Info Task',
     quadWord: 'optimal-polygon-contour-local'
+  },
+  18: {
+    // carbon county
+    serviceUrl: 'https://maps.carbon.utah.gov/arcgis/rest/services/Utilities/PrintingTools/GPServer',
+    exportTaskName: 'Export Web Map Task',
+    getTemplatesTaskName: 'Get Layout Templates Info Task',
+    quadWord: 'gloria-corona-bombay-prize'
   }
 };
