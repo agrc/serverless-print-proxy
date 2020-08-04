@@ -192,3 +192,11 @@ test('general base task info (post)', () => {
     .expect(200)
     .expect(/serviceDescription/);
 });
+
+test('redirect to repo readme', () => {
+  return request(server)
+    .get('/')
+    .expect(301)
+    .expect(/github.com/)
+  ;
+});
