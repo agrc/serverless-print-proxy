@@ -56,13 +56,6 @@ module.exports = {
     getTemplatesTaskName: 'Get Layout Templates Info Task',
     quadWord: 'career-exhibit-panel-stadium'
   },
-  8: {
-    // carbon county
-    serviceUrl: 'https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer',
-    exportTaskName: 'Export Web Map Task',
-    getTemplatesTaskName: 'Get Layout Templates Info Task',
-    quadWord: 'gloria-corona-bombay-prize'
-  },
   9: {
     // wri - dev
     serviceUrl: 'https://wrimaps.at.utah.gov/arcgis/rest/services/WRI_DEV/Print/GPServer',
