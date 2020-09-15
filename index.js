@@ -116,7 +116,9 @@ const getJobsHandler = (jobPath) => {
     console.log({
       accountNumber: functionRequest.params.accountNumber,
       url: url,
-      method: 'GET'
+      method: 'GET',
+      referer: functionRequest.get('Referrer'),
+      sourceIp: functionRequest.ip
     });
 
     makeRequest(options, functionResponse);
