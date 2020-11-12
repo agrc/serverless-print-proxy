@@ -30,14 +30,14 @@ module.exports = {
   },
   4: {
     // bluffdale (via BioWest)
-    serviceUrl: 'http://gis.bio-west.com/arcgis/rest/services/Utilities/PrintingTools/GPServer',
+    serviceUrl: 'https://gis.bio-west.com/arcgis/rest/services/Utilities/PrintingTools/GPServer',
     exportTaskName: 'Export Web Map Task',
     getTemplatesTaskName: 'Get Layout Templates Info Task',
     quadWord: 'sonata-henry-fractal-orion'
   },
   5: {
     // parcels.utah.gov
-    serviceUrl: 'http://mapserv.utah.gov/arcgis/rest/services/Utilities/PrintingTools/GPServer',
+    serviceUrl: 'https://mapserv.utah.gov/arcgis/rest/services/Utilities/PrintingTools/GPServer',
     exportTaskName: 'Export Web Map Task',
     getTemplatesTaskName: 'Get Layout Templates Info Task',
     quadWord: 'alfred-plaster-crystal-dexter'
@@ -51,7 +51,7 @@ module.exports = {
   },
   7: {
     // atlas.utah.gov
-    serviceUrl: 'http://mapserv.utah.gov/arcgis/rest/services/Utilities/PrintingTools/GPServer',
+    serviceUrl: 'https://mapserv.utah.gov/arcgis/rest/services/Utilities/PrintingTools/GPServer',
     exportTaskName: 'Export Web Map Task',
     getTemplatesTaskName: 'Get Layout Templates Info Task',
     quadWord: 'career-exhibit-panel-stadium'
@@ -100,7 +100,7 @@ module.exports = {
   },
   15: {
     // broadband.utah.gov/map
-    serviceUrl: 'http://mapserv.utah.gov/arcgis/rest/services/Broadband/ExportWebMap/GPServer',
+    serviceUrl: 'https://mapserv.utah.gov/arcgis/rest/services/Broadband/ExportWebMap/GPServer',
     exportTaskName: 'Export Web Map',
     getTemplatesTaskName: '',
     quadWord: 'reserve-tactic-cricket-spider'
