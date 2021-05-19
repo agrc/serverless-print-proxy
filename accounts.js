@@ -128,7 +128,7 @@ module.exports = {
   },
   19: {
     // elections.utah.gov
-    serviceUrl: 'https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer',
+    serviceUrl: 'http://mapserv.utah.gov/arcgis/rest/services/LtGovPoliticalDistricts/ExportWebMap/GPServer',
     exportTaskName: 'Export Web Map Task',
     getTemplatesTaskName: 'Get Layout Templates Info Task',
     quadWord: 'andrea-permit-weekend-cable'
