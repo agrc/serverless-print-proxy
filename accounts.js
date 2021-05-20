@@ -132,5 +132,12 @@ module.exports = {
     exportTaskName: 'Export Web Map',
     getTemplatesTaskName: '',
     quadWord: 'andrea-permit-weekend-cable'
-  }
+  },
+  20: {
+    // atlas.dev.utah.gov
+    serviceUrl: 'https://mapserv.utah.gov/arcgis/rest/services/Utilities/PrintingTools/GPServer',
+    exportTaskName: 'Export Web Map Task',
+    getTemplatesTaskName: 'Get Layout Templates Info Task',
+    quadWord: 'wedding-tactic-enrico-yes'
+  },
 };
