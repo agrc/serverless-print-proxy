@@ -139,5 +139,5 @@ module.exports = {
     exportTaskName: 'Export Web Map Task',
     getTemplatesTaskName: 'Get Layout Templates Info Task',
     quadWord: 'wedding-tactic-enrico-yes'
-  },
+  }
 };
