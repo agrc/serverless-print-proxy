@@ -22,7 +22,14 @@ app.use((req, res, next) => {
 });
 
 // required for parsing submitted form data
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+  extended: true,
+
+  // these options are to address the "PayloadTooLargeError: request entity too
+  // large errors" that we are seeing
+  limit: '2mb',
+  parameterLimit: 2000
+}));
 
 const simpleRequest = function (url, functionRequest, functionResponse) {
   request({
