@@ -35,16 +35,8 @@ There's also an [AGOL web app](http://utah.maps.arcgis.com/apps/webappbuilder/in
 
 ## Deployment
 
-This project is hosted in GCP (`ut-dts-agrc-print-proxy-prod`). There are several components:
+`gcp-terraform/print-proxy` is used for infrastructure setup and GitHub actions are for updates.
 
-### Source Repositories
+## Upgrading NodeJS
 
-This repository is mirrored in GCP so that Cloud Build can trigger builds.
-
-### Cloud Build
-
-There is a Cloud Build trigger that is set up to test and conditionally deploy on each push to `master`. See [`cloudbuild.yaml`](/cloudbuild.yaml) for details.
-
-### Cloud Run
-
-This project is hosted via Cloud Run. The cloud build service deploys a docker container. Make sure to set the `OPEN_QUAD_WORD` environment variable. There is also a custom domain mapping to `print.agrc.utah.gov` configured for the service.
+Make sure to update `.node_version` and `Dockerfile`.
