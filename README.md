@@ -39,4 +39,4 @@ There's also an [AGOL web app](http://utah.maps.arcgis.com/apps/webappbuilder/in
 
 ## Upgrading NodeJS
 
-Make sure to update `.node_version` and `Dockerfile`.
+Make sure to update `.node-version` and `Dockerfile`.
