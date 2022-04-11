@@ -2,9 +2,7 @@ name: Test, Build, and Deploy to GCP
 
 on:
   push:
-    branches:
-      - staging
-      - main
+  pull_request:
 
 env:
   SERVICE_NAME: printproxy
