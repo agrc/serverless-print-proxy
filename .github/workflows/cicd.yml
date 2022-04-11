@@ -2,9 +2,7 @@ name: Test, Build, and Deploy to GCP
 
 on:
   push:
-    branches:
-      - staging
-      - main
+  pull_request:
 
 env:
   SERVICE_NAME: printproxy
@@ -17,6 +15,11 @@ jobs:
       OPEN_QUAD_WORD: fake-quad-word
 
     steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.1
+        with:
+          access_token: ${{ github.token }}
+
       - name: Checkout
         uses: actions/checkout@v2
 
@@ -68,7 +71,7 @@ jobs:
           node-version: ${{ steps.get_node_version.outputs.NODE_VERSION }}
       - run: npm ci
 
-      - uses: google-github-actions/setup-gcloud@master
+      - uses: google-github-actions/setup-gcloud@v0.5.1
         with:
           service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
           project_id: ${{ secrets.PROJECT_ID }}
@@ -127,7 +130,7 @@ jobs:
           node-version: ${{ steps.get_node_version.outputs.NODE_VERSION }}
       - run: npm ci
 
-      - uses: google-github-actions/setup-gcloud@master
+      - uses: google-github-actions/setup-gcloud@v0.5.1
         with:
           service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
           project_id: ${{ secrets.PROJECT_ID }}
