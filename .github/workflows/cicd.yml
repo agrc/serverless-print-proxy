@@ -82,7 +82,8 @@ jobs:
       - name: Build Image
         run: |-
           docker build \
-            -t "${{ steps.variables.outputs.image }}:$GITHUB_SHA ${{ steps.variables.outputs.image }}:latest" \
+            -t "${{ steps.variables.outputs.image }}:$GITHUB_SHA \
+            -t ${{ steps.variables.outputs.image }}:latest" \
             .
 
       - name: Publish Image
@@ -141,7 +142,8 @@ jobs:
       - name: Build Image
         run: |-
           docker build \
-            -t "${{ steps.variables.outputs.image }}:$GITHUB_SHA ${{ steps.variables.outputs.image }}:latest" \
+            -t "${{ steps.variables.outputs.image }}:$GITHUB_SHA \
+            -t ${{ steps.variables.outputs.image }}:latest" \
             .
 
       - name: Publish Image
