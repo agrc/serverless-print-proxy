@@ -62,8 +62,8 @@ jobs:
         with:
           create_credentials_file: true
           token_format: access_token
-          workload_identity_provider: ${{ env.IDENTITY_PROVIDER }}
-          service_account: ${{ env.SERVICE_ACCOUNT_EMAIL }}
+          workload_identity_provider: ${{ secrets.IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
 
       - name: 🐳 Set up Docker Buildx
         id: builder
@@ -132,8 +132,8 @@ jobs:
         with:
           create_credentials_file: true
           token_format: access_token
-          workload_identity_provider: ${{ env.IDENTITY_PROVIDER }}
-          service_account: ${{ env.SERVICE_ACCOUNT_EMAIL }}
+          workload_identity_provider: ${{ secrets.IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
 
       - name: 🐳 Set up Docker Buildx
         id: builder
