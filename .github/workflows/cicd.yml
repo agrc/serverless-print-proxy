@@ -104,7 +104,7 @@ jobs:
           service: printproxy
           image: gcr.io/${{ secrets.PROJECT_ID }}/app
           region: us-central1
-          env_vars: 'QUAD_WORD="${{ secrets.QUAD_WORD }}"'
+          env_vars: 'QUAD_WORD=${{ secrets.QUAD_WORD }}'
           flags: |
             --service-account=cloud-run-sa@${{ secrets.PROJECT_ID }}.iam.gserviceaccount.com
 
@@ -174,7 +174,7 @@ jobs:
           service: printproxy
           image: gcr.io/${{ secrets.PROJECT_ID }}/app
           region: us-central1
-          env_vars: 'QUAD_WORD="${{ secrets.QUAD_WORD }}"'
+          env_vars: 'QUAD_WORD=${{ secrets.QUAD_WORD }}'
           flags: |
             --service-account=cloud-run-sa@${{ secrets.PROJECT_ID }}.iam.gserviceaccount.com
             --concurrency=80
