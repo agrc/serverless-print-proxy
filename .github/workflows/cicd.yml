@@ -41,8 +41,6 @@ jobs:
     environment:
       name: Staging
     if: github.ref == 'refs/heads/staging'
-    env:
-      OPEN_QUAD_WORD: ${{ secrets.OPEN_QUAD_WORD }}
 
     steps:
       - name: Checkout
@@ -102,6 +100,7 @@ jobs:
           service: printproxy
           image: gcr.io/${{ secrets.PROJECT_ID }}/app
           region: us-central1
+          env_vars: 'QUAD_WORD="${{ secrets.QUAD_WORD }}"'
           flags: |
             --service-account=cloud-run-sa@${{ secrets.PROJECT_ID }}.iam.gserviceaccount.com
 
@@ -112,8 +111,6 @@ jobs:
     environment:
       name: Production
     if: github.ref == 'refs/heads/main'
-    env:
-      OPEN_QUAD_WORD: ${{ secrets.OPEN_QUAD_WORD }}
 
     steps:
       - name: Checkout
@@ -173,6 +170,7 @@ jobs:
           service: printproxy
           image: gcr.io/${{ secrets.PROJECT_ID }}/app
           region: us-central1
+          env_vars: 'QUAD_WORD="${{ secrets.QUAD_WORD }}"'
           flags: |
             --service-account=cloud-run-sa@${{ secrets.PROJECT_ID }}.iam.gserviceaccount.com
             --concurrency=80
