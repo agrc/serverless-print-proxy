@@ -107,6 +107,7 @@ jobs:
           env_vars: 'QUAD_WORD=${{ secrets.QUAD_WORD }}'
           flags: |
             --service-account=cloud-run-sa@${{ secrets.PROJECT_ID }}.iam.gserviceaccount.com
+            --allow-unauthenticated
 
   deploy-prod:
     name: Build and Deploy to Production
@@ -177,6 +178,7 @@ jobs:
           env_vars: 'QUAD_WORD=${{ secrets.QUAD_WORD }}'
           flags: |
             --service-account=cloud-run-sa@${{ secrets.PROJECT_ID }}.iam.gserviceaccount.com
+            --allow-unauthenticated
             --concurrency=80
             --cpu=1
             --max-instances=10
