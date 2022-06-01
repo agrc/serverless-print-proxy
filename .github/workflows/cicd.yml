@@ -104,7 +104,7 @@ jobs:
           service: printproxy
           image: gcr.io/${{ secrets.PROJECT_ID }}/app
           region: us-central1
-          env_vars: "OPEN_QUAD_WORD=${{ secrets.QUAD_WORD }}"
+          env_vars: "OPEN_QUAD_WORD=${{ secrets.OPEN_QUAD_WORD }}"
           flags: |
             --service-account=cloud-run-sa@${{ secrets.PROJECT_ID }}.iam.gserviceaccount.com
             --allow-unauthenticated
@@ -175,7 +175,7 @@ jobs:
           service: printproxy
           image: gcr.io/${{ secrets.PROJECT_ID }}/app
           region: us-central1
-          env_vars: "OPEN_QUAD_WORD=${{ secrets.QUAD_WORD }}"
+          env_vars: "OPEN_QUAD_WORD=${{ secrets.OPEN_QUAD_WORD }}"
           flags: |
             --service-account=cloud-run-sa@${{ secrets.PROJECT_ID }}.iam.gserviceaccount.com
             --allow-unauthenticated
