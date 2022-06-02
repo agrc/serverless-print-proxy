@@ -105,7 +105,7 @@ jobs:
           image: gcr.io/${{ secrets.PROJECT_ID }}/app
           region: us-central1
           env_vars: "OPEN_QUAD_WORD=${{ secrets.OPEN_QUAD_WORD }}"
-          flags: |
+          flags: >
             --service-account=cloud-run-sa@${{ secrets.PROJECT_ID }}.iam.gserviceaccount.com
             --allow-unauthenticated
 
@@ -176,7 +176,7 @@ jobs:
           image: gcr.io/${{ secrets.PROJECT_ID }}/app
           region: us-central1
           env_vars: "OPEN_QUAD_WORD=${{ secrets.OPEN_QUAD_WORD }}"
-          flags: |
+          flags: >
             --service-account=cloud-run-sa@${{ secrets.PROJECT_ID }}.iam.gserviceaccount.com
             --allow-unauthenticated
             --concurrency=80
