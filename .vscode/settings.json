@@ -1,9 +1,13 @@
 {
   "cSpell.words": [
+    "accesstoken",
     "autodeploy",
+    "Buildx",
     "cloudfunctions",
+    "cloudrun",
     "entrypoint",
     "enviro",
+    "gserviceaccount",
     "printproxy",
     "promisify",
     "utahkoopserver"
