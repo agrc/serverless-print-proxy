@@ -13,7 +13,6 @@ const WEB_MAP_AS_JSON = 'Web_Map_as_JSON';
 const SECONDS_TO_MILLISECONDS = 1000;
 const DEFAULT_PORT = 8080;
 
-
 // enable CORS on all requests
 app.use((req, res, next) => {
   res.set('Access-Control-Allow-Origin', '*');
@@ -22,30 +21,35 @@ app.use((req, res, next) => {
 });
 
 // required for parsing submitted form data
-app.use(bodyParser.urlencoded({
-  extended: true,
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
 
-  // these options are to address the "PayloadTooLargeError: request entity too
-  // large errors" that we are seeing
-  limit: '2mb',
-  parameterLimit: 2000
-}));
+    // these options are to address the "PayloadTooLargeError: request entity too
+    // large errors" that we are seeing
+    limit: '2mb',
+    parameterLimit: 2000,
+  })
+);
 
 const simpleRequest = function (url, functionRequest, functionResponse) {
-  request({
-    url,
-    qs: functionRequest.query,
-    timeout: config.TIMEOUT * SECONDS_TO_MILLISECONDS
-  }, (error, res, body) => {
-    if (error) {
-      functionResponse.status(500);
+  request(
+    {
+      url,
+      qs: functionRequest.query,
+      timeout: config.TIMEOUT * SECONDS_TO_MILLISECONDS,
+    },
+    (error, res, body) => {
+      if (error) {
+        functionResponse.status(500);
 
-      return functionResponse.send(error);
+        return functionResponse.send(error);
+      }
+
+      functionResponse.status(res && res.statusCode);
+      functionResponse.send(body);
     }
-
-    functionResponse.status(res && res.statusCode);
-    functionResponse.send(body);
-  });
+  );
 };
 
 const makeRequest = (options, functionResponse) => {
@@ -84,9 +88,9 @@ const getHandler = function (taskName) {
         // trying to help with the invalid URL issue with default AGOL print service
         // doesn't look like it's working
         Referer: functionRequest.headers.Referer,
-        Origin: functionRequest.headers.Origin
+        Origin: functionRequest.headers.Origin,
       },
-      timeout: config.TIMEOUT * SECONDS_TO_MILLISECONDS
+      timeout: config.TIMEOUT * SECONDS_TO_MILLISECONDS,
     };
 
     // POST is used for requests with too much data to fit in query parameters
@@ -96,17 +100,21 @@ const getHandler = function (taskName) {
 
       if (options.form[WEB_MAP_AS_JSON]) {
         options.form[WEB_MAP_AS_JSON] = options.form[WEB_MAP_AS_JSON].replace(
-          new RegExp(account.quadWord, 'g'), process.env.OPEN_QUAD_WORD);
+          new RegExp(account.quadWord, 'g'),
+          process.env.OPEN_QUAD_WORD
+        );
       }
     } else if (options.qs[WEB_MAP_AS_JSON]) {
       options.qs[WEB_MAP_AS_JSON] = options.qs[WEB_MAP_AS_JSON].replace(
-        new RegExp(account.quadWord, 'g'), process.env.OPEN_QUAD_WORD);
+        new RegExp(account.quadWord, 'g'),
+        process.env.OPEN_QUAD_WORD
+      );
     }
 
     console.log({
       accountNumber: functionRequest.params.accountNumber,
       url: url,
-      method: options.method
+      method: options.method,
     });
 
     makeRequest(options, functionResponse);
@@ -118,12 +126,13 @@ const getJobsHandler = (jobPath) => {
   return (functionRequest, functionResponse) => {
     const account = accounts[functionRequest.params.accountNumber];
 
-    let url = `${account.serviceUrl}/${encodeURIComponent(account.exportTaskName)}` +
-      `/jobs/${functionRequest.params.jobId}${(jobPath) ? jobPath : ''}`;
+    let url =
+      `${account.serviceUrl}/${encodeURIComponent(account.exportTaskName)}` +
+      `/jobs/${functionRequest.params.jobId}${jobPath ? jobPath : ''}`;
     const options = {
       url: url,
       qs: functionRequest.query,
-      timeout: config.TIMEOUT * SECONDS_TO_MILLISECONDS
+      timeout: config.TIMEOUT * SECONDS_TO_MILLISECONDS,
     };
 
     console.log({
@@ -131,7 +140,7 @@ const getJobsHandler = (jobPath) => {
       url: url,
       method: 'GET',
       referer: functionRequest.get('Referrer'),
-      sourceIp: functionRequest.ip
+      sourceIp: functionRequest.ip,
     });
 
     makeRequest(options, functionResponse);

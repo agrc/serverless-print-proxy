@@ -8,6 +8,7 @@
     "entrypoint",
     "enviro",
     "gserviceaccount",
+    "packagejson",
     "printproxy",
     "promisify",
     "utahkoopserver"
