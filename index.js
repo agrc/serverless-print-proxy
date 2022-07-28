@@ -1,17 +1,16 @@
-/* eslint-disable camelcase */
-
-'use strict';
-const app = require('express')();
-const request = require('request');
-const accounts = require('./accounts');
-const bodyParser = require('body-parser');
-const config = require('./config');
-require('dotenv').config();
+import express from 'express';
+import request from 'request';
+import accounts from './accounts';
+import bodyParser from 'body-parser';
+import config from './config';
+import 'dotenv/config';
 
 const POST = 'POST';
 const WEB_MAP_AS_JSON = 'Web_Map_as_JSON';
 const SECONDS_TO_MILLISECONDS = 1000;
 const DEFAULT_PORT = 8080;
+
+const app = express();
 
 // enable CORS on all requests
 app.use((req, res, next) => {
@@ -194,4 +193,4 @@ if (process.env.NODE_ENV !== 'test') {
   });
 }
 
-module.exports = app;
+export default app;

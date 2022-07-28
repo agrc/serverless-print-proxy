@@ -1,10 +1,9 @@
-/* eslint-disable no-use-before-define, camelcase, max-len, no-magic-numbers */
-'use strict';
-const request = require('supertest');
-const app = require('./index');
-const http = require('http');
+import request from 'supertest';
+import app from './index';
+import http from 'http';
+import { promisify } from 'util';
 
-const sleep = require('util').promisify(setTimeout);
+const sleep = promisify(setTimeout);
 let server;
 
 beforeAll((done) => {

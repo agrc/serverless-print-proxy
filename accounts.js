@@ -1,5 +1,4 @@
-/* eslint-disable max-len */
-module.exports = {
+export default {
   // used by tests
   '-1': {
     serviceUrl: 'https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer',

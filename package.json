@@ -6,12 +6,12 @@
   "license": "MIT",
   "author": "Scott Davis <stdavis@utah.gov>",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "format": "prettier . --write",
     "lint": "eslint *.js",
     "start": "node index.js",
-    "test": "jest --watch",
-    "test-ci": "npm run lint && jest",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
     "test-debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand"
   },
   "prettier": {
@@ -20,10 +20,12 @@
   },
   "eslintConfig": {
     "env": {
-      "node": true
+      "node": true,
+      "jest": true
     },
     "parserOptions": {
-      "ecmaVersion": "latest"
+      "ecmaVersion": "latest",
+      "sourceType": "module"
     },
     "extends": [
       "eslint:recommended",
@@ -32,7 +34,8 @@
   },
   "jest": {
     "testEnvironment": "node",
-    "testTimeout": 80000
+    "testTimeout": 80000,
+    "transform": {}
   },
   "dependencies": {
     "body-parser": "^1.20.0",

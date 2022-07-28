@@ -43,7 +43,7 @@ jobs:
         run: npm run lint
 
       - name: 🧪 Run tests
-        run: npm run test-ci
+        run: npm test
 
   deploy-dev:
     name: Build and Deploy to dev
