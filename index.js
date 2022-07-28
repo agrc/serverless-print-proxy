@@ -37,6 +37,12 @@ const simpleRequest = function (url, functionRequest, functionResponse) {
     qs: functionRequest.query,
     timeout: config.TIMEOUT * SECONDS_TO_MILLISECONDS
   }, (error, res, body) => {
+    if (error) {
+      functionResponse.status(500);
+
+      return functionResponse.send(error);
+    }
+
     functionResponse.status(res && res.statusCode);
     functionResponse.send(body);
   });
