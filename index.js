@@ -4,6 +4,7 @@ import accounts from './accounts';
 import bodyParser from 'body-parser';
 import config from './config';
 import 'dotenv/config';
+import cors from 'cors';
 
 const POST = 'POST';
 const WEB_MAP_AS_JSON = 'Web_Map_as_JSON';
@@ -12,12 +13,7 @@ const DEFAULT_PORT = 8080;
 
 const app = express();
 
-// enable CORS on all requests
-app.use((req, res, next) => {
-  res.set('Access-Control-Allow-Origin', '*');
-  res.set('Access-Control-Allow-Methods', 'GET');
-  next();
-});
+app.use(cors());
 
 // required for parsing submitted form data
 app.use(

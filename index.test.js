@@ -15,13 +15,6 @@ afterAll((done) => {
   server.close(done);
 });
 
-test('CORS headers', () => {
-  return request(server)
-    .get('/-1/arcgis/rest/info?f=json')
-    .expect('Access-Control-Allow-Origin', '*')
-    .expect('Access-Control-Allow-Methods', 'GET');
-});
-
 test('main server info', () => {
   return request(server)
     .get('/-1/arcgis/rest/info?f=json')
