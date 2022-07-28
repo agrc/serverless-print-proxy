@@ -2,7 +2,11 @@ name: Test, Build, and Deploy to GCP
 
 on:
   push:
-  pull_request:
+    paths-ignore:
+      - README.md
+      - LICENSE
+      - .env.sample
+      - .vscode/**
 
 concurrency:
   group: "${{ github.head_ref || github.ref }}"
@@ -23,19 +27,22 @@ jobs:
       OPEN_QUAD_WORD: fake-quad-word
 
     steps:
-      - name: Checkout
+      - name: ⬇️ Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
+      - name: ⎔ Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version-file: .node-version
           cache: npm
 
-      - name: Install Dependencies
+      - name: 📥 Download dependencies
         run: npm ci
 
-      - name: Test
+      - name: 🧵 Lint
+        run: npm run lint
+
+      - name: 🧪 Run tests
         run: npm run test-ci
 
   deploy-dev:
@@ -47,14 +54,17 @@ jobs:
     if: github.ref == 'refs/heads/dev'
 
     steps:
-      - name: Checkout
+      - name: ⬇️ Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
+      - name: ⎔ Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version-file: .node-version
-      - run: npm ci
+          cache: npm
+
+      - name: 📥 Download dependencies
+        run: npm ci
 
       - id: auth
         name: 🗝️ Authenticate to Google Cloud
@@ -118,14 +128,17 @@ jobs:
     if: github.ref == 'refs/heads/main'
 
     steps:
-      - name: Checkout
+      - name: ⬇️ Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
+      - name: ⎔ Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version-file: .node-version
-      - run: npm ci
+          cache: npm
+
+      - name: 📥 Download dependencies
+        run: npm ci
 
       - id: auth
         name: 🗝️ Authenticate to Google Cloud
