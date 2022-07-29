@@ -178,7 +178,7 @@ app.get(`${baseRoute}export/jobs/:jobId`, getJobsHandler());
 app.get(`${baseRoute}export/jobs/:jobId/results/Output_File`, getJobsHandler('/results/Output_File'));
 
 const MOVED_PERMANENTLY = 301;
-app.get('/', (_, response) => response.redirect(MOVED_PERMANENTLY, 'https://github.com/agrc/serverless-print-proxy'));
+app.get('/', (_, response) => response.redirect(MOVED_PERMANENTLY, 'https://github.com/agrc/serverless-print-proxy#readme'));
 
 const port = process.env.PORT || DEFAULT_PORT;
 if (process.env.NODE_ENV !== 'test') {
