@@ -190,11 +190,11 @@ if (process.env.NODE_ENV !== 'test') {
       cert: fs.readFileSync('./localhost.pem'),
     }
     app = https.createServer(credentials, app);
+  } else {
+    app.listen(port, () => {
+      console.log(`printproxy listing on port ${port}`);
+    });
   }
-
-  app.listen(port, () => {
-    console.log(`printproxy listing on port ${port}`);
-  });
 }
 
 export default app;
