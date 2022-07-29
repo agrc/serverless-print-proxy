@@ -8,6 +8,7 @@
     "entrypoint",
     "enviro",
     "gserviceaccount",
+    "mkcert",
     "packagejson",
     "printproxy",
     "promisify",

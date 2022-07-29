@@ -13,7 +13,7 @@ const WEB_MAP_AS_JSON = 'Web_Map_as_JSON';
 const SECONDS_TO_MILLISECONDS = 1000;
 const DEFAULT_PORT = 8080;
 
-const app = express();
+let app = express();
 
 app.use(cors());
 
@@ -184,6 +184,14 @@ app.get('/', (_, response) => response.redirect(MOVED_PERMANENTLY, 'https://gith
 
 const port = process.env.PORT || DEFAULT_PORT;
 if (process.env.NODE_ENV !== 'test') {
+  if (process.env.NODE_ENV === 'development') {
+    const credentials = {
+      key: fs.readFileSync('./localhost-key.pem'),
+      cert: fs.readFileSync('./localhost.pem'),
+    }
+    app = https.createServer(credentials, app);
+  }
+
   app.listen(port, () => {
     console.log(`printproxy listing on port ${port}`);
   });
