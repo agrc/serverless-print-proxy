@@ -111,7 +111,7 @@ describe('async print task', () => {
   });
 });
 
-test('hide open quad word in response', () => {
+test('hide open quad-word in response', () => {
   return request(server)
     .get('/-1/arcgis/rest/services/GPServer/export/execute')
     .query({
@@ -143,7 +143,7 @@ test('hide open quad word in response', () => {
     })
     .expect((res) => {
       if (res.res.text.match(new RegExp(process.env.OPEN_QUAD_WORD, 'g'))) {
-        throw new Error('does not hide open quad word');
+        throw new Error('does not hide open quad-word');
       }
     });
 });
