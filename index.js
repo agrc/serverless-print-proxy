@@ -3,8 +3,10 @@ import cors from 'cors';
 import 'dotenv/config';
 import express from 'express';
 import got from 'got';
-import accounts from './accounts';
-import config from './config';
+import accounts from './accounts.js';
+import config from './config.js';
+import fs from 'fs';
+import https from 'https';
 
 const POST = 'POST';
 const WEB_MAP_AS_JSON = 'Web_Map_as_JSON';
