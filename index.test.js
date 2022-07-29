@@ -98,17 +98,16 @@ describe('async print task', () => {
       .expect(200);
   });
 
-  test('get output file', () => {
-    return sleep(500).then(() => {
-      request(server)
-        .get(`/11/arcgis/rest/services/GPServer/export/jobs/${jobId}/results/Output_File`)
-        .query({
-          f: 'json',
-          returnType: 'data',
-        })
-        .expect(/GPDataFile/)
-        .expect(200);
-    });
+  test('get output file', async () => {
+    await sleep(500);
+    request(server)
+      .get(`/11/arcgis/rest/services/GPServer/export/jobs/${jobId}/results/Output_File`)
+      .query({
+        f: 'json',
+        returnType: 'data',
+      })
+      .expect(/GPDataFile/)
+      .expect(200);
   });
 });
 
@@ -149,17 +148,15 @@ test('hide open quad word in response', () => {
     });
 });
 
-test('return 500 error if no OPEN_QUAD_WORD env var is present', () => {
+test('return 500 error if no OPEN_QUAD_WORD env var is present', async () => {
   const originalQuadWord = process.env.OPEN_QUAD_WORD;
   delete process.env.OPEN_QUAD_WORD;
 
-  return request(server)
+  await request(server)
     .get('/-1/arcgis/rest/services/GPServer/export/execute')
     .expect(500)
-    .expect(/defined/)
-    .then(() => {
-      process.env.OPEN_QUAD_WORD = originalQuadWord;
-    });
+    .expect(/defined/);
+  process.env.OPEN_QUAD_WORD = originalQuadWord;
 });
 
 test('general base task info', () => {

@@ -1,10 +1,10 @@
-import express from 'express';
-import request from 'request';
-import accounts from './accounts';
 import bodyParser from 'body-parser';
-import config from './config';
-import 'dotenv/config';
 import cors from 'cors';
+import 'dotenv/config';
+import express from 'express';
+import got from 'got';
+import accounts from './accounts';
+import config from './config';
 
 const POST = 'POST';
 const WEB_MAP_AS_JSON = 'Web_Map_as_JSON';
@@ -27,40 +27,38 @@ app.use(
   })
 );
 
-const simpleRequest = function (url, functionRequest, functionResponse) {
-  request(
-    {
+async function simpleRequest(url, functionRequest, functionResponse) {
+  try {
+    const response = await got({
       url,
-      qs: functionRequest.query,
-      timeout: config.TIMEOUT * SECONDS_TO_MILLISECONDS,
-    },
-    (error, res, body) => {
-      if (error) {
-        functionResponse.status(500);
+      searchParams: functionRequest.query,
+      timeout: { request: config.TIMEOUT * SECONDS_TO_MILLISECONDS},
+    });
 
-        return functionResponse.send(error);
-      }
+    functionResponse.status(response && response.statusCode);
 
-      functionResponse.status(res && res.statusCode);
-      functionResponse.send(body);
-    }
-  );
-};
+    return functionResponse.send(response.body);
+  } catch (error) {
+    functionResponse.status(500);
 
-const makeRequest = (options, functionResponse) => {
-  request(options, (error, agsResponse, body) => {
-    if (error) {
-      functionResponse.status(500);
+    return functionResponse.send(error);
+  }
+}
 
-      return functionResponse.send(error);
-    }
+async function makeRequest(options, functionResponse) {
+  try {
+    const response = await got(options);
 
-    functionResponse.status(agsResponse.statusCode);
-    body = body.replace(new RegExp(process.env.OPEN_QUAD_WORD, 'g'), '<open-quad-word-hidden>');
+    functionResponse.status(response.statusCode);
+    const body = response.body.replace(new RegExp(process.env.OPEN_QUAD_WORD, 'g'), '<open-quad-word-hidden>');
 
     return functionResponse.send(body);
-  });
-};
+  } catch (error) {
+    functionResponse.status(500);
+
+    return functionResponse.send(error);
+  }
+}
 
 const getHandler = function (taskName) {
   return function (functionRequest, functionResponse) {
@@ -78,14 +76,14 @@ const getHandler = function (taskName) {
     const options = {
       method: functionRequest.method,
       url: url,
-      qs: functionRequest.query,
+      searchParams: functionRequest.query,
       headers: {
         // trying to help with the invalid URL issue with default AGOL print service
         // doesn't look like it's working
         Referer: functionRequest.headers.Referer,
         Origin: functionRequest.headers.Origin,
       },
-      timeout: config.TIMEOUT * SECONDS_TO_MILLISECONDS,
+      timeout: { request: config.TIMEOUT * SECONDS_TO_MILLISECONDS },
     };
 
     // POST is used for requests with too much data to fit in query parameters
@@ -99,8 +97,8 @@ const getHandler = function (taskName) {
           process.env.OPEN_QUAD_WORD
         );
       }
-    } else if (options.qs[WEB_MAP_AS_JSON]) {
-      options.qs[WEB_MAP_AS_JSON] = options.qs[WEB_MAP_AS_JSON].replace(
+    } else if (options.searchParams[WEB_MAP_AS_JSON]) {
+      options.searchParams[WEB_MAP_AS_JSON] = options.searchParams[WEB_MAP_AS_JSON].replace(
         new RegExp(account.quadWord, 'g'),
         process.env.OPEN_QUAD_WORD
       );
@@ -126,8 +124,8 @@ const getJobsHandler = (jobPath) => {
       `/jobs/${functionRequest.params.jobId}${jobPath ? jobPath : ''}`;
     const options = {
       url: url,
-      qs: functionRequest.query,
-      timeout: config.TIMEOUT * SECONDS_TO_MILLISECONDS,
+      searchParams: functionRequest.query,
+      timeout: {request: config.TIMEOUT * SECONDS_TO_MILLISECONDS},
     };
 
     console.log({
