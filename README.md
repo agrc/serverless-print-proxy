@@ -31,6 +31,7 @@ _The account number must have a corresponding key in [`accounts.js`](./accounts.
 1. `mkcert -install`
 1. `mkcert localhost`
 1. Create `.env` file with print proxy wide open quad-word.
+1. `touch .env && echo 'OPEN_QUAD_WORD=<wide-open-quad-word>' >> .env`
 1. `npm install` & `npm start`
 
 ### URL Requirements for Web App Builder Print Widget
