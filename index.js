@@ -1,61 +1,66 @@
-/* eslint-disable camelcase */
-
-'use strict';
-const app = require('express')();
-const request = require('request');
-const accounts = require('./accounts');
-const bodyParser = require('body-parser');
-const config = require('./config');
-require('dotenv').config();
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import 'dotenv/config';
+import express from 'express';
+import got from 'got';
+import accounts from './accounts.js';
+import config from './config.js';
+import fs from 'fs';
+import https from 'https';
 
 const POST = 'POST';
 const WEB_MAP_AS_JSON = 'Web_Map_as_JSON';
 const SECONDS_TO_MILLISECONDS = 1000;
 const DEFAULT_PORT = 8080;
 
+let app = express();
 
-// enable CORS on all requests
-app.use((req, res, next) => {
-  res.set('Access-Control-Allow-Origin', '*');
-  res.set('Access-Control-Allow-Methods', 'GET');
-  next();
-});
+app.use(cors());
 
 // required for parsing submitted form data
-app.use(bodyParser.urlencoded({
-  extended: true,
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
 
-  // these options are to address the "PayloadTooLargeError: request entity too
-  // large errors" that we are seeing
-  limit: '2mb',
-  parameterLimit: 2000
-}));
+    // these options are to address the "PayloadTooLargeError: request entity too
+    // large errors" that we are seeing
+    limit: '2mb',
+    parameterLimit: 2000,
+  })
+);
 
-const simpleRequest = function (url, functionRequest, functionResponse) {
-  request({
-    url,
-    qs: functionRequest.query,
-    timeout: config.TIMEOUT * SECONDS_TO_MILLISECONDS
-  }, (error, res, body) => {
-    functionResponse.status(res && res.statusCode);
-    functionResponse.send(body);
-  });
-};
+async function simpleRequest(url, functionRequest, functionResponse) {
+  try {
+    const response = await got({
+      url,
+      searchParams: functionRequest.query,
+      timeout: { request: config.TIMEOUT * SECONDS_TO_MILLISECONDS},
+    });
 
-const makeRequest = (options, functionResponse) => {
-  request(options, (error, agsResponse, body) => {
-    if (error) {
-      functionResponse.status(500);
+    functionResponse.status(response && response.statusCode);
 
-      return functionResponse.send(error);
-    }
+    return functionResponse.send(response.body);
+  } catch (error) {
+    functionResponse.status(500);
 
-    functionResponse.status(agsResponse.statusCode);
-    body = body.replace(new RegExp(process.env.OPEN_QUAD_WORD, 'g'), '<open-quad-word-hidden>');
+    return functionResponse.send(error);
+  }
+}
+
+async function makeRequest(options, functionResponse) {
+  try {
+    const response = await got(options);
+
+    functionResponse.status(response.statusCode);
+    const body = response.body.replace(new RegExp(process.env.OPEN_QUAD_WORD, 'g'), '<open-quad-word-hidden>');
 
     return functionResponse.send(body);
-  });
-};
+  } catch (error) {
+    functionResponse.status(500);
+
+    return functionResponse.send(error);
+  }
+}
 
 const getHandler = function (taskName) {
   return function (functionRequest, functionResponse) {
@@ -73,14 +78,14 @@ const getHandler = function (taskName) {
     const options = {
       method: functionRequest.method,
       url: url,
-      qs: functionRequest.query,
+      searchParams: functionRequest.query,
       headers: {
         // trying to help with the invalid URL issue with default AGOL print service
         // doesn't look like it's working
         Referer: functionRequest.headers.Referer,
-        Origin: functionRequest.headers.Origin
+        Origin: functionRequest.headers.Origin,
       },
-      timeout: config.TIMEOUT * SECONDS_TO_MILLISECONDS
+      timeout: { request: config.TIMEOUT * SECONDS_TO_MILLISECONDS },
     };
 
     // POST is used for requests with too much data to fit in query parameters
@@ -90,17 +95,21 @@ const getHandler = function (taskName) {
 
       if (options.form[WEB_MAP_AS_JSON]) {
         options.form[WEB_MAP_AS_JSON] = options.form[WEB_MAP_AS_JSON].replace(
-          new RegExp(account.quadWord, 'g'), process.env.OPEN_QUAD_WORD);
+          new RegExp(account.quadWord, 'g'),
+          process.env.OPEN_QUAD_WORD
+        );
       }
-    } else if (options.qs[WEB_MAP_AS_JSON]) {
-      options.qs[WEB_MAP_AS_JSON] = options.qs[WEB_MAP_AS_JSON].replace(
-        new RegExp(account.quadWord, 'g'), process.env.OPEN_QUAD_WORD);
+    } else if (options.searchParams[WEB_MAP_AS_JSON]) {
+      options.searchParams[WEB_MAP_AS_JSON] = options.searchParams[WEB_MAP_AS_JSON].replace(
+        new RegExp(account.quadWord, 'g'),
+        process.env.OPEN_QUAD_WORD
+      );
     }
 
     console.log({
       accountNumber: functionRequest.params.accountNumber,
       url: url,
-      method: options.method
+      method: options.method,
     });
 
     makeRequest(options, functionResponse);
@@ -112,12 +121,13 @@ const getJobsHandler = (jobPath) => {
   return (functionRequest, functionResponse) => {
     const account = accounts[functionRequest.params.accountNumber];
 
-    let url = `${account.serviceUrl}/${encodeURIComponent(account.exportTaskName)}` +
-      `/jobs/${functionRequest.params.jobId}${(jobPath) ? jobPath : ''}`;
+    let url =
+      `${account.serviceUrl}/${encodeURIComponent(account.exportTaskName)}` +
+      `/jobs/${functionRequest.params.jobId}${jobPath ? jobPath : ''}`;
     const options = {
       url: url,
-      qs: functionRequest.query,
-      timeout: config.TIMEOUT * SECONDS_TO_MILLISECONDS
+      searchParams: functionRequest.query,
+      timeout: {request: config.TIMEOUT * SECONDS_TO_MILLISECONDS},
     };
 
     console.log({
@@ -125,7 +135,7 @@ const getJobsHandler = (jobPath) => {
       url: url,
       method: 'GET',
       referer: functionRequest.get('Referrer'),
-      sourceIp: functionRequest.ip
+      sourceIp: functionRequest.ip,
     });
 
     makeRequest(options, functionResponse);
@@ -170,13 +180,21 @@ app.get(`${baseRoute}export/jobs/:jobId`, getJobsHandler());
 app.get(`${baseRoute}export/jobs/:jobId/results/Output_File`, getJobsHandler('/results/Output_File'));
 
 const MOVED_PERMANENTLY = 301;
-app.get('/', (_, response) => response.redirect(MOVED_PERMANENTLY, 'https://github.com/agrc/serverless-print-proxy'));
+app.get('/', (_, response) => response.redirect(MOVED_PERMANENTLY, 'https://github.com/agrc/serverless-print-proxy#readme'));
 
 const port = process.env.PORT || DEFAULT_PORT;
 if (process.env.NODE_ENV !== 'test') {
-  app.listen(port, () => {
-    console.log(`printproxy listing on port ${port}`);
-  });
+  if (process.env.NODE_ENV === 'development') {
+    const credentials = {
+      key: fs.readFileSync('./localhost-key.pem'),
+      cert: fs.readFileSync('./localhost.pem'),
+    }
+    app = https.createServer(credentials, app);
+  } else {
+    app.listen(port, () => {
+      console.log(`printproxy listing on port ${port}`);
+    });
+  }
 }
 
-module.exports = app;
+export default app;

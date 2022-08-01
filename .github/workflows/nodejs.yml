@@ -2,10 +2,14 @@ name: Test, Build, and Deploy to GCP
 
 on:
   push:
-  pull_request:
+    paths-ignore:
+      - README.md
+      - LICENSE
+      - .env.sample
+      - .vscode/**
 
 concurrency:
-  group: "${{ github.head_ref || github.ref }}"
+  group: '${{ github.head_ref || github.ref }}'
   cancel-in-progress: true
 
 env:
@@ -23,38 +27,44 @@ jobs:
       OPEN_QUAD_WORD: fake-quad-word
 
     steps:
-      - name: Checkout
+      - name: ⬇️ Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
+      - name: ⎔ Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version-file: .node-version
           cache: npm
 
-      - name: Install Dependencies
+      - name: 📥 Download dependencies
         run: npm ci
 
-      - name: Test
-        run: npm run test-ci
+      - name: 🧵 Lint
+        run: npm run lint
 
-  deploy-staging:
-    name: Build and Deploy to Staging
+      - name: 🧪 Run tests
+        run: npm run test:ci
+
+  deploy-dev:
+    name: Build and Deploy to dev
     runs-on: ubuntu-latest
     needs: test
     environment:
-      name: Staging
-    if: github.ref == 'refs/heads/staging'
+      name: dev
+    if: github.ref == 'refs/heads/dev'
 
     steps:
-      - name: Checkout
+      - name: ⬇️ Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
+      - name: ⎔ Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version-file: .node-version
-      - run: npm ci
+          cache: npm
+
+      - name: 📥 Download dependencies
+        run: npm ci
 
       - id: auth
         name: 🗝️ Authenticate to Google Cloud
@@ -104,28 +114,31 @@ jobs:
           service: printproxy
           image: gcr.io/${{ secrets.PROJECT_ID }}/app
           region: us-central1
-          env_vars: "OPEN_QUAD_WORD=${{ secrets.OPEN_QUAD_WORD }}"
+          env_vars: 'OPEN_QUAD_WORD=${{ secrets.OPEN_QUAD_WORD }}'
           flags: >
             --service-account=cloud-run-sa@${{ secrets.PROJECT_ID }}.iam.gserviceaccount.com
             --allow-unauthenticated
 
   deploy-prod:
-    name: Build and Deploy to Production
+    name: Build and Deploy to prod
     runs-on: ubuntu-latest
     needs: test
     environment:
-      name: Production
+      name: prod
     if: github.ref == 'refs/heads/main'
 
     steps:
-      - name: Checkout
+      - name: ⬇️ Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
+      - name: ⎔ Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version-file: .node-version
-      - run: npm ci
+          cache: npm
+
+      - name: 📥 Download dependencies
+        run: npm ci
 
       - id: auth
         name: 🗝️ Authenticate to Google Cloud
@@ -175,7 +188,7 @@ jobs:
           service: printproxy
           image: gcr.io/${{ secrets.PROJECT_ID }}/app
           region: us-central1
-          env_vars: "OPEN_QUAD_WORD=${{ secrets.OPEN_QUAD_WORD }}"
+          env_vars: 'OPEN_QUAD_WORD=${{ secrets.OPEN_QUAD_WORD }}'
           flags: >
             --service-account=cloud-run-sa@${{ secrets.PROJECT_ID }}.iam.gserviceaccount.com
             --allow-unauthenticated

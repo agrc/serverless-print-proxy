@@ -1,27 +1,18 @@
-/* eslint-disable no-use-before-define, camelcase, max-len, no-magic-numbers */
-'use strict';
-const request = require('supertest');
-const app = require('./index');
-const http = require('http');
+import request from 'supertest';
+import app from './index';
+import http from 'http';
+import { promisify } from 'util';
 
-const sleep = require('util').promisify(setTimeout);
+const sleep = promisify(setTimeout);
 let server;
 
-beforeAll(done => {
+beforeAll((done) => {
   server = http.createServer(app);
   server.listen(done);
 });
 
-afterAll(done => {
+afterAll((done) => {
   server.close(done);
-});
-
-test('CORS headers', () => {
-  return request(server)
-    .get('/-1/arcgis/rest/info?f=json')
-    .expect('Access-Control-Allow-Origin', '*')
-    .expect('Access-Control-Allow-Methods', 'GET')
-  ;
 });
 
 test('main server info', () => {
@@ -29,8 +20,7 @@ test('main server info', () => {
     .get('/-1/arcgis/rest/info?f=json')
     .expect(200)
     .expect(/currentVersion/)
-    .expect(/services/)
-  ;
+    .expect(/services/);
 });
 
 test('export task info', () => {
@@ -38,24 +28,21 @@ test('export task info', () => {
     .get('/-1/arcgis/rest/services/GPServer/export?f=json')
     .expect(200)
     .expect(/category/)
-    .expect(/parameters/)
-  ;
+    .expect(/parameters/);
 });
 test('export task info (post)', () => {
   return request(server)
     .get('/-1/arcgis/rest/services/GPServer/Export%20Web%20Map%20Task?f=json')
     .expect(200)
     .expect(/category/)
-    .expect(/parameters/)
-  ;
+    .expect(/parameters/);
 });
 
 test('get templates task info', () => {
   return request(server)
     .get('/-1/arcgis/rest/services/GPServer/Get%20Layout%20Templates%20Info/execute?f=json')
     .expect(200)
-    .expect(/results/)
-  ;
+    .expect(/results/);
 });
 
 test('post to export execute', () => {
@@ -67,16 +54,15 @@ test('post to export execute', () => {
       Web_Map_as_JSON: JSON.stringify({
         exportOptions: {
           outputSize: [670, 500],
-          dpi: 96
+          dpi: 96,
         },
-        mapOptions: { extent: {} }
+        mapOptions: { extent: {} },
       }),
       Format: 'PDF',
-      Layout_Template: 'MAP_ONLY'
+      Layout_Template: 'MAP_ONLY',
     })
     .expect(/GPDataFile/)
-    .expect(200)
-  ;
+    .expect(200);
 });
 
 describe('async print task', () => {
@@ -90,19 +76,18 @@ describe('async print task', () => {
         Web_Map_as_JSON: JSON.stringify({
           exportOptions: {
             outputSize: [670, 500],
-            dpi: 96
+            dpi: 96,
           },
-          mapOptions: { extent: {} }
+          mapOptions: { extent: {} },
         }),
         Format: 'PDF',
-        Layout_Template: 'MAP_ONLY'
+        Layout_Template: 'MAP_ONLY',
       })
       .expect(/jobId/)
-      .expect(res => {
+      .expect((res) => {
         jobId = JSON.parse(res.res.text).jobId;
       })
-      .expect(200)
-    ;
+      .expect(200);
   });
 
   test('check job requests', () => {
@@ -110,73 +95,68 @@ describe('async print task', () => {
       .get(`/11/arcgis/rest/services/GPServer/export/jobs/${jobId}`)
       .query({ f: 'json' })
       .expect(/jobStatus/)
-      .expect(200)
-    ;
+      .expect(200);
   });
 
-  test('get output file', () => {
-    return sleep(500).then(() => {
-      request(server)
-        .get(`/11/arcgis/rest/services/GPServer/export/jobs/${jobId}/results/Output_File`)
-        .query({
-          f: 'json',
-          returnType: 'data'
-        })
-        .expect(/GPDataFile/)
-        .expect(200)
-      ;
-    });
+  test('get output file', async () => {
+    await sleep(500);
+    request(server)
+      .get(`/11/arcgis/rest/services/GPServer/export/jobs/${jobId}/results/Output_File`)
+      .query({
+        f: 'json',
+        returnType: 'data',
+      })
+      .expect(/GPDataFile/)
+      .expect(200);
   });
 });
 
-test('hide open quad word in response', () => {
+test('hide open quad-word in response', () => {
   return request(server)
     .get('/-1/arcgis/rest/services/GPServer/export/execute')
     .query({
       f: 'json',
       Web_Map_as_JSON: JSON.stringify({
-        exportOptions: { outputSize: [670, 500],
-          dpi: 96 },
-        operationalLayers: [{
-          id: 'WMTS_6557',
-          title: 'terrain-basemap',
-          opacity: 1,
-          minScale: 0,
-          maxScale: 0,
-          type: 'WebTiledLayer',
-          urlTemplate: 'https://discover.agrc.utah.gov/login/path/test-quad-word/wmts?SERVICE=WMTS&VERSION=1.0.0&REQUEST=GetTile&LAYER=terrain_basemap&STYLE=default&FORMAT=image/png&TILEMATRIXSET=5to19&TILEMATRIX={level}&TILEROW={row}&TILECOL={col}',
-          credits: '',
-          wmtsInfo: {
-            url: 'https://discover.agrc.utah.gov/login/path/test-quad-word/wmts',
-            layerIdentifier: 'terrain_basemap',
-            tileMatrixSet: '5to19'
-          }
-        }]
+        exportOptions: { outputSize: [670, 500], dpi: 96 },
+        operationalLayers: [
+          {
+            id: 'WMTS_6557',
+            title: 'terrain-basemap',
+            opacity: 1,
+            minScale: 0,
+            maxScale: 0,
+            type: 'WebTiledLayer',
+            urlTemplate:
+              'https://discover.agrc.utah.gov/login/path/test-quad-word/wmts?SERVICE=WMTS&VERSION=1.0.0&REQUEST=GetTile&LAYER=terrain_basemap&STYLE=default&FORMAT=image/png&TILEMATRIXSET=5to19&TILEMATRIX={level}&TILEROW={row}&TILECOL={col}',
+            credits: '',
+            wmtsInfo: {
+              url: 'https://discover.agrc.utah.gov/login/path/test-quad-word/wmts',
+              layerIdentifier: 'terrain_basemap',
+              tileMatrixSet: '5to19',
+            },
+          },
+        ],
       }),
       Format: 'PDF',
       Layout_Template: 'MAP_ONLY',
-      printFlag: 'true'
+      printFlag: 'true',
     })
     .expect((res) => {
       if (res.res.text.match(new RegExp(process.env.OPEN_QUAD_WORD, 'g'))) {
-        throw new Error('does not hide open quad word');
+        throw new Error('does not hide open quad-word');
       }
-    })
-  ;
+    });
 });
 
-test('return 500 error if no OPEN_QUAD_WORD env var is present', () => {
+test('return 500 error if no OPEN_QUAD_WORD env var is present', async () => {
   const originalQuadWord = process.env.OPEN_QUAD_WORD;
   delete process.env.OPEN_QUAD_WORD;
 
-  return request(server)
+  await request(server)
     .get('/-1/arcgis/rest/services/GPServer/export/execute')
     .expect(500)
-    .expect(/defined/)
-    .then(() => {
-      process.env.OPEN_QUAD_WORD = originalQuadWord;
-    })
-  ;
+    .expect(/defined/);
+  process.env.OPEN_QUAD_WORD = originalQuadWord;
 });
 
 test('general base task info', () => {
@@ -197,6 +177,5 @@ test('redirect to repo readme', () => {
   return request(server)
     .get('/')
     .expect(301)
-    .expect(/github.com/)
-  ;
+    .expect(/github.com/);
 });

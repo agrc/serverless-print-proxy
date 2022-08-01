@@ -8,4 +8,4 @@ RUN npm install --only=production
 
 COPY . ./
 
-CMD [ "npm", "start" ]
+CMD [ "npm", "run", "start:prod" ]
