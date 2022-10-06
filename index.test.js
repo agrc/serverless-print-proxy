@@ -2,6 +2,11 @@ import request from 'supertest';
 import app from './index';
 import http from 'http';
 import { promisify } from 'util';
+import { jest } from '@jest/globals';
+
+jest.retryTimes(50, {
+  logErrorsBeforeRetry: true,
+});
 
 const sleep = promisify(setTimeout);
 let server;
