@@ -10,6 +10,8 @@ jobs:
   test-unit:
     name: Unit tests
     runs-on: ubuntu-latest
+    env:
+      OPEN_QUAD_WORD: fake-quad-word
 
     steps:
       - name: ⬇️ Set up code
