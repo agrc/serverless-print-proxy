@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1-2](https://github.com/agrc/serverless-print-proxy/compare/v1.1.1-1...v1.1.1-2) (2022-10-06)
+
+
+### 🐛 Bug Fixes
+
+* **ci:** repo token inputs ([362f80f](https://github.com/agrc/serverless-print-proxy/commit/362f80fd5f9ce3de561fae13ca50ffe2533c4ce5))
+
 ## [1.1.1-1](https://github.com/agrc/serverless-print-proxy/compare/v1.1.1-0...v1.1.1-1) (2022-10-06)
 
 
