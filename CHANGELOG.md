@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1-1](https://github.com/agrc/serverless-print-proxy/compare/v1.1.1-0...v1.1.1-1) (2022-10-06)
+
+
+### 🐛 Bug Fixes
+
+* **ci:** secrets syntax ([b8e2132](https://github.com/agrc/serverless-print-proxy/commit/b8e21328e773088fa751c0faa9613d97c022b61b))
+
 ## [1.1.1-0](https://github.com/agrc/serverless-print-proxy/compare/v1.1.0...v1.1.1-0) (2022-10-06)
 
 
