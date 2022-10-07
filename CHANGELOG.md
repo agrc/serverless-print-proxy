@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.1.1](https://github.com/agrc/serverless-print-proxy/compare/v1.1.0...v1.1.1) (2022-10-07)
+
+
+### 🐛 Bug Fixes
+
+* **ci:** repo token inputs ([ff57ea6](https://github.com/agrc/serverless-print-proxy/commit/ff57ea6f18deb78e5f090dbbcf4c31a3c3fe2eda))
+* **ci:** secrets syntax ([1c2fea5](https://github.com/agrc/serverless-print-proxy/commit/1c2fea510870bca47d9d830b2bdf7b25aef59c1a))
+* October dependency bumps 🌲 ([b5b72f9](https://github.com/agrc/serverless-print-proxy/commit/b5b72f971f00bfcfd675857345f27981d85e3f3b))
+* standardize actions ([a32a49b](https://github.com/agrc/serverless-print-proxy/commit/a32a49b135db9bb13d69b6542f066dffce6ece47))
+
 ## [1.1.1-2](https://github.com/agrc/serverless-print-proxy/compare/v1.1.1-1...v1.1.1-2) (2022-10-06)
 
 
