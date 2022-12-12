@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.3](https://github.com/agrc/serverless-print-proxy/compare/v1.1.2...v1.1.3) (2022-12-12)
+
+
+### 🐛 Bug Fixes
+
+* December dependency bumps 🌲 ([8064e37](https://github.com/agrc/serverless-print-proxy/commit/8064e37ca104fbb58221cfdcd8154e161593fa22))
+
 ## [1.1.3-0](https://github.com/agrc/serverless-print-proxy/compare/v1.1.2...v1.1.3-0) (2022-12-09)
 
 
