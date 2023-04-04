@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.5](https://github.com/agrc/serverless-print-proxy/compare/v1.1.4...v1.1.5) (2023-04-04)
+
+
+### 🐛 Bug Fixes
+
+* switch to node LTS ([c677406](https://github.com/agrc/serverless-print-proxy/commit/c677406958c8abfcaf8bc30ac31ebcd0fc88706d))
+
 ## [1.1.4](https://github.com/agrc/serverless-print-proxy/compare/v1.1.3...v1.1.4) (2023-02-07)
 
 
