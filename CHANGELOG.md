@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.6](https://github.com/agrc/serverless-print-proxy/compare/v1.1.5...v1.1.6) (2023-04-19)
+
+
+### 🐛 Bug Fixes
+
+* switch to new pinned DNS ([950c030](https://github.com/agrc/serverless-print-proxy/commit/950c030a24043025c6a42959f5c1a65d7c8e64e8))
+
 ## [1.1.6-0](https://github.com/agrc/serverless-print-proxy/compare/v1.1.5...v1.1.6-0) (2023-04-19)
 
 
