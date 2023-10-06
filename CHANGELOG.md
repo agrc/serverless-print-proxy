@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.7](https://github.com/agrc/serverless-print-proxy/compare/v1.1.6...v1.1.7) (2023-10-06)
+
+
+### 🐛 Bug Fixes
+
+* add missing prittier plugins config ([b4ce46d](https://github.com/agrc/serverless-print-proxy/commit/b4ce46df2b9ab75dd25d7873f860980a224157eb))
+
 ## [1.1.6](https://github.com/agrc/serverless-print-proxy/compare/v1.1.5...v1.1.6) (2023-04-19)
 
 
