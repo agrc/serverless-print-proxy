@@ -16,6 +16,10 @@
     "test:ci": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "prettier": {
+    "plugins": [
+      "prettier-plugin-organize-imports",
+      "prettier-plugin-packagejson"
+    ],
     "printWidth": 120,
     "singleQuote": true
   },
