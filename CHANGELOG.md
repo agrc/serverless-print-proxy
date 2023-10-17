@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.8](https://github.com/agrc/serverless-print-proxy/compare/v1.1.7...v1.1.8) (2023-10-17)
+
+
+### 🐛 Bug Fixes
+
+* allow for even larger payloads ([9fd9193](https://github.com/agrc/serverless-print-proxy/commit/9fd9193bbe02f49c5d940106fdfc77dcd99eca91))
+
 ## [1.1.7](https://github.com/agrc/serverless-print-proxy/compare/v1.1.6...v1.1.7) (2023-10-06)
 
 
