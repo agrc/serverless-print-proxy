@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.9](https://github.com/agrc/serverless-print-proxy/compare/v1.1.8...v1.1.9) (2023-10-17)
+
+
+### 🌲 Dependencies
+
+* **dev:** bump @babel/traverse from 7.23.0 to 7.23.2 ([03305a5](https://github.com/agrc/serverless-print-proxy/commit/03305a5e1bc91102ae16b333542c8a0ea8732f1f))
+
 ## [1.1.8](https://github.com/agrc/serverless-print-proxy/compare/v1.1.7...v1.1.8) (2023-10-17)
 
 
