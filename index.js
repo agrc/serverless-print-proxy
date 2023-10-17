@@ -24,7 +24,7 @@ app.use(
 
     // these options are to address the "PayloadTooLargeError: request entity too
     // large errors" that we are seeing
-    limit: '2mb',
+    limit: '50mb',
     parameterLimit: 2000,
   })
 );
