@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.10](https://github.com/agrc/serverless-print-proxy/compare/v1.1.9...v1.1.10) (2023-10-30)
+
+
+### 🐛 Bug Fixes
+
+* add dns cache ([c9019a5](https://github.com/agrc/serverless-print-proxy/commit/c9019a51481c60d0e3187e4b9749e1130402de39))
+
 ## [1.1.9](https://github.com/agrc/serverless-print-proxy/compare/v1.1.8...v1.1.9) (2023-10-17)
 
 
