@@ -17,6 +17,13 @@ let app = express();
 
 app.use(cors());
 
+const gotClient = got.extend({
+  timeout: {
+    request: config.TIMEOUT * SECONDS_TO_MILLISECONDS,
+  },
+  dnsCache: true
+});
+
 // required for parsing submitted form data
 app.use(
   bodyParser.urlencoded({
@@ -31,10 +38,9 @@ app.use(
 
 async function simpleRequest(url, functionRequest, functionResponse) {
   try {
-    const response = await got({
+    const response = await gotClient({
       url,
       searchParams: functionRequest.query,
-      timeout: { request: config.TIMEOUT * SECONDS_TO_MILLISECONDS},
     });
 
     functionResponse.status(response && response.statusCode);
@@ -49,7 +55,7 @@ async function simpleRequest(url, functionRequest, functionResponse) {
 
 async function makeRequest(options, functionResponse) {
   try {
-    const response = await got(options);
+    const response = await gotClient(options);
 
     functionResponse.status(response.statusCode);
     const body = response.body.replace(new RegExp(process.env.OPEN_QUAD_WORD, 'g'), '<open-quad-word-hidden>');
@@ -85,7 +91,6 @@ const getHandler = function (taskName) {
         Referer: functionRequest.headers.Referer,
         Origin: functionRequest.headers.Origin,
       },
-      timeout: { request: config.TIMEOUT * SECONDS_TO_MILLISECONDS },
     };
 
     // POST is used for requests with too much data to fit in query parameters
@@ -127,7 +132,6 @@ const getJobsHandler = (jobPath) => {
     const options = {
       url: url,
       searchParams: functionRequest.query,
-      timeout: {request: config.TIMEOUT * SECONDS_TO_MILLISECONDS},
     };
 
     console.log({
