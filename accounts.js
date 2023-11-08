@@ -36,7 +36,7 @@ export default {
   },
   5: {
     // parcels.utah.gov
-    serviceUrl: 'https://data.mapserv.utah.gov/arcgis/rest/services/Utilities/PrintingTools/GPServer',
+    serviceUrl: 'https://mapserv.utah.gov/arcgis/rest/services/Utilities/PrintingTools/GPServer',
     exportTaskName: 'Export Web Map Task',
     getTemplatesTaskName: 'Get Layout Templates Info Task',
     quadWord: 'alfred-plaster-crystal-dexter',
@@ -50,7 +50,7 @@ export default {
   },
   7: {
     // atlas.utah.gov
-    serviceUrl: 'https://data.mapserv.utah.gov/arcgis/rest/services/Utilities/PrintingTools/GPServer',
+    serviceUrl: 'https://mapserv.utah.gov/arcgis/rest/services/Utilities/PrintingTools/GPServer',
     exportTaskName: 'Export Web Map Task',
     getTemplatesTaskName: 'Get Layout Templates Info Task',
     quadWord: 'career-exhibit-panel-stadium',
@@ -92,14 +92,14 @@ export default {
   },
   14: {
     // enviro.deq.utah.gov
-    serviceUrl: 'https://data.mapserv.utah.gov/arcgis/rest/services/DEQEnviro/ExportWebMap/GPServer',
+    serviceUrl: 'https://mapserv.utah.gov/arcgis/rest/services/DEQEnviro/ExportWebMap/GPServer',
     exportTaskName: 'Export Web Map',
     getTemplatesTaskName: '',
     quadWord: 'result-table-secure-antenna',
   },
   15: {
     // broadband.utah.gov/map
-    serviceUrl: 'https://data.mapserv.utah.gov/arcgis/rest/services/Broadband/ExportWebMap/GPServer',
+    serviceUrl: 'https://mapserv.utah.gov/arcgis/rest/services/Broadband/ExportWebMap/GPServer',
     exportTaskName: 'Export Web Map',
     getTemplatesTaskName: '',
     quadWord: 'reserve-tactic-cricket-spider',
@@ -127,14 +127,14 @@ export default {
   },
   19: {
     // elections.utah.gov
-    serviceUrl: 'https://data.mapserv.utah.gov/arcgis/rest/services/LtGovPoliticalDistricts/ExportWebMap/GPServer',
+    serviceUrl: 'https://mapserv.utah.gov/arcgis/rest/services/LtGovPoliticalDistricts/ExportWebMap/GPServer',
     exportTaskName: 'Export Web Map',
     getTemplatesTaskName: '',
     quadWord: 'andrea-permit-weekend-cable',
   },
   20: {
     // atlas.dev.utah.gov
-    serviceUrl: 'https://data.mapserv.utah.gov/arcgis/rest/services/Utilities/PrintingTools/GPServer',
+    serviceUrl: 'https://mapserv.utah.gov/arcgis/rest/services/Utilities/PrintingTools/GPServer',
     exportTaskName: 'Export Web Map Task',
     getTemplatesTaskName: 'Get Layout Templates Info Task',
     quadWord: 'wedding-tactic-enrico-yes',
