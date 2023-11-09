@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.11](https://github.com/agrc/serverless-print-proxy/compare/v1.1.10...v1.1.11) (2023-11-09)
+
+
+### 🐛 Bug Fixes
+
+* undo pinned DNS ([bf31a4c](https://github.com/agrc/serverless-print-proxy/commit/bf31a4c6ab83f1fd73a438446f700346e438421d))
+
+
+### 🌲 Dependencies
+
+* **dev:** bump the safe-dependencies group with 1 update ([8c3aca2](https://github.com/agrc/serverless-print-proxy/commit/8c3aca2085aa059549e79416e624c6c2cc20cd70))
+
 ## [1.1.10](https://github.com/agrc/serverless-print-proxy/compare/v1.1.9...v1.1.10) (2023-10-30)
 
 
