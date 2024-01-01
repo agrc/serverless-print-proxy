@@ -50,12 +50,12 @@
     "got": "^13.0.0"
   },
   "devDependencies": {
-    "eslint": "^8.52.0",
-    "eslint-config-prettier": "^9.0.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
     "jest": "^29.7.0",
-    "prettier": "^3.0.3",
-    "prettier-plugin-organize-imports": "^3.2.3",
-    "prettier-plugin-packagejson": "^2.4.6",
+    "prettier": "^3.1.1",
+    "prettier-plugin-organize-imports": "^3.2.4",
+    "prettier-plugin-packagejson": "^2.4.8",
     "supertest": "^6.3.3"
   }
 }
