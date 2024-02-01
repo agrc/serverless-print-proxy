@@ -49,7 +49,7 @@ async function simpleRequest(url, functionRequest, functionResponse) {
   } catch (error) {
     functionResponse.status(500);
 
-    return functionResponse.send(error);
+    return functionResponse.send(error.message);
   }
 }
 
@@ -64,7 +64,7 @@ async function makeRequest(options, functionResponse) {
   } catch (error) {
     functionResponse.status(500);
 
-    return functionResponse.send(error);
+    return functionResponse.send(error.message);
   }
 }
 
