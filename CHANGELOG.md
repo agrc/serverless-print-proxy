@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.1.12-0](https://github.com/agrc/serverless-print-proxy/compare/v1.1.11...v1.1.12-0) (2024-02-01)
+
+
+### 🐛 Bug Fixes
+
+* add missing get layout templates task name ([3cf6008](https://github.com/agrc/serverless-print-proxy/commit/3cf6008eaaf800bc48865ff0b94532cf4de6f1a6))
+* better error handling ([a1b05e4](https://github.com/agrc/serverless-print-proxy/commit/a1b05e4050c941d2f3d2d43107d173f104547896))
+
+
+### 🌲 Dependencies
+
+* bump the major-dependencies group with 1 update ([831967e](https://github.com/agrc/serverless-print-proxy/commit/831967efabc2f96dc9e1838b9340c53c5e8efd6e))
+* bump the safe-dependencies group with 7 updates ([c0289f6](https://github.com/agrc/serverless-print-proxy/commit/c0289f6fbb5a2bb461d41dec88d3699c6ade3ea5))
+
 ## [1.1.11](https://github.com/agrc/serverless-print-proxy/compare/v1.1.10...v1.1.11) (2023-11-09)
 
 
