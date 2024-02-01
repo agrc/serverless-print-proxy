@@ -2,11 +2,11 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import 'dotenv/config';
 import express from 'express';
+import fs from 'fs';
 import got from 'got';
+import https from 'https';
 import accounts from './accounts.js';
 import config from './config.js';
-import fs from 'fs';
-import https from 'https';
 
 const POST = 'POST';
 const WEB_MAP_AS_JSON = 'Web_Map_as_JSON';
@@ -21,7 +21,7 @@ const gotClient = got.extend({
   timeout: {
     request: config.TIMEOUT * SECONDS_TO_MILLISECONDS,
   },
-  dnsCache: true
+  dnsCache: true,
 });
 
 // required for parsing submitted form data
@@ -33,7 +33,7 @@ app.use(
     // large errors" that we are seeing
     limit: '50mb',
     parameterLimit: 2000,
-  })
+  }),
 );
 
 async function simpleRequest(url, functionRequest, functionResponse) {
@@ -101,13 +101,13 @@ const getHandler = function (taskName) {
       if (options.form[WEB_MAP_AS_JSON]) {
         options.form[WEB_MAP_AS_JSON] = options.form[WEB_MAP_AS_JSON].replace(
           new RegExp(account.quadWord, 'g'),
-          process.env.OPEN_QUAD_WORD
+          process.env.OPEN_QUAD_WORD,
         );
       }
     } else if (options.searchParams[WEB_MAP_AS_JSON]) {
       options.searchParams[WEB_MAP_AS_JSON] = options.searchParams[WEB_MAP_AS_JSON].replace(
         new RegExp(account.quadWord, 'g'),
-        process.env.OPEN_QUAD_WORD
+        process.env.OPEN_QUAD_WORD,
       );
     }
 
@@ -184,7 +184,9 @@ app.get(`${baseRoute}export/jobs/:jobId`, getJobsHandler());
 app.get(`${baseRoute}export/jobs/:jobId/results/Output_File`, getJobsHandler('/results/Output_File'));
 
 const MOVED_PERMANENTLY = 301;
-app.get('/', (_, response) => response.redirect(MOVED_PERMANENTLY, 'https://github.com/agrc/serverless-print-proxy#readme'));
+app.get('/', (_, response) =>
+  response.redirect(MOVED_PERMANENTLY, 'https://github.com/agrc/serverless-print-proxy#readme'),
+);
 
 const port = process.env.PORT || DEFAULT_PORT;
 if (process.env.NODE_ENV !== 'test') {
@@ -192,7 +194,7 @@ if (process.env.NODE_ENV !== 'test') {
     const credentials = {
       key: fs.readFileSync('./localhost-key.pem'),
       cert: fs.readFileSync('./localhost.pem'),
-    }
+    };
     app = https.createServer(credentials, app);
   }
 

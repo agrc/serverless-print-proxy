@@ -1,8 +1,8 @@
-import request from 'supertest';
-import app from './index';
-import http from 'http';
-import { promisify } from 'util';
 import { jest } from '@jest/globals';
+import http from 'http';
+import request from 'supertest';
+import { promisify } from 'util';
+import app from './index';
 
 jest.retryTimes(50, {
   logErrorsBeforeRetry: true,
