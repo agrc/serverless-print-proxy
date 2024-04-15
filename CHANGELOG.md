@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.13](https://github.com/agrc/serverless-print-proxy/compare/v1.1.12...v1.1.13) (2024-04-15)
+
+
+### 🌲 Dependencies
+
+* bump the safe-dependencies group with 6 updates ([9ae2f90](https://github.com/agrc/serverless-print-proxy/commit/9ae2f9027eefd8c35d0ef4b28caf4e16cc228617))
+
 ## [1.1.12](https://github.com/agrc/serverless-print-proxy/compare/v1.1.11...v1.1.12) (2024-02-02)
 
 
