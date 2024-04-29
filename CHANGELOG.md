@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.14](https://github.com/agrc/serverless-print-proxy/compare/v1.1.13...v1.1.14) (2024-04-29)
+
+
+### 🐛 Bug Fixes
+
+* point enviro task at agol print service ([1457393](https://github.com/agrc/serverless-print-proxy/commit/14573935426070fd2dde6af756a29b3ccb26d119))
+
 ## [1.1.13](https://github.com/agrc/serverless-print-proxy/compare/v1.1.12...v1.1.13) (2024-04-15)
 
 
