@@ -92,9 +92,9 @@ export default {
   },
   14: {
     // enviro.deq.utah.gov
-    serviceUrl: 'https://mapserv.utah.gov/arcgis/rest/services/DEQEnviro/ExportWebMap/GPServer',
-    exportTaskName: 'Export Web Map',
-    getTemplatesTaskName: '',
+    serviceUrl: 'https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer',
+    exportTaskName: 'Export Web Map Task',
+    getTemplatesTaskName: 'Get Layout Templates Info Task',
     quadWord: 'result-table-secure-antenna',
   },
   15: {
