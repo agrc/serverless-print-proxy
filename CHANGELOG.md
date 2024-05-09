@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.15](https://github.com/agrc/serverless-print-proxy/compare/v1.1.14...v1.1.15) (2024-05-09)
+
+
+### 🐛 Bug Fixes
+
+* remove bluffdale account ([b79d0f8](https://github.com/agrc/serverless-print-proxy/commit/b79d0f803983eb83debacaeb1d7b208960df4bae))
+
 ## [1.1.14](https://github.com/agrc/serverless-print-proxy/compare/v1.1.13...v1.1.14) (2024-04-29)
 
 
