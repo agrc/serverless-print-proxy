@@ -27,13 +27,6 @@ export default {
     getTemplatesTaskName: 'Get Layout Templates Info Task',
     quadWord: 'optimal-polygon-contour-local',
   },
-  4: {
-    // bluffdale (via BioWest)
-    serviceUrl: 'https://gis.bio-west.com/arcgis/rest/services/Utilities/PrintingTools/GPServer',
-    exportTaskName: 'Export Web Map Task',
-    getTemplatesTaskName: 'Get Layout Templates Info Task',
-    quadWord: 'sonata-henry-fractal-orion',
-  },
   5: {
     // parcels.utah.gov
     serviceUrl: 'https://mapserv.utah.gov/arcgis/rest/services/Utilities/PrintingTools/GPServer',
