@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.16](https://github.com/agrc/serverless-print-proxy/compare/v1.1.15...v1.1.16) (2024-05-15)
+
+
+### 🐛 Bug Fixes
+
+* more graceful handling of invalid account numbers ([c36c257](https://github.com/agrc/serverless-print-proxy/commit/c36c2575183381f7fad41668fd80d5dd87d7a373))
+
+
+### 🌲 Dependencies
+
+* bump deps ([7779040](https://github.com/agrc/serverless-print-proxy/commit/7779040defabc4fc77a90686add79b87c07c657f))
+
 ## [1.1.16-0](https://github.com/agrc/serverless-print-proxy/compare/v1.1.15...v1.1.16-0) (2024-05-15)
 
 
