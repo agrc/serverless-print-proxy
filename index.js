@@ -17,6 +17,19 @@ let app = express();
 
 app.use(cors());
 
+// verify account number for all paths requests except "/"
+app.use((request, response, next) => {
+  if (request.path !== '/') {
+    const accountNumber = request.path.split('/')[1];
+    if (!accounts[accountNumber]) {
+      response.status(400);
+      return response.send(`Invalid account number: ${accountNumber}`);
+    }
+  }
+
+  return next();
+});
+
 const gotClient = got.extend({
   timeout: {
     request: config.TIMEOUT * SECONDS_TO_MILLISECONDS,

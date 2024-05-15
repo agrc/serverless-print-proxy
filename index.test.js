@@ -28,6 +28,13 @@ test('main server info', () => {
     .expect(/services/);
 });
 
+test('bad account number', () => {
+  return request(server)
+    .get('/-99/arcgis/rest/info?f=json')
+    .expect(400)
+    .expect(/invalid account number/i);
+});
+
 test('export task info', () => {
   return request(server)
     .get('/-1/arcgis/rest/services/GPServer/export?f=json')
