@@ -12,6 +12,7 @@
     "packagejson",
     "printproxy",
     "promisify",
+    "proxied",
     "utahkoopserver"
   ]
 }

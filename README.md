@@ -15,11 +15,22 @@ This project solves this problem by acting as a proxy between web applications a
 ## Usage
 
 1. [Open a pull request](https://github.com/agrc/serverless-print-proxy/compare) to add a configuration for a new [account](./accounts.js).
-1. Use the following url in place of an Esri print service (e.g. [default AGOL service](https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task)):
 
-```url
-https://print.agrc.utah.gov/<accountNumber>/arcgis/rest/services/GPServer/export
-```
+1. Take the path to your print service...
+
+<!-- markdownlint-disable MD033 -->
+<pre>
+https://<b>utility.arcgisonline.com</b>/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task
+</pre>
+
+...and replace the domain name with `print.ugrc.utah.gov/v2/<account-number>` like this...
+
+<pre>
+https://<b>print.ugrc.utah.gov/v2/99</b>/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task
+</pre>
+<!-- markdownlint-enable MD033 -->
+
+You can use this new URL in place of the original print service in any Esri products.
 
 _The account number must have a corresponding key in [`accounts.js`](./accounts.js)._
 
@@ -34,21 +45,11 @@ _The account number must have a corresponding key in [`accounts.js`](./accounts.
 1. `touch .env && echo 'OPEN_QUAD_WORD=<wide-open-quad-word>' >> .env`
 1. `npm install` & `npm start`
 
-### URL Requirements for Web App Builder Print Widget
-
-The print widget performs validation on the URL in the properties form. It appears that it has to match something like:
-
-```regex
-/https?:\/\/.+\/GPServer\/.*/
-```
-
-If the URL passes validation, then it makes a GET request (`arcgis/rest/info?f=json`) to get info about the server.
-
 ## Testing
 
 Run `npm test` to run tests.
 
-There's also an [AGOL web app](https://utah.maps.arcgis.com/apps/webappviewer/index.html?id=177c2b166a8d4cb79d888f28f950b33a) that you can test with.
+There's also an [AGOL web app](https://experience.arcgis.com/experience/2ade141aca3244ee99b8e16185a76f32) that you can test the different environments with.
 
 ## Deployment
 

@@ -1,8 +1,9 @@
+import express from 'express';
 import http from 'http';
 import request from 'supertest';
 import { promisify } from 'util';
 import { afterAll, beforeAll, describe, test } from 'vitest';
-import app from './index';
+import app, { WEB_MAP_AS_JSON } from './index';
 
 const sleep = promisify(setTimeout);
 let server;
@@ -14,6 +15,51 @@ beforeAll(() => {
 
 afterAll(async () => {
   await server.close();
+});
+
+describe('switch out quad word', () => {
+  let verifyServer;
+  beforeAll(() => {
+    return new Promise((resolve) => {
+      const verifyApp = express();
+      verifyApp.use(express.urlencoded());
+      verifyApp.all('*', (request, response) => {
+        const webMapJson = request.method === 'POST' ? request.body[WEB_MAP_AS_JSON] : request.query[WEB_MAP_AS_JSON];
+        if (webMapJson.includes('verify-quad-word')) {
+          return response.status(500).send('quad word not replaced');
+        } else {
+          return response.status(200).send('quad word replaced');
+        }
+      });
+      verifyServer = http.createServer(verifyApp);
+      verifyServer.listen(8085, resolve);
+    });
+  });
+
+  afterAll(async () => {
+    await verifyServer.close();
+  });
+
+  test('switches out quad word for get requests', async () => {
+    return request(server)
+      .get(
+        `/v2/-2/arcgis/rest/info?f=json&${WEB_MAP_AS_JSON}=${JSON.stringify({ layer: { url: 'https://somedomain.com/verify-quad-word' } })}`,
+      )
+      .expect(200)
+      .expect('quad word replaced');
+  });
+
+  test('switches out quad word for post requests', async () => {
+    return request(server)
+      .post('/v2/-2/arcgis/rest/info')
+      .type('form')
+      .send({
+        f: 'json',
+        Web_Map_as_JSON: JSON.stringify({ layer: { url: 'https://somedomain.com/verify-quad-word' } }),
+      })
+      .expect(200)
+      .expect('quad word replaced');
+  });
 });
 
 test('main server info', () => {
