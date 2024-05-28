@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0-0](https://github.com/agrc/serverless-print-proxy/compare/v1.1.16...v2.0.0-0) (2024-05-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* 
+
+### 🚀 Features
+
+* add support for experience builder ([6049e12](https://github.com/agrc/serverless-print-proxy/commit/6049e12505a456340a58a8bd32584072cf83a16d))
+
 ## [1.1.16](https://github.com/agrc/serverless-print-proxy/compare/v1.1.15...v1.1.16) (2024-05-15)
 
 
