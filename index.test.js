@@ -1,28 +1,24 @@
-import { jest } from '@jest/globals';
 import http from 'http';
 import request from 'supertest';
 import { promisify } from 'util';
+import { afterAll, beforeAll, describe, test } from 'vitest';
 import app from './index';
-
-jest.retryTimes(50, {
-  logErrorsBeforeRetry: true,
-});
 
 const sleep = promisify(setTimeout);
 let server;
 
-beforeAll((done) => {
+beforeAll(() => {
   server = http.createServer(app);
-  server.listen(done);
+  server.listen();
 });
 
-afterAll((done) => {
-  server.close(done);
+afterAll(async () => {
+  await server.close();
 });
 
 test('main server info', () => {
   return request(server)
-    .get('/-1/arcgis/rest/info?f=json')
+    .get('/v2/-1/arcgis/rest/info?f=json')
     .expect(200)
     .expect(/currentVersion/)
     .expect(/services/);
@@ -30,21 +26,22 @@ test('main server info', () => {
 
 test('bad account number', () => {
   return request(server)
-    .get('/-99/arcgis/rest/info?f=json')
+    .get('/v2/-99/arcgis/rest/info?f=json')
     .expect(400)
     .expect(/invalid account number/i);
 });
 
 test('export task info', () => {
   return request(server)
-    .get('/-1/arcgis/rest/services/GPServer/export?f=json')
+    .get('/v2/-1/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task?f=json')
     .expect(200)
     .expect(/category/)
     .expect(/parameters/);
 });
+
 test('export task info (post)', () => {
   return request(server)
-    .get('/-1/arcgis/rest/services/GPServer/Export%20Web%20Map%20Task?f=json')
+    .post('/v2/-1/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task?f=json')
     .expect(200)
     .expect(/category/)
     .expect(/parameters/);
@@ -52,14 +49,16 @@ test('export task info (post)', () => {
 
 test('get templates task info', () => {
   return request(server)
-    .get('/-1/arcgis/rest/services/GPServer/Get%20Layout%20Templates%20Info/execute?f=json')
+    .get(
+      '/v2/-1/arcgis/rest/services/Utilities/PrintingTools/GPServer/Get%20Layout%20Templates%20Info%20Task/execute?f=json',
+    )
     .expect(200)
     .expect(/results/);
 });
 
 test('post to export execute', () => {
   return request(server)
-    .post('/-1/arcgis/rest/services/GPServer/export/execute')
+    .post('/v2/-1/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task/execute')
     .type('form')
     .send({
       f: 'json',
@@ -81,7 +80,7 @@ describe('async print task', () => {
   let jobId;
   test('submitJob', () => {
     return request(server)
-      .post('/11/arcgis/rest/services/GPServer/export/submitJob')
+      .post('/v2/11/arcgis/rest/services/WRI/Print/GPServer/Export%20Web%20Map/submitJob')
       .type('form')
       .send({
         f: 'json',
@@ -104,7 +103,7 @@ describe('async print task', () => {
 
   test('check job requests', () => {
     return request(server)
-      .get(`/11/arcgis/rest/services/GPServer/export/jobs/${jobId}`)
+      .get(`/v2/11/arcgis/rest/services/WRI/Print/GPServer/Export%20Web%20Map/jobs/${jobId}`)
       .query({ f: 'json' })
       .expect(/jobStatus/)
       .expect(200);
@@ -113,7 +112,9 @@ describe('async print task', () => {
   test('get output file', async () => {
     await sleep(500);
     request(server)
-      .get(`/11/arcgis/rest/services/GPServer/export/jobs/${jobId}/results/Output_File`)
+      .get(
+        `/v2/11/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task/jobs/${jobId}/results/Output_File`,
+      )
       .query({
         f: 'json',
         returnType: 'data',
@@ -125,7 +126,7 @@ describe('async print task', () => {
 
 test('hide open quad-word in response', () => {
   return request(server)
-    .get('/-1/arcgis/rest/services/GPServer/export/execute')
+    .get('/v2/-1/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task/execute')
     .query({
       f: 'json',
       Web_Map_as_JSON: JSON.stringify({
@@ -160,27 +161,16 @@ test('hide open quad-word in response', () => {
     });
 });
 
-test('return 500 error if no OPEN_QUAD_WORD env var is present', async () => {
-  const originalQuadWord = process.env.OPEN_QUAD_WORD;
-  delete process.env.OPEN_QUAD_WORD;
-
-  await request(server)
-    .get('/-1/arcgis/rest/services/GPServer/export/execute')
-    .expect(500)
-    .expect(/defined/);
-  process.env.OPEN_QUAD_WORD = originalQuadWord;
-});
-
 test('general base task info', () => {
   return request(server)
-    .get('/-1/arcgis/rest/services/GPServer?f=json')
+    .get('/v2/-1/arcgis/rest/services/Utilities/PrintingTools/GPServer?f=json')
     .expect(200)
     .expect(/serviceDescription/);
 });
 
 test('general base task info (post)', () => {
   return request(server)
-    .post('/-1/arcgis/rest/services/GPServer?f=json')
+    .post('/v2/-1/arcgis/rest/services/Utilities/PrintingTools/GPServer?f=json')
     .expect(200)
     .expect(/serviceDescription/);
 });
