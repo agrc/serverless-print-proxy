@@ -46,7 +46,7 @@ If the URL passes validation, then it makes a GET request (`arcgis/rest/info?f=j
 
 ## Testing
 
-Run `npm test` to run jest tests.
+Run `npm test` to run tests.
 
 There's also an [AGOL web app](https://utah.maps.arcgis.com/apps/webappviewer/index.html?id=177c2b166a8d4cb79d888f28f950b33a) that you can test with.
 

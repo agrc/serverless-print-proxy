@@ -12,8 +12,7 @@
     "lint": "eslint *.js",
     "start": "NODE_ENV=development node index.js",
     "start:prod": "NODE_ENV=production node index.js",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
-    "test:ci": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+    "test": "vitest"
   },
   "prettier": {
     "plugins": [
@@ -22,11 +21,6 @@
     ],
     "printWidth": 120,
     "singleQuote": true
-  },
-  "jest": {
-    "testEnvironment": "node",
-    "testTimeout": 80000,
-    "transform": {}
   },
   "dependencies": {
     "body-parser": "^1.20.2",
@@ -43,6 +37,7 @@
     "prettier": "^3.2.5",
     "prettier-plugin-organize-imports": "^3.2.4",
     "prettier-plugin-packagejson": "^2.5.0",
-    "supertest": "^7.0.0"
+    "supertest": "^7.0.0",
+    "vitest": "^1.6.0"
   }
 }
