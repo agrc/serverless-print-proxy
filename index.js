@@ -39,7 +39,7 @@ app.use((request, response, next) => {
     }
 
     console.log({
-      version: 'v2',
+      version: process.env.npm_package_version,
       accountNumber: accountNumber,
       url: request.path,
       method: request.method,
