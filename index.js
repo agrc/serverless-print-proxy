@@ -1,10 +1,12 @@
+import { Firestore } from '@google-cloud/firestore';
 import cors from 'cors';
 import 'dotenv/config';
 import express from 'express';
 import fs from 'fs';
 import { createProxyMiddleware, fixRequestBody } from 'http-proxy-middleware';
 import https from 'https';
-import accounts from './accounts.js';
+
+const firestore = new Firestore();
 
 export const WEB_MAP_AS_JSON = 'Web_Map_as_JSON';
 
@@ -29,11 +31,16 @@ app.use(
 
 app.use(express.json());
 
+async function getAccountSnapshot(accountNumber) {
+  return await firestore.collection('accounts').doc(accountNumber).get();
+}
+
 // verify account number for all paths requests except "/"
-app.use((request, response, next) => {
+app.use(async (request, response, next) => {
   if (request.path !== '/') {
     const accountNumber = request.path.split('/')[2];
-    if (!accounts[accountNumber]) {
+    const snapshot = await getAccountSnapshot(accountNumber);
+    if (!snapshot.exists) {
       response.status(400);
       return response.send(`Invalid account number: ${accountNumber}`);
     }
@@ -45,7 +52,7 @@ app.use((request, response, next) => {
       method: request.method,
     });
 
-    response.locals.account = accounts[accountNumber];
+    response.locals.account = snapshot.data();
   }
 
   return next();
@@ -78,10 +85,11 @@ app.use(
         fixRequestBody(proxyReq, request);
       },
     },
-    router: (request) => {
+    router: async (request) => {
       // response is not passed to this function
       const accountNumber = request.path.split('/')[1];
-      const url = new URL(accounts[accountNumber].arcgisServer);
+      const snapshot = await getAccountSnapshot(accountNumber);
+      const url = new URL(snapshot.data().arcgisServer);
 
       return {
         protocol: url.protocol,

@@ -14,7 +14,7 @@ This project solves this problem by acting as a proxy between web applications a
 
 ## Usage
 
-1. [Open a pull request](https://github.com/agrc/serverless-print-proxy/compare) to add a configuration for a new [account](./accounts.js).
+1. Send an email to [ugrc-developers@utah.gov](mailto:ugrc-developers@utah.gov) with your locked down quad-word to request a new account number.
 
 1. Take the path to your print service...
 
@@ -23,7 +23,7 @@ This project solves this problem by acting as a proxy between web applications a
 https://<b>utility.arcgisonline.com</b>/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task
 </pre>
 
-...and replace the domain name with `print.ugrc.utah.gov/v2/<account-number>` like this...
+...and replace the domain name with `print.ugrc.utah.gov/v2/<your-account-number>` like this...
 
 <pre>
 https://<b>print.ugrc.utah.gov/v2/99</b>/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task
@@ -44,10 +44,11 @@ _The account number must have a corresponding key in [`accounts.js`](./accounts.
 1. Create `.env` file with print proxy wide open quad-word.
 1. `touch .env && echo 'OPEN_QUAD_WORD=<wide-open-quad-word>' >> .env`
 1. `npm install` & `npm start`
+1. `node scripts/seed-firestore-emulator.js`
 
 ## Testing
 
-Run `npm test` to run tests.
+Run `npm test` to run tests after starting the emulator with `npm run start:firestore`.
 
 There's also an [AGOL web app](https://experience.arcgis.com/experience/2ade141aca3244ee99b8e16185a76f32) that you can test the different environments with.
 
