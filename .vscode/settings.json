@@ -7,6 +7,7 @@
     "cloudrun",
     "entrypoint",
     "enviro",
+    "Firestore",
     "gserviceaccount",
     "mkcert",
     "packagejson",

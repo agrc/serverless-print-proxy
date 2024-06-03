@@ -126,7 +126,7 @@ describe('async print task', () => {
   let jobId;
   test('submitJob', () => {
     return request(server)
-      .post('/v2/11/arcgis/rest/services/WRI/Print/GPServer/Export%20Web%20Map/submitJob')
+      .post('/v2/-3/arcgis/rest/services/WRI/Print/GPServer/Export%20Web%20Map/submitJob')
       .type('form')
       .send({
         f: 'json',
@@ -149,7 +149,7 @@ describe('async print task', () => {
 
   test('check job requests', () => {
     return request(server)
-      .get(`/v2/11/arcgis/rest/services/WRI/Print/GPServer/Export%20Web%20Map/jobs/${jobId}`)
+      .get(`/v2/-3/arcgis/rest/services/WRI/Print/GPServer/Export%20Web%20Map/jobs/${jobId}`)
       .query({ f: 'json' })
       .expect(/jobStatus/)
       .expect(200);
@@ -159,7 +159,7 @@ describe('async print task', () => {
     await sleep(500);
     request(server)
       .get(
-        `/v2/11/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task/jobs/${jobId}/results/Output_File`,
+        `/v2/-3/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task/jobs/${jobId}/results/Output_File`,
       )
       .query({
         f: 'json',
