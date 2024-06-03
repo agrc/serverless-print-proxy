@@ -22,7 +22,7 @@ describe('switch out quad word', () => {
   beforeAll(() => {
     return new Promise((resolve) => {
       const verifyApp = express();
-      verifyApp.use(express.urlencoded());
+      verifyApp.use(express.urlencoded({ extended: true }));
       verifyApp.all('*', (request, response) => {
         const webMapJson = request.method === 'POST' ? request.body[WEB_MAP_AS_JSON] : request.query[WEB_MAP_AS_JSON];
         if (webMapJson.includes('verify-quad-word')) {
