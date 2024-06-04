@@ -32,8 +32,6 @@ https://<b>print.ugrc.utah.gov/v2/99</b>/arcgis/rest/services/Utilities/Printing
 
 You can use this new URL in place of the original print service in any Esri products.
 
-_The account number must have a corresponding key in [`accounts.js`](./accounts.js)._
-
 ## Development
 
 ### One-time Setup
