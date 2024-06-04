@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.0-2](https://github.com/agrc/serverless-print-proxy/compare/v2.0.0-1...v2.0.0-2) (2024-06-04)
+
+
+### 🐛 Bug Fixes
+
+* fix dev cloud run service name ([bca9447](https://github.com/agrc/serverless-print-proxy/commit/bca94476f3acd17104cbaacf6feb6277b8c514bc))
+
 ## [2.0.0-1](https://github.com/agrc/serverless-print-proxy/compare/v2.0.0-0...v2.0.0-1) (2024-06-04)
 
 
