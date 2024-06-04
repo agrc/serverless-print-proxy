@@ -14,8 +14,8 @@
     "start:debug": "concurrently \"npm:start:firestore\" \"FIRESTORE_EMULATOR_HOST=127.0.0.1:8081 NODE_ENV=development DEBUG=http-proxy-middleware* nodemon index.js\"",
     "start:firestore": "firebase emulators:start --import .emulator-data --export-on-exit --only firestore",
     "start:prod": "NODE_ENV=production node index.js",
-    "test": "FIRESTORE_EMULATOR_HOST=127.0.0.1:8081 vitest",
-    "test:ci": "concurrently \"npm:start:firestore\" \"FIRESTORE_EMULATOR_HOST=127.0.0.1:8081 vitest\""
+    "test": "vitest",
+    "test:ci": "firebase emulators:exec --only firestore 'node scripts/seed-test-data.js && vitest'"
   },
   "prettier": {
     "plugins": [
