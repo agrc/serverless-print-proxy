@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.0.0-1](https://github.com/agrc/serverless-print-proxy/compare/v2.0.0-0...v2.0.0-1) (2024-06-04)
+
+
+### 🐛 Bug Fixes
+
+* get version number directly from package json ([f7a96ab](https://github.com/agrc/serverless-print-proxy/commit/f7a96abf5211325ba57b4e5b1a96d5af4b20231f))
+* migrate account.js to firestore ([cb55ba4](https://github.com/agrc/serverless-print-proxy/commit/cb55ba493810e8edc7e4bb910b7bc6dfb4a42bdc)), closes [#177](https://github.com/agrc/serverless-print-proxy/issues/177)
+
+
+### 🌲 Dependencies
+
+* bump deps ([ea31035](https://github.com/agrc/serverless-print-proxy/commit/ea31035c54df3572cd6fce05f6faf23c2394b32b))
+
 ## [2.0.0-0](https://github.com/agrc/serverless-print-proxy/compare/v1.1.16...v2.0.0-0) (2024-05-28)
 
 
