@@ -1,8 +1,6 @@
 import { Firestore } from '@google-cloud/firestore';
 
-// update emulator firestore database with staging database and test data
-
-const staging = new Firestore();
+// update emulator firestore database with test data
 
 const emulator = new Firestore({
   host: 'localhost',
@@ -30,12 +28,4 @@ for (const accountNumber in testAccounts) {
   const data = testAccounts[accountNumber];
 
   await emulator.collection('accounts').doc(accountNumber).set(data);
-}
-
-const stagingAccounts = await staging.collection('accounts').get();
-
-for (const doc of stagingAccounts.docs) {
-  const data = doc.data();
-  console.log(`Seeding staging account ${doc.id}`);
-  await emulator.collection('accounts').doc(doc.id).set(data);
 }
