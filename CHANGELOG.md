@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.0-3](https://github.com/agrc/serverless-print-proxy/compare/v2.0.0-2...v2.0.0-3) (2024-06-07)
+
+
+### 📖 Documentation Improvements
+
+* add v2 migration document ([88b3a0d](https://github.com/agrc/serverless-print-proxy/commit/88b3a0db1d424dbb723c5f1f6aedf1a7d12ad114)), closes [#178](https://github.com/agrc/serverless-print-proxy/issues/178)
+* clean up old reference to accounts.js ([a0bff30](https://github.com/agrc/serverless-print-proxy/commit/a0bff3031875bd099450264f0e8c0849e135e3c9))
+
 ## [2.0.0-2](https://github.com/agrc/serverless-print-proxy/compare/v2.0.0-1...v2.0.0-2) (2024-06-04)
 
 
