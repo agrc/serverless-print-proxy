@@ -2,6 +2,9 @@
 
 A web service for proxying requests to the Esri print service switching out locked down quad-words for wide open ones.
 
+[!IMPORTANT]
+Looking for information on how to upgrade to v2? Head to [this doc](docs/v2-migration.md).
+
 ## The Problem
 
 [UGRC’s base maps (including the Google imagery)](https://gis.utah.gov/discover/) are served via a custom server application called Discover. Part of the advantage of using Discover is that it allows you to secure and track usage via quad-words. These unique words are assigned to a specific user and are locked down to a specific domain or IP address. For example, if my quad-word is locked down to `my-domain.com`, then requests originating from any other domain or IP address are blocked by Discover. This prevents unauthorized access of licensed content, as well as allows UGRC to track analytics.
