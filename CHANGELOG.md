@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.0-4](https://github.com/agrc/serverless-print-proxy/compare/v2.0.0-3...v2.0.0-4) (2024-06-10)
+
+
+### 🐛 Bug Fixes
+
+* close off all public access to firestore ([fce71f4](https://github.com/agrc/serverless-print-proxy/commit/fce71f428de41e89bb2679a637deb9da8cd00a0e))
+
 ## [2.0.0-3](https://github.com/agrc/serverless-print-proxy/compare/v2.0.0-2...v2.0.0-3) (2024-06-07)
 
 
