@@ -1,5 +1,36 @@
 # Changelog
 
+## [2.0.0](https://github.com/agrc/serverless-print-proxy/compare/v1.1.16...v2.0.0) (2024-06-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* 
+
+### 🚀 Features
+
+* add support for experience builder ([22aff04](https://github.com/agrc/serverless-print-proxy/commit/22aff04d7e273ba6934fd8269aea358839156b07))
+
+
+### 🐛 Bug Fixes
+
+* close off all public access to firestore ([99c96aa](https://github.com/agrc/serverless-print-proxy/commit/99c96aa7ec3acae61dea0fa8202d7a6c33d742bb))
+* fix dev cloud run service name ([10b3a8e](https://github.com/agrc/serverless-print-proxy/commit/10b3a8e8cac28139583d9bd2f4d5293705a6eed9))
+* get version number directly from package json ([830ad2d](https://github.com/agrc/serverless-print-proxy/commit/830ad2d5087a59118860989082cd01f1ccf82564))
+* migrate account.js to firestore ([27a2dba](https://github.com/agrc/serverless-print-proxy/commit/27a2dbab8c509f4fbd4e020dd0341c95581ee16e)), closes [#177](https://github.com/agrc/serverless-print-proxy/issues/177)
+
+
+### 🌲 Dependencies
+
+* bump deps ([0f4a94b](https://github.com/agrc/serverless-print-proxy/commit/0f4a94bf1a4b260b5a647c8a702b53fbf716a109))
+* **dev:** bump the safe-dependencies group across 1 directory with 2 updates ([f101f92](https://github.com/agrc/serverless-print-proxy/commit/f101f921f6505af193c6abba9e9e6d07e31a8188))
+
+
+### 📖 Documentation Improvements
+
+* add v2 migration document ([3acf8a4](https://github.com/agrc/serverless-print-proxy/commit/3acf8a45ac01177337119f6619a580ffc0858046)), closes [#178](https://github.com/agrc/serverless-print-proxy/issues/178)
+* clean up old reference to accounts.js ([a15f5ba](https://github.com/agrc/serverless-print-proxy/commit/a15f5ba02a8cac56119247eac522720bbcc391ef))
+
 ## [2.0.0-4](https://github.com/agrc/serverless-print-proxy/compare/v2.0.0-3...v2.0.0-4) (2024-06-10)
 
 
