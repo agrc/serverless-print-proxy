@@ -2,8 +2,8 @@
 
 A web service for proxying requests to the Esri print service switching out locked down quad-words for wide open ones.
 
-[!IMPORTANT]
-Looking for information on how to upgrade to v2? Head to [this doc](docs/v2-migration.md).
+> [!IMPORTANT]
+> Looking for information on how to upgrade to v2? Head to [this doc](docs/v2-migration.md).
 
 ## The Problem
 
