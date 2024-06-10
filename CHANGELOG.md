@@ -5,7 +5,7 @@
 
 ### ⚠ BREAKING CHANGES
 
-* 
+* This new version requires a DNS and path change. Read [the v2 migration doc](https://github.com/agrc/serverless-print-proxy/blob/main/docs/v2-migration.md) for the details.
 
 ### 🚀 Features
 
