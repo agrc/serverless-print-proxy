@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.0.1-1](https://github.com/agrc/serverless-print-proxy/compare/v2.0.0...v2.0.1-1) (2024-06-11)
+
+
+### 🐛 Bug Fixes
+
+* handle requests with no account number ([6c95f37](https://github.com/agrc/serverless-print-proxy/commit/6c95f37206c1ab6d57d1d2a72a80cb15d62a6347))
+* use best secure practices for response headers ([e645bb2](https://github.com/agrc/serverless-print-proxy/commit/e645bb22b0711b3d0916065f72c31b0bfbb22313))
+
+
+### 🌲 Dependencies
+
+* bump @grpc/grpc-js from 1.10.8 to 1.10.9 ([14ce6e6](https://github.com/agrc/serverless-print-proxy/commit/14ce6e64b66872e133d183baeac1843f63d6774d))
+* bump braces from 3.0.2 to 3.0.3 ([1f452aa](https://github.com/agrc/serverless-print-proxy/commit/1f452aa58eb711df1f37b8a12de99381de5c1c91))
+
 ## [2.0.1-0](https://github.com/agrc/serverless-print-proxy/compare/v2.0.0...v2.0.1-0) (2024-06-11)
 
 
