@@ -3,6 +3,7 @@ import cors from 'cors';
 import 'dotenv/config';
 import express from 'express';
 import fs from 'fs';
+import helmet from 'helmet';
 import { createProxyMiddleware, fixRequestBody } from 'http-proxy-middleware';
 import https from 'https';
 
@@ -16,6 +17,7 @@ if (!process.env.OPEN_QUAD_WORD) {
 
 let app = express();
 
+app.use(helmet());
 app.use(cors());
 
 // required for parsing submitted form data
