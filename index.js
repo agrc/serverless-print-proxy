@@ -39,6 +39,12 @@ async function getAccountSnapshot(accountNumber) {
 app.use(async (request, response, next) => {
   if (request.path !== '/') {
     const accountNumber = request.path.split('/')[2];
+
+    if (!accountNumber) {
+      response.status(400);
+      return response.send('Account number is required');
+    }
+
     const snapshot = await getAccountSnapshot(accountNumber);
     if (!snapshot.exists) {
       response.status(400);
