@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.1-0](https://github.com/agrc/serverless-print-proxy/compare/v2.0.0...v2.0.1-0) (2024-06-11)
+
+
+### 🐛 Bug Fixes
+
+* handle requests with no account number ([cfa389d](https://github.com/agrc/serverless-print-proxy/commit/cfa389d6b227b2a8338c104e6604d62957abf614))
+* use best secure practices for response headers ([f102acc](https://github.com/agrc/serverless-print-proxy/commit/f102acc4b57ae977a054c9c1078360581d5b4b4c))
+
 ## [2.0.0](https://github.com/agrc/serverless-print-proxy/compare/v1.1.16...v2.0.0) (2024-06-10)
 
 
