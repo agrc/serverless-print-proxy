@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.2](https://github.com/agrc/serverless-print-proxy/compare/v2.0.1...v2.0.2) (2024-06-21)
+
+
+### 🌲 Dependencies
+
+* **dev:** bump ws from 7.5.9 to 7.5.10 ([f43f1df](https://github.com/agrc/serverless-print-proxy/commit/f43f1df85c508281456d2ac5470e6b4c6d614f90))
+
 ## [2.0.1](https://github.com/agrc/serverless-print-proxy/compare/v2.0.0...v2.0.1) (2024-06-12)
 
 
