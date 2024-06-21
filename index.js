@@ -16,6 +16,17 @@ if (!process.env.OPEN_QUAD_WORD) {
 
 let app = express();
 
+// Add JSONP support
+app.set('jsonp callback name', 'callback');
+
+// Middleware to handle JSONP requests
+app.use((req, res, next) => {
+  if (req.query.callback) {
+    res.setHeader('Content-Type', 'application/javascript');
+  }
+  next();
+});
+
 app.use(cors());
 
 // required for parsing submitted form data
