@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.2-0](https://github.com/agrc/serverless-print-proxy/compare/v2.0.0...v2.0.2-0) (2024-06-21)
+
+
+### 🐛 Bug Fixes
+
+* add jsonp support ([d54e3dc](https://github.com/agrc/serverless-print-proxy/commit/d54e3dc88d280f41bef0c01227a4adee775f0693))
+
 ## [2.0.0](https://github.com/agrc/serverless-print-proxy/compare/v1.1.16...v2.0.0) (2024-06-10)
 
 
