@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.2-1](https://github.com/agrc/serverless-print-proxy/compare/v2.0.2-0...v2.0.2-1) (2024-06-24)
+
+
+### 📖 Documentation Improvements
+
+* add note about appending the token ([445cf08](https://github.com/agrc/serverless-print-proxy/commit/445cf08319a74f22e24bf58d3d957ac7560ad756))
+
 ## [2.0.2-0](https://github.com/agrc/serverless-print-proxy/compare/v2.0.0...v2.0.2-0) (2024-06-21)
 
 
