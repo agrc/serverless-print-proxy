@@ -35,6 +35,9 @@ https://<b>print.ugrc.utah.gov/v2/99</b>/arcgis/rest/services/Utilities/Printing
 
 You can use this new URL in place of the original print service in any Esri products.
 
+> [!TIP]
+> There may be instances were you manually need to append `?token=<your-token>` to the end of the URL. For example, when adding the print service to a portal instance as the default print service. Because `print.ugrc.utah.gov` is a different DNS than your portal, the application will not automatically add the token.
+
 ## Development
 
 ### One-time Setup
