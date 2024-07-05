@@ -70,6 +70,15 @@ test('main server info', () => {
     .expect(/services/);
 });
 
+test('jsonp', () => {
+  return request(server)
+    .get('/v2/-1/arcgis/rest/info')
+    .query({ callback: 'callbackFn', f: 'json' })
+    .expect('Content-Type', /javascript/)
+    .expect(200)
+    .expect(/callbackFn\({"currentVersion":/);
+});
+
 test('bad account number', () => {
   return request(server)
     .get('/v2/-99/arcgis/rest/info?f=json')
