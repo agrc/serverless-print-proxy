@@ -17,7 +17,11 @@ if (!process.env.OPEN_QUAD_WORD) {
 
 let app = express();
 
-app.use(helmet());
+app.use(
+  helmet({
+    crossOriginResourcePolicy: { policy: 'cross-origin' },
+  }),
+);
 app.use(cors());
 
 // required for parsing submitted form data
