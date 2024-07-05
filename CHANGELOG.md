@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.0.2-1](https://github.com/agrc/serverless-print-proxy/compare/v2.0.1...v2.0.2-1) (2024-07-05)
+
+
+### Bug Fixes
+
+* relax default helmet policy to allow cross origin ([3d81d6a](https://github.com/agrc/serverless-print-proxy/commit/3d81d6aabfbc46c8653957099d10efd30adbf9aa))
+
+
+### Dependencies
+
+* **dev:** bump ws from 7.5.9 to 7.5.10 ([f43f1df](https://github.com/agrc/serverless-print-proxy/commit/f43f1df85c508281456d2ac5470e6b4c6d614f90))
+* Q1 dependency bumps 🌲 ([44ca4fe](https://github.com/agrc/serverless-print-proxy/commit/44ca4fe41c6b0276bda09ba4432d8ea31418c602))
+
 ## [2.0.2-0](https://github.com/agrc/serverless-print-proxy/compare/v2.0.0...v2.0.2-0) (2024-06-21)
 
 
