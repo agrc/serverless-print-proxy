@@ -34,15 +34,15 @@
     "http-proxy-middleware": "^3.0.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.6.0",
+    "@eslint/js": "^9.8.0",
     "concurrently": "^8.2.2",
-    "eslint": "^9.6.0",
+    "eslint": "^9.8.0",
     "eslint-config-prettier": "^9.1.0",
-    "firebase-tools": "^13.13.0",
+    "firebase-tools": "^13.14.2",
     "nodemon": "^3.1.4",
-    "prettier": "^3.3.2",
+    "prettier": "^3.3.3",
     "prettier-plugin-organize-imports": "^4.0.0",
-    "prettier-plugin-packagejson": "^2.5.0",
+    "prettier-plugin-packagejson": "^2.5.1",
     "supertest": "^7.0.0",
     "vitest": "^1.6.0"
   }
