@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.0.3](https://github.com/agrc/serverless-print-proxy/compare/v2.0.2...v2.0.3) (2024-09-09)
+
+
+### Dependencies
+
+* bump micromatch from 4.0.5 to 4.0.8 ([2ce5079](https://github.com/agrc/serverless-print-proxy/commit/2ce5079f69ed0f65374dc79129cbbd87e7202722))
+
+
+### Documentation
+
+* add note about default print service in portal ([74c3bf3](https://github.com/agrc/serverless-print-proxy/commit/74c3bf313a98bc9655203716950c9ba8eb233566))
+
 ## [2.0.2](https://github.com/agrc/serverless-print-proxy/compare/v2.0.1...v2.0.2) (2024-07-08)
 
 
