@@ -35,6 +35,9 @@ https://<b>print.ugrc.utah.gov/v2/99</b>/arcgis/rest/services/Utilities/Printing
 
 You can use this new URL in place of the original print service in any Esri products.
 
+> [!NOTE]
+> This project will not work as the default print service in an ArcGIS Portal instance. See [#205](https://github.com/agrc/serverless-print-proxy/issues/205) for more details.
+
 ## Development
 
 ### One-time Setup
