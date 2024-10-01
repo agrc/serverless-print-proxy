@@ -30,12 +30,12 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "helmet": "^7.1.0",
+    "helmet": "^8.0.0",
     "http-proxy-middleware": "^3.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.6.0",
-    "concurrently": "^8.2.2",
+    "concurrently": "^9.0.1",
     "eslint": "^9.6.0",
     "eslint-config-prettier": "^9.1.0",
     "firebase-tools": "^13.13.0",
@@ -44,6 +44,6 @@
     "prettier-plugin-organize-imports": "^4.0.0",
     "prettier-plugin-packagejson": "^2.5.0",
     "supertest": "^7.0.0",
-    "vitest": "^1.6.0"
+    "vitest": "^2.1.1"
   }
 }
