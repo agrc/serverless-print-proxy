@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.4](https://github.com/agrc/serverless-print-proxy/compare/v2.0.3...v2.0.4) (2024-10-03)
+
+
+### Dependencies
+
+* FY25Q2 dependency updates 🌲 ([77adfdc](https://github.com/agrc/serverless-print-proxy/commit/77adfdc3a035a9ef02556b262e68bf1c5fc6fcb4))
+
 ## [2.0.4-0](https://github.com/agrc/serverless-print-proxy/compare/v2.0.3...v2.0.4-0) (2024-10-03)
 
 
