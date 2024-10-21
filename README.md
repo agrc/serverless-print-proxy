@@ -47,6 +47,7 @@ You can use this new URL in place of the original print service in any Esri prod
 1. `mkcert localhost`
 1. Create `.env` file with print proxy wide open quad-word.
 1. `touch .env && echo 'OPEN_QUAD_WORD=<wide-open-quad-word>' >> .env`
+1. `gcloud auth login`
 1. `npm install` & `npm start`
 1. `node scripts/seed-test-data.js`
 1. `node scripts/pull-accounts-from-staging.js`
