@@ -41,20 +41,23 @@ async function getAccountSnapshot(accountNumber) {
   return await firestore.collection('accounts').doc(accountNumber).get();
 }
 
-// verify account number for all paths requests except "/"
+const accountNumberRegex = /\/v\d+\/(-?\d+)\//
 app.use(async (request, response, next) => {
+  // verify account number for all paths requests except "/"
   if (request.path !== '/') {
-    const accountNumber = request.path.split('/')[2];
+    // path example: "/v2/-1/arcgis/rest/info?f=json"
+    const match = request.path.match(accountNumberRegex);
 
-    if (!accountNumber) {
+    if (match === null) {
       response.status(400);
-      return response.send('Account number is required');
+      return response.send('Invalid account number');
     }
 
+    const accountNumber = match[1];
     const snapshot = await getAccountSnapshot(accountNumber);
     if (!snapshot.exists) {
       response.status(400);
-      return response.send(`Invalid account number: ${accountNumber}`);
+      return response.send(`No account for: ${accountNumber}`);
     }
 
     console.log({
