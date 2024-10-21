@@ -79,9 +79,16 @@ test('jsonp', () => {
     .expect(/callbackFn\({"currentVersion":/);
 });
 
-test('bad account number', () => {
+test('missing account number', () => {
   return request(server)
     .get('/v2/-99/arcgis/rest/info?f=json')
+    .expect(400)
+    .expect(/no account for/i);
+});
+
+test('invalid account number', () => {
+  return request(server)
+    .get('/v2/__api__')
     .expect(400)
     .expect(/invalid account number/i);
 });
