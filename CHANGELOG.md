@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.0.5](https://github.com/agrc/serverless-print-proxy/compare/v2.0.4...v2.0.5) (2024-10-22)
+
+
+### Bug Fixes
+
+* more robust account number validation ([1cc069d](https://github.com/agrc/serverless-print-proxy/commit/1cc069d4aa2bba44c3842c48d8b75940bd5d3c59))
+
+
+### Dependencies
+
+* dependency updates 🌲 ([23ad028](https://github.com/agrc/serverless-print-proxy/commit/23ad0289a77a16c9968457afa82ba28f7b323700))
+
+
+### Documentation
+
+* add auth step for dev setup ([70786cc](https://github.com/agrc/serverless-print-proxy/commit/70786cc775e30efcf50fbd86e6cb854553e3bc8b))
+
 ## [2.0.5-1](https://github.com/agrc/serverless-print-proxy/compare/v2.0.5-0...v2.0.5-1) (2024-10-21)
 
 
