@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.6](https://github.com/agrc/serverless-print-proxy/compare/v2.0.5...v2.0.6) (2025-01-10)
+
+
+### Dependencies
+
+* bump the npm_and_yarn group with 3 updates ([f796567](https://github.com/agrc/serverless-print-proxy/commit/f7965674e32147e53148861b6645336e5e536d3a))
+* bump the safe-dependencies group across 1 directory with 10 updates ([fb0d4ac](https://github.com/agrc/serverless-print-proxy/commit/fb0d4ace2fec4eb293ea7e23a7b3f302d660ed07))
+
 ## [2.0.5](https://github.com/agrc/serverless-print-proxy/compare/v2.0.4...v2.0.5) (2024-10-22)
 
 
