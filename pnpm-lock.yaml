@@ -36,9 +36,6 @@ importers:
       eslint:
         specifier: ^9.17.0
         version: 9.27.0
-      eslint-config-prettier:
-        specifier: ^9.1.0
-        version: 9.1.0(eslint@9.27.0)
       firebase-tools:
         specifier: ^13.29.1
         version: 13.35.1(encoding@0.1.13)
@@ -1380,12 +1377,6 @@ packages:
 
   eslint-config-prettier@10.1.5:
     resolution: {integrity: sha512-zc1UmCpNltmVY34vuLRV61r1K27sWuX39E+uyUnY8xS2Bex88VV9cugG+UZbRSRGtGyFboj+D8JODyme1plMpw==}
-    hasBin: true
-    peerDependencies:
-      eslint: '>=7.0.0'
-
-  eslint-config-prettier@9.1.0:
-    resolution: {integrity: sha512-NSWl5BFQWEPi1j4TjVNItzYV7dZXZ+wP6I6ZhrBGpChQhZRUaElihE9uRRkcbRnNb76UMKDF3r+WTmNcGPKsqw==}
     hasBin: true
     peerDependencies:
       eslint: '>=7.0.0'
@@ -5135,10 +5126,6 @@ snapshots:
       source-map: 0.6.1
 
   eslint-config-prettier@10.1.5(eslint@9.27.0):
-    dependencies:
-      eslint: 9.27.0
-
-  eslint-config-prettier@9.1.0(eslint@9.27.0):
     dependencies:
       eslint: 9.27.0
 
