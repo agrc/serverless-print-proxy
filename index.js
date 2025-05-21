@@ -83,7 +83,7 @@ app.use(
     on: {
       proxyReq: (proxyReq, request, response) => {
         // POST is used for requests with too much data to fit in query parameters
-        if (request.method === 'POST' && request.body[WEB_MAP_AS_JSON]) {
+        if (request.method === 'POST' && request.body?.[WEB_MAP_AS_JSON]) {
           request.body[WEB_MAP_AS_JSON] = request.body[WEB_MAP_AS_JSON].replace(
             new RegExp(response.locals.account.quadWord, 'g'),
             process.env.OPEN_QUAD_WORD,
