@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.0.7](https://github.com/agrc/serverless-print-proxy/compare/v2.0.6...v2.0.7) (2025-05-21)
+
+
+### Bug Fixes
+
+* gracefully ignore post requests without a body ([b4cc134](https://github.com/agrc/serverless-print-proxy/commit/b4cc134cd22c14697fc1757c6dd80cb5336992f4))
+
+
+### Dependencies
+
+* bump npm dependencies 🌲 ([c0ec4fd](https://github.com/agrc/serverless-print-proxy/commit/c0ec4fd647da18c3028ca7574a8ccad78dfa30f1))
+
 ## [2.0.6](https://github.com/agrc/serverless-print-proxy/compare/v2.0.5...v2.0.6) (2025-01-10)
 
 
