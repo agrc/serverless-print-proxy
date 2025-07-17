@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.8](https://github.com/agrc/serverless-print-proxy/compare/v2.0.7...v2.0.8) (2025-07-17)
+
+
+### Dependencies
+
+* bump brace-expansion in the npm_and_yarn group ([4b03e4e](https://github.com/agrc/serverless-print-proxy/commit/4b03e4eaa9f95ae30baf82a186f9631a632d2a1a))
+
 ## [2.0.7](https://github.com/agrc/serverless-print-proxy/compare/v2.0.6...v2.0.7) (2025-05-21)
 
 
