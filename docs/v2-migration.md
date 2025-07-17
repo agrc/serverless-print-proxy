@@ -1,6 +1,6 @@
 # Migrating to v2
 
-Version two of this project has many improvements including support for Experience Builder. However, there are some breaking changes that will require you to update your apps. To ensure that you have plenty of time to upgrade, we have created a new domain and route for v2 (`print.ugrc.utah.gov/v2`) and will continue to support the old domain (`print.agrc.utah.gov`) for the next few months.
+Version two of this project has many improvements including support for Experience Builder. However, there are some breaking changes that will require you to update your apps. To ensure that you have plenty of time to upgrade, we have created a new domain and route for v2 (`print.ugrc.utah.gov/v2`) and will continue to support the old domain (`print.agrc.utah.gov`) until Sept 1st, 2025.
 
 ## To upgrade your app
 
