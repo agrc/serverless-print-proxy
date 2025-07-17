@@ -124,10 +124,11 @@ const getHandler = function (taskName) {
       );
     }
 
-    console.log({
+    console.warn({
       accountNumber: functionRequest.params.accountNumber,
       url: url,
       method: options.method,
+      printProxyVersion: 'v1',
     });
 
     makeRequest(options, functionResponse);
