@@ -25,11 +25,11 @@ Account Number: 1
 
 <!-- markdownlint-disable MD029 -->
 
-2. Replace your domain name with `print.ugrc.utah.gov/v2/<your-account-number>` like this:
+2. Replace your domain name with `print.ugrc.utah.gov/v2/<your-account-number>` and add the export task name to the end:
 
 <!-- markdownlint-disable MD033 -->
 <pre>
-https://<b>print.ugrc.utah.gov/v2/1</b>/arcgis/rest/services/Utilities/PrintingTools/GPServer
+https://<b>print.ugrc.utah.gov/v2/1</b>/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task
 </pre>
 <!-- markdownlint-enable MD033 -->
 
