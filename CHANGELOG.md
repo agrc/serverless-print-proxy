@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.9](https://github.com/agrc/serverless-print-proxy/compare/v2.0.8...v2.0.9) (2025-10-07)
+
+
+### Documentation
+
+* add DNS requirement to new account request ([cee242c](https://github.com/agrc/serverless-print-proxy/commit/cee242c53cb8acc00819d13f94856a4eb4c0d5e2))
+
 ## [2.0.8](https://github.com/agrc/serverless-print-proxy/compare/v2.0.7...v2.0.8) (2025-07-17)
 
 
