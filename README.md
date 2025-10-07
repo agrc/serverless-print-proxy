@@ -17,7 +17,7 @@ This project solves this problem by acting as a proxy between web applications a
 
 ## Usage
 
-1. Send an email to [ugrc-developers@utah.gov](mailto:ugrc-developers@utah.gov) with your locked down quad-word to request a new account number.
+1. Send an email to [ugrc-developers@utah.gov](mailto:ugrc-developers@utah.gov) with your locked down quad-word and the DNS of the server that hosts your print service to request a new account number.
 
 1. Take the path to your print service...
 
