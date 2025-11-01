@@ -26,7 +26,7 @@
     "singleQuote": true
   },
   "dependencies": {
-    "@google-cloud/firestore": "^7.11.1",
+    "@google-cloud/firestore": "^7.11.6",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
@@ -34,15 +34,15 @@
     "http-proxy-middleware": "^3.0.5"
   },
   "devDependencies": {
-    "@ugrc/eslint-config": "^1.2.2",
-    "concurrently": "^9.1.2",
-    "eslint": "^9.27.0",
+    "@ugrc/eslint-config": "^1.2.3",
+    "concurrently": "^9.2.1",
+    "eslint": "^9.38.0",
     "firebase-tools": "^13.29.1",
     "nodemon": "^3.1.10",
-    "prettier": "^3.5.3",
-    "prettier-plugin-organize-imports": "^4.1.0",
-    "prettier-plugin-packagejson": "^2.5.14",
-    "supertest": "^7.1.1",
-    "vitest": "^3.1.4"
+    "prettier": "^3.6.2",
+    "prettier-plugin-organize-imports": "^4.3.0",
+    "prettier-plugin-packagejson": "^2.5.19",
+    "supertest": "^7.1.4",
+    "vitest": "^3.2.4"
   }
 }
