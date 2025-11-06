@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.0.9-rc.1](https://github.com/agrc/serverless-print-proxy/compare/v2.0.8...v2.0.9-rc.1) (2025-11-06)
+
+
+### Dependencies
+
+* bump npm dependencies 🌲 ([4c3e4f0](https://github.com/agrc/serverless-print-proxy/commit/4c3e4f059c1831a8ffc3531c2cfc5e74db471b24))
+* node 20 -&gt; 24 ([9284232](https://github.com/agrc/serverless-print-proxy/commit/9284232974eb3c7b86597953c0a7a4110c8639f1))
+
+
+### Documentation
+
+* add DNS requirement to new account request ([cee242c](https://github.com/agrc/serverless-print-proxy/commit/cee242c53cb8acc00819d13f94856a4eb4c0d5e2))
+
 ## [2.0.8](https://github.com/agrc/serverless-print-proxy/compare/v2.0.7...v2.0.8) (2025-07-17)
 
 
