@@ -2,10 +2,11 @@ FROM node:24-slim
 
 WORKDIR /usr/src/app
 
-COPY package*.json ./
+RUN corepack enable && corepack prepare pnpm@latest --activate
 
-RUN npm install --only=production
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+RUN pnpm install --frozen-lockfile --prod
 
 COPY . ./
 
-CMD [ "npm", "run", "start:prod" ]
+CMD [ "pnpm", "run", "start:prod" ]
