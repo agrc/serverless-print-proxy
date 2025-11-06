@@ -18,7 +18,7 @@
     "start:firestore": "firebase emulators:start --import .emulator-data --export-on-exit --only firestore",
     "start:prod": "NODE_ENV=production node dist/index.js",
     "test": "vitest",
-    "test:ci": "firebase emulators:exec --only firestore 'node dist/scripts/seed-test-data.js && vitest'"
+    "test:ci": "firebase emulators:exec --only firestore 'node scripts/seed-test-data.ts && vitest'"
   },
   "dependencies": {
     "@google-cloud/firestore": "^7.11.1",

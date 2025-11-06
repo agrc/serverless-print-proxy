@@ -1,6 +1,6 @@
 import { Firestore } from '@google-cloud/firestore';
 
-// update emulator firestore database with test data
+// Update emulator Firestore database with test data
 
 const emulator = new Firestore({
   host: 'localhost',
@@ -8,7 +8,12 @@ const emulator = new Firestore({
   ssl: false,
 });
 
-const testAccounts = {
+type TestAccount = {
+  arcgisServer: string;
+  quadWord: string;
+};
+
+const testAccounts: Record<string, TestAccount> = {
   '-3': {
     arcgisServer: 'https://wrimaps.utah.gov',
     quadWord: 'async-job-quad-word',
@@ -23,9 +28,7 @@ const testAccounts = {
   },
 };
 
-for (const accountNumber in testAccounts) {
+for (const [accountNumber, data] of Object.entries(testAccounts)) {
   console.log(`Seeding test account ${accountNumber}`);
-  const data = testAccounts[accountNumber];
-
   await emulator.collection('accounts').doc(accountNumber).set(data);
 }
