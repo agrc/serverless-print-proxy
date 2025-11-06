@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.9-rc.2](https://github.com/agrc/serverless-print-proxy/compare/v2.0.9-rc.1...v2.0.9-rc.2) (2025-11-06)
+
+
+### Bug Fixes
+
+* run build before attempting to start in prod ([42e30da](https://github.com/agrc/serverless-print-proxy/commit/42e30dac7eb40c33dd9604dced4b8b9575c1ad94))
+
 ## [2.0.9-rc.1](https://github.com/agrc/serverless-print-proxy/compare/v2.0.8...v2.0.9-rc.1) (2025-11-06)
 
 
