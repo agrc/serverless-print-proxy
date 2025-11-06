@@ -42,6 +42,6 @@ updates:
     groups:
       docker-dependencies:
         patterns:
-          - "*"
+          - '*'
     commit-message:
       prefix: deps(docker)
