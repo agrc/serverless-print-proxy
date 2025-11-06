@@ -36,7 +36,7 @@ updates:
         - agrc/*
 
   - package-ecosystem: docker
-    directory: /jobs
+    directory: /
     schedule:
       interval: quarterly
     groups:

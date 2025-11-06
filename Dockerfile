@@ -10,4 +10,7 @@ RUN pnpm install
 COPY . ./
 RUN pnpm build
 
+# Remove dev dependencies for a smaller image and less attack surface
+RUN pnpm prune --prod
+
 CMD [ "pnpm", "run", "start:prod" ]
