@@ -1,21 +1,24 @@
 {
   "name": "serverless-print-proxy",
   "version": "2.0.8",
-  "description": "A Google Cloud Function for switching out quad words in print requests to ArcGIS Server",
+  "description": "A web service for switching out quad words in print requests to ArcGIS Server.",
   "repository": "https://github.com/agrc/serverless-print-proxy",
   "license": "MIT",
   "author": "Scott Davis <stdavis@utah.gov>",
   "type": "module",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "check": "tsc --noEmit",
     "format": "prettier . --write",
-    "lint": "eslint *.js",
-    "start": "concurrently \"pnpm run start:firestore\" \"FIRESTORE_EMULATOR_HOST=127.0.0.1:8081 NODE_ENV=development nodemon index.js\"",
-    "start:debug": "concurrently \"pnpm run start:firestore\" \"FIRESTORE_EMULATOR_HOST=127.0.0.1:8081 NODE_ENV=development DEBUG=http-proxy-middleware* nodemon index.js\"",
+    "lint": "eslint *.ts",
+    "start": "concurrently \"pnpm run build:watch\" \"pnpm run start:firestore\" \"FIRESTORE_EMULATOR_HOST=127.0.0.1:8081 NODE_ENV=development nodemon dist/index.js\"",
+    "start:debug": "concurrently \"pnpm run build:watch\" \"pnpm run start:firestore\" \"FIRESTORE_EMULATOR_HOST=127.0.0.1:8081 NODE_ENV=development DEBUG=http-proxy-middleware* nodemon dist/index.js\"",
     "start:firestore": "firebase emulators:start --import .emulator-data --export-on-exit --only firestore",
-    "start:prod": "NODE_ENV=production node index.js",
+    "start:prod": "NODE_ENV=production node dist/index.js",
     "test": "vitest",
-    "test:ci": "firebase emulators:exec --only firestore 'node scripts/seed-test-data.js && vitest'"
+    "test:ci": "firebase emulators:exec --only firestore 'node dist/scripts/seed-test-data.js && vitest'"
   },
   "dependencies": {
     "@google-cloud/firestore": "^7.11.1",
@@ -26,6 +29,10 @@
     "http-proxy-middleware": "^3.0.5"
   },
   "devDependencies": {
+    "@total-typescript/tsconfig": "^1.0.4",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.5",
+    "@types/node": "^24.10.0",
     "@ugrc/eslint-config": "^1.2.3",
     "concurrently": "^9.2.1",
     "eslint": "^9.27.0",
@@ -35,6 +42,7 @@
     "prettier-plugin-organize-imports": "^4.3.0",
     "prettier-plugin-packagejson": "^2.5.19",
     "supertest": "^7.1.4",
+    "typescript": "^5.9.3",
     "vitest": "^3.1.4"
   }
 }

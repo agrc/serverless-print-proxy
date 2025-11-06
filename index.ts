@@ -1,6 +1,7 @@
 import { Firestore } from '@google-cloud/firestore';
 import cors from 'cors';
 import 'dotenv/config';
+import type { Express, NextFunction, Request, Response } from 'express';
 import express from 'express';
 import fs from 'fs';
 import helmet from 'helmet';
@@ -11,11 +12,13 @@ const firestore = new Firestore();
 
 export const WEB_MAP_AS_JSON = 'Web_Map_as_JSON';
 
+type Account = { account?: { arcgisServer: string; quadWord: string } };
+
 if (!process.env.OPEN_QUAD_WORD) {
   throw 'OPEN_QUAD_WORD environment variable is not defined!';
 }
 
-let app = express();
+let app: Express | https.Server = express();
 
 app.use(
   helmet({
@@ -37,12 +40,12 @@ app.use(
 
 app.use(express.json());
 
-async function getAccountSnapshot(accountNumber) {
+async function getAccountSnapshot(accountNumber: string) {
   return await firestore.collection('accounts').doc(accountNumber).get();
 }
 
-const accountNumberRegex = /\/v\d+\/(-?\d+)\//
-app.use(async (request, response, next) => {
+const accountNumberRegex = /\/v\d+\/(-?\d+)\//;
+app.use(async (request: Request, response: Response, next: NextFunction) => {
   // verify account number for all paths requests except "/"
   if (request.path !== '/') {
     // path example: "/v2/-1/arcgis/rest/info?f=json"
@@ -54,6 +57,10 @@ app.use(async (request, response, next) => {
     }
 
     const accountNumber = match[1];
+    if (!accountNumber) {
+      response.status(400);
+      return response.send('Account number is missing');
+    }
     const snapshot = await getAccountSnapshot(accountNumber);
     if (!snapshot.exists) {
       response.status(400);
@@ -67,7 +74,16 @@ app.use(async (request, response, next) => {
       method: request.method,
     });
 
-    response.locals.account = snapshot.data();
+    const data = snapshot.data();
+    if (data && typeof data.arcgisServer === 'string' && typeof data.quadWord === 'string') {
+      (response.locals as Account).account = data as {
+        arcgisServer: string;
+        quadWord: string;
+      };
+    } else {
+      response.status(500);
+      return response.send('Account data is invalid');
+    }
   }
 
   return next();
@@ -81,17 +97,23 @@ app.use(
       '^/.*?/': '/', // remove the account prefix
     },
     on: {
-      proxyReq: (proxyReq, request, response) => {
+      proxyReq: (proxyReq, request: Request, response: Response) => {
         // POST is used for requests with too much data to fit in query parameters
         if (request.method === 'POST' && request.body?.[WEB_MAP_AS_JSON]) {
           request.body[WEB_MAP_AS_JSON] = request.body[WEB_MAP_AS_JSON].replace(
-            new RegExp(response.locals.account.quadWord, 'g'),
-            process.env.OPEN_QUAD_WORD,
+            new RegExp(
+              (response.locals as Account).account?.quadWord ?? '',
+              'g',
+            ),
+            process.env.OPEN_QUAD_WORD ?? '',
           );
         } else if (proxyReq.path.includes(WEB_MAP_AS_JSON)) {
           proxyReq.path = proxyReq.path.replace(
-            new RegExp(response.locals.account.quadWord, 'g'),
-            process.env.OPEN_QUAD_WORD,
+            new RegExp(
+              (response.locals as Account).account?.quadWord ?? '',
+              'g',
+            ),
+            process.env.OPEN_QUAD_WORD ?? '',
           );
         }
 
@@ -100,12 +122,17 @@ app.use(
         fixRequestBody(proxyReq, request);
       },
     },
-    router: async (request) => {
-      // response is not passed to this function
+    router: async (request: Request) => {
       const accountNumber = request.path.split('/')[1];
+      if (!accountNumber) {
+        throw new Error('Account number is missing');
+      }
       const snapshot = await getAccountSnapshot(accountNumber);
-      const url = new URL(snapshot.data().arcgisServer);
-
+      const data = snapshot.data();
+      if (!data || !data.arcgisServer) {
+        throw new Error('arcgisServer is undefined for account');
+      }
+      const url = new URL(data.arcgisServer);
       return {
         protocol: url.protocol,
         host: url.hostname,
@@ -115,7 +142,9 @@ app.use(
   }),
 );
 
-app.get('/', (_, response) => response.redirect(301, 'https://github.com/agrc/serverless-print-proxy#readme'));
+app.get('/', (_: Request, response: Response) =>
+  response.redirect(301, 'https://github.com/agrc/serverless-print-proxy#readme'),
+);
 
 const port = process.env.PORT || 8080;
 if (process.env.NODE_ENV !== 'test') {
