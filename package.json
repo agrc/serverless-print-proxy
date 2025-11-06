@@ -10,8 +10,8 @@
   "scripts": {
     "format": "prettier . --write",
     "lint": "eslint *.js",
-    "start": "concurrently \"npm:start:firestore\" \"FIRESTORE_EMULATOR_HOST=127.0.0.1:8081 NODE_ENV=development nodemon index.js\"",
-    "start:debug": "concurrently \"npm:start:firestore\" \"FIRESTORE_EMULATOR_HOST=127.0.0.1:8081 NODE_ENV=development DEBUG=http-proxy-middleware* nodemon index.js\"",
+    "start": "concurrently \"pnpm run start:firestore\" \"FIRESTORE_EMULATOR_HOST=127.0.0.1:8081 NODE_ENV=development nodemon index.js\"",
+    "start:debug": "concurrently \"pnpm run start:firestore\" \"FIRESTORE_EMULATOR_HOST=127.0.0.1:8081 NODE_ENV=development DEBUG=http-proxy-middleware* nodemon index.js\"",
     "start:firestore": "firebase emulators:start --import .emulator-data --export-on-exit --only firestore",
     "start:prod": "NODE_ENV=production node index.js",
     "test": "vitest",
