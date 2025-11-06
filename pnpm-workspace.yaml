@@ -1,3 +1,12 @@
+# Note:
+# - This file enables pnpm "workspace mode". In workspace mode, the `packages` field is required
+#   even for a single-package repo. We set it to `['.']` to declare the root as the only package.
+# - We keep overrides here so they are considered during `pnpm install --frozen-lockfile` inside Docker.
+#   This ensures the active config matches `pnpm-lock.yaml` and avoids
+#   ERR_PNPM_LOCKFILE_CONFIG_MISMATCH during frozen installs.
+packages:
+  - .
+
 onlyBuiltDependencies:
   - esbuild
   - protobufjs
