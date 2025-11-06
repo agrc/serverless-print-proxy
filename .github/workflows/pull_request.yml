@@ -42,5 +42,8 @@ jobs:
       - name: 🧵 Lint
         run: pnpm run lint
 
+      - name: ✅ Check Types
+        run: pnpm run check
+
       - name: 🧪 Run tests
         run: pnpm run test:ci
