@@ -18,7 +18,7 @@
     "ugrc",
     "utahkoopserver"
   ],
-    "editor.codeActionsOnSave": {
+  "editor.codeActionsOnSave": {
     "source.organizeImports": "explicit"
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
