@@ -1,6 +1,6 @@
 {
   "name": "serverless-print-proxy",
-  "version": "2.0.9-rc.2",
+  "version": "2.0.9",
   "description": "A web service for switching out quad words in print requests to ArcGIS Server.",
   "repository": "https://github.com/agrc/serverless-print-proxy",
   "license": "MIT",
