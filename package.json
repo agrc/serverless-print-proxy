@@ -36,7 +36,7 @@
     "@ugrc/eslint-config": "^1.2.3",
     "concurrently": "^9.2.1",
     "eslint": "^9.27.0",
-    "firebase-tools": "^13.29.1",
+    "firebase-tools": "^14.15.2",
     "nodemon": "^3.1.10",
     "prettier": "^3.6.2",
     "prettier-plugin-organize-imports": "^4.3.0",
