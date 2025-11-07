@@ -1,5 +1,24 @@
 # Changelog
 
+## [2.0.9](https://github.com/agrc/serverless-print-proxy/compare/v2.0.8...v2.0.9) (2025-11-07)
+
+
+### Bug Fixes
+
+* run build before attempting to start in prod ([40bf170](https://github.com/agrc/serverless-print-proxy/commit/40bf17093c4d9c0a35886cdef40fc89188ae3f3b))
+
+
+### Dependencies
+
+* bump npm dependencies 🌲 ([30046a8](https://github.com/agrc/serverless-print-proxy/commit/30046a8b22859128fa53463e676514af7f0a3cd9))
+* **dev:** bump firebase-tools ([956af30](https://github.com/agrc/serverless-print-proxy/commit/956af30e4b1d4eba325e4b53ee31714235907122))
+* node 20 -&gt; 24 ([e23836f](https://github.com/agrc/serverless-print-proxy/commit/e23836f954d655828da7bd954472f4dc1a02e9e0))
+
+
+### Documentation
+
+* add DNS requirement to new account request ([cee242c](https://github.com/agrc/serverless-print-proxy/commit/cee242c53cb8acc00819d13f94856a4eb4c0d5e2))
+
 ## [2.0.9-rc.2](https://github.com/agrc/serverless-print-proxy/compare/v2.0.9-rc.1...v2.0.9-rc.2) (2025-11-06)
 
 
