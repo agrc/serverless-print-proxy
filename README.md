@@ -65,3 +65,7 @@ There's also an [AGOL web app](https://experience.arcgis.com/experience/2ade141a
 ## Upgrading NodeJS
 
 Make sure to update `Dockerfile` and `.node-version` files.
+
+## Attribution
+
+This project was developed with the assistance of [GitHub Copilot](https://github.com/features/copilot).
