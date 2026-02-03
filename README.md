@@ -48,13 +48,13 @@ You can use this new URL in place of the original print service in any Esri prod
 1. Create `.env` file with print proxy wide open quad-word.
 1. `touch .env && echo 'OPEN_QUAD_WORD=<wide-open-quad-word>' >> .env`
 1. `gcloud auth login`
-1. `npm install` & `npm start`
+1. `pnpm install` & `pnpm start`
 1. `node scripts/seed-test-data.js`
 1. `node scripts/pull-accounts-from-staging.js`
 
 ## Testing
 
-Run `npm test` to run tests after starting the emulator with `npm run start:firestore`.
+Run `pnpm test` to run tests after starting the emulator with `pnpm run start:firestore`.
 
 There's also an [AGOL web app](https://experience.arcgis.com/experience/2ade141aca3244ee99b8e16185a76f32) that you can test the different environments with.
 
