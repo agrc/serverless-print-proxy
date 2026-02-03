@@ -15,7 +15,7 @@
     "lint": "eslint *.ts",
     "start": "concurrently \"pnpm run build:watch\" \"pnpm run start:firestore\" \"FIRESTORE_EMULATOR_HOST=127.0.0.1:8081 NODE_ENV=development nodemon dist/index.js\"",
     "start:debug": "concurrently \"pnpm run build:watch\" \"pnpm run start:firestore\" \"FIRESTORE_EMULATOR_HOST=127.0.0.1:8081 NODE_ENV=development DEBUG=http-proxy-middleware* nodemon dist/index.js\"",
-    "start:firestore": "firebase emulators:start --import .emulator-data --export-on-exit --only firestore",
+    "start:firestore": "./scripts/start-emulators.sh",
     "start:prod": "NODE_ENV=production node dist/index.js",
     "test": "vitest",
     "test:ci": "firebase emulators:exec --only firestore 'node scripts/seed-test-data.ts && vitest'"
