@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.0.11](https://github.com/agrc/serverless-print-proxy/compare/v2.0.10...v2.0.11) (2026-02-17)
+
+
+### Bug Fixes
+
+* use pnpm exec firebase in test:ci script for consistency ([ac9cf57](https://github.com/agrc/serverless-print-proxy/commit/ac9cf572158bd8b3fb0a3113736993d251d12896))
+
+
+### Dependencies
+
+* bump @modelcontextprotocol/sdk from 1.25.3 to 1.26.0 ([c93ac1d](https://github.com/agrc/serverless-print-proxy/commit/c93ac1d1c97f23879128b737e6b7389d8679b484))
+
 ## [2.0.10](https://github.com/agrc/serverless-print-proxy/compare/v2.0.9...v2.0.10) (2026-02-03)
 
 
