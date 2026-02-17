@@ -18,7 +18,7 @@
     "start:firestore": "./scripts/start-emulators.sh",
     "start:prod": "NODE_ENV=production node dist/index.js",
     "test": "vitest",
-    "test:ci": "firebase emulators:exec --only firestore 'node scripts/seed-test-data.ts && vitest'"
+    "test:ci": "pnpm exec firebase emulators:exec --only firestore 'node scripts/seed-test-data.ts && vitest'"
   },
   "dependencies": {
     "@google-cloud/firestore": "^8.2.0",
