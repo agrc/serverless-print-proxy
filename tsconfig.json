@@ -4,6 +4,6 @@
     "outDir": "./dist"
   },
   "compileOnSave": true,
-  "include": ["index.ts", "scripts/**/*.ts"],
+  "include": ["index.ts", "index.test.ts", "scripts/**/*.ts"],
   "exclude": ["node_modules", "dist"]
 }

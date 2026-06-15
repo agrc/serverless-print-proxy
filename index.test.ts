@@ -1,26 +1,45 @@
 import express from 'express';
 import http from 'http';
+import type { Response } from 'supertest';
 import request from 'supertest';
 import { promisify } from 'util';
 import { afterAll, beforeAll, describe, expect, test } from 'vitest';
-import app, { WEB_MAP_AS_JSON } from './index';
+import app, { WEB_MAP_AS_JSON } from './index.js';
 
 const sleep = promisify(setTimeout);
-let server;
+type NodeServer = http.Server;
+
+const closeServer = (server: NodeServer) =>
+  new Promise<void>((resolve, reject) => {
+    server.close((error) => {
+      if (error) {
+        reject(error);
+        return;
+      }
+
+      resolve();
+    });
+  });
+
+let server: NodeServer;
 
 beforeAll(() => {
-  server = http.createServer(app);
-  server.listen();
+  if (typeof app === 'function') {
+    server = http.createServer(app);
+    server.listen();
+  } else {
+    server = app;
+  }
 });
 
 afterAll(async () => {
-  await server.close();
+  await closeServer(server);
 });
 
 describe('switch out quad word', () => {
-  let verifyServer;
+  let verifyServer: http.Server;
   beforeAll(() => {
-    return new Promise((resolve) => {
+    return new Promise<void>((resolve) => {
       const verifyApp = express();
       verifyApp.use(express.urlencoded({ extended: true }));
       verifyApp.all('{*splat}', (request, response) => {
@@ -32,12 +51,12 @@ describe('switch out quad word', () => {
         }
       });
       verifyServer = http.createServer(verifyApp);
-      verifyServer.listen(8085, resolve);
+      verifyServer.listen(8085, () => resolve());
     });
   });
 
   afterAll(async () => {
-    await verifyServer.close();
+    await closeServer(verifyServer);
   });
 
   test('switches out quad word for get requests', async () => {
@@ -76,7 +95,7 @@ test('jsonp', () => {
     .query({ callback: 'callbackFn', f: 'json' })
     .expect('Content-Type', /javascript/)
     .expect(200)
-    .expect((res) => {
+    .expect((res: Response) => {
       expect(res.text).toMatch(/callbackFn\(\{"fullVersion":.*"currentVersion":/);
     });
 });
@@ -141,7 +160,7 @@ test('post to export execute', () => {
 });
 
 describe('async print task', () => {
-  let jobId;
+  let jobId = '';
   test('submitJob', () => {
     return request(server)
       .post('/v2/-3/arcgis/rest/services/WRI/Print/GPServer/Export%20Web%20Map/submitJob')
@@ -159,8 +178,8 @@ describe('async print task', () => {
         Layout_Template: 'MAP_ONLY',
       })
       .expect(/jobId/)
-      .expect((res) => {
-        jobId = JSON.parse(res.res.text).jobId;
+      .expect((res: Response) => {
+        jobId = JSON.parse(res.text).jobId;
       })
       .expect(200);
   });
@@ -189,6 +208,8 @@ describe('async print task', () => {
 });
 
 test('hide open quad-word in response', () => {
+  const openQuadWord = process.env.OPEN_QUAD_WORD;
+
   return request(server)
     .get('/v2/-1/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task/execute')
     .query({
@@ -218,8 +239,8 @@ test('hide open quad-word in response', () => {
       Layout_Template: 'MAP_ONLY',
       printFlag: 'true',
     })
-    .expect((res) => {
-      if (res.res.text.match(new RegExp(process.env.OPEN_QUAD_WORD, 'g'))) {
+    .expect((res: Response) => {
+      if (openQuadWord && res.text.match(new RegExp(openQuadWord, 'g'))) {
         throw new Error('does not hide open quad-word');
       }
     });

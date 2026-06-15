@@ -4,6 +4,7 @@ export default defineConfig({
   test: {
     testTimeout: 80000,
     retry: 3,
+    exclude: ['./dist/**', './node_modules/**'],
     env: {
       OPEN_QUAD_WORD: 'secret-test-quad-word',
       FIRESTORE_EMULATOR_HOST: '127.0.0.1:8081',
