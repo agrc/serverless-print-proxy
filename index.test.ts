@@ -2,7 +2,7 @@ import express from 'express';
 import http from 'http';
 import request from 'supertest';
 import { promisify } from 'util';
-import { afterAll, beforeAll, describe, test } from 'vitest';
+import { afterAll, beforeAll, describe, expect, test } from 'vitest';
 import app, { WEB_MAP_AS_JSON } from './index';
 
 const sleep = promisify(setTimeout);
@@ -76,7 +76,9 @@ test('jsonp', () => {
     .query({ callback: 'callbackFn', f: 'json' })
     .expect('Content-Type', /javascript/)
     .expect(200)
-    .expect(/callbackFn\({"currentVersion":/);
+    .expect((res) => {
+      expect(res.text).toMatch(/callbackFn\(\{"fullVersion":.*"currentVersion":/);
+    });
 });
 
 test('missing account number', () => {

@@ -44,6 +44,13 @@ async function getAccountSnapshot(accountNumber: string) {
   return await firestore.collection('accounts').doc(accountNumber).get();
 }
 
+function replaceQuadWord(value: string, response: Response) {
+  return value.replace(
+    new RegExp((response.locals as Account).account?.quadWord ?? '', 'g'),
+    process.env.OPEN_QUAD_WORD ?? '',
+  );
+}
+
 const accountNumberRegex = /\/v\d+\/(-?\d+)\//;
 app.use(async (request: Request, response: Response, next: NextFunction) => {
   // verify account number for all paths requests except "/"
@@ -100,21 +107,9 @@ app.use(
       proxyReq: (proxyReq, request: Request, response: Response) => {
         // POST is used for requests with too much data to fit in query parameters
         if (request.method === 'POST' && request.body?.[WEB_MAP_AS_JSON]) {
-          request.body[WEB_MAP_AS_JSON] = request.body[WEB_MAP_AS_JSON].replace(
-            new RegExp(
-              (response.locals as Account).account?.quadWord ?? '',
-              'g',
-            ),
-            process.env.OPEN_QUAD_WORD ?? '',
-          );
+          request.body[WEB_MAP_AS_JSON] = replaceQuadWord(request.body[WEB_MAP_AS_JSON], response);
         } else if (proxyReq.path.includes(WEB_MAP_AS_JSON)) {
-          proxyReq.path = proxyReq.path.replace(
-            new RegExp(
-              (response.locals as Account).account?.quadWord ?? '',
-              'g',
-            ),
-            process.env.OPEN_QUAD_WORD ?? '',
-          );
+          proxyReq.path = replaceQuadWord(proxyReq.path, response);
         }
 
         // used to fix proxied POST requests when bodyParser is applied before http-proxy-middleware
