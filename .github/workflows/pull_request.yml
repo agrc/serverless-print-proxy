@@ -36,6 +36,12 @@ jobs:
           node-version: lts/*
           cache: pnpm
 
+      - name: ☕ Setup Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "21"
+
       - name: 📥 Download dependencies
         run: pnpm install --frozen-lockfile
 
