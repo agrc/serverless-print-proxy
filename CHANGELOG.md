@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.0.12](https://github.com/agrc/serverless-print-proxy/compare/v2.0.11...v2.0.12) (2026-06-16)
+
+
+### Bug Fixes
+
+* handle empty quad word firebase value ([89e8c5c](https://github.com/agrc/serverless-print-proxy/commit/89e8c5c5347ca4a8ccd667bb501a59aa080ff505))
+
+
+### Dependencies
+
+* bump NPM dependencies 🌲 ([a6b1fb9](https://github.com/agrc/serverless-print-proxy/commit/a6b1fb9ea8b5790130c72365b00a05487629f9d8))
+
 ## [2.0.11](https://github.com/agrc/serverless-print-proxy/compare/v2.0.10...v2.0.11) (2026-02-17)
 
 
