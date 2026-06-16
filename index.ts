@@ -45,10 +45,11 @@ async function getAccountSnapshot(accountNumber: string) {
 }
 
 function replaceQuadWord(value: string, response: Response) {
-  return value.replace(
-    new RegExp((response.locals as Account).account?.quadWord ?? '', 'g'),
-    process.env.OPEN_QUAD_WORD ?? '',
-  );
+  const quadWord = (response.locals as Account).account?.quadWord;
+
+  if (!quadWord) return value;
+
+  return value.split(quadWord).join(process.env.OPEN_QUAD_WORD!);
 }
 
 const accountNumberRegex = /\/v\d+\/(-?\d+)\//;
