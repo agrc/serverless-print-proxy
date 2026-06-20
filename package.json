@@ -26,7 +26,7 @@
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "helmet": "^8.2.0",
-    "http-proxy-middleware": "^4.1.0"
+    "http-proxy-middleware": "^4.1.1"
   },
   "devDependencies": {
     "@total-typescript/tsconfig": "^1.0.4",
