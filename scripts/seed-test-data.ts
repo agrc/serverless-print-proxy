@@ -6,6 +6,7 @@ const emulator = new Firestore({
   host: 'localhost',
   port: 8081,
   ssl: false,
+  projectId: 'test',
 });
 
 type TestAccount = {
@@ -28,7 +29,13 @@ const testAccounts: Record<string, TestAccount> = {
   },
 };
 
-for (const [accountNumber, data] of Object.entries(testAccounts)) {
-  console.log(`Seeding test account ${accountNumber}`);
-  await emulator.collection('accounts').doc(accountNumber).set(data);
+export async function seedTestData() {
+  for (const [accountNumber, data] of Object.entries(testAccounts)) {
+    console.log(`Seeding test account ${accountNumber}`);
+    await emulator.collection('accounts').doc(accountNumber).set(data);
+  }
+}
+
+if (import.meta.main) {
+  await seedTestData();
 }

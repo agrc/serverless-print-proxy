@@ -8,6 +8,7 @@ export default defineConfig({
     env: {
       OPEN_QUAD_WORD: 'secret-test-quad-word',
       FIRESTORE_EMULATOR_HOST: '127.0.0.1:8081',
+      GOOGLE_CLOUD_PROJECT: 'test',
     },
   },
 });
