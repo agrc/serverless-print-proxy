@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.0.13](https://github.com/agrc/serverless-print-proxy/compare/v2.0.12...v2.0.13) (2026-08-12)
+
+
+### Dependencies
+
+* bump NPM dependencies 🌲 ([fb564b7](https://github.com/agrc/serverless-print-proxy/commit/fb564b749a7db8987752b940749cbd39a28dbe66))
+* bump the safe-dependencies group across 1 directory with 2 updates ([cc0cfc8](https://github.com/agrc/serverless-print-proxy/commit/cc0cfc8a0a52fce98768e8cc8394631f6bc3c9d1))
+* TypeScript v5 -&gt; v6 ([8736aec](https://github.com/agrc/serverless-print-proxy/commit/8736aece0e70d599e065f0741c9e4766e53a8f50))
+
 ## [2.0.12](https://github.com/agrc/serverless-print-proxy/compare/v2.0.11...v2.0.12) (2026-06-16)
 
 
