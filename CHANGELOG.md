@@ -1,5 +1,25 @@
 # Changelog
 
+## [2.0.14](https://github.com/agrc/serverless-print-proxy/compare/v2.0.13...v2.0.14) (2026-10-29)
+
+
+### Dependencies
+
+* bump @grpc/grpc-js from 1.14.4 to 1.14.6 ([#338](https://github.com/agrc/serverless-print-proxy/issues/338)) ([269b307](https://github.com/agrc/serverless-print-proxy/commit/269b30723fbebccb97f3abb882bb33729b9c40c6))
+* bump @hono/node-server from 1.19.17 to 2.1.5 ([#346](https://github.com/agrc/serverless-print-proxy/issues/346)) ([c0b18d1](https://github.com/agrc/serverless-print-proxy/commit/c0b18d11de99f08e86a1c1a1a9f525fb3a5c4e79))
+* bump @modelcontextprotocol/sdk from 1.29.0 to 1.32.1 ([#336](https://github.com/agrc/serverless-print-proxy/issues/336)) ([0c249ee](https://github.com/agrc/serverless-print-proxy/commit/0c249ee04a145ce6dcd4f85f5559e22c5c96504e))
+* bump compression from 1.8.1 to 1.8.2 ([#341](https://github.com/agrc/serverless-print-proxy/issues/341)) ([e187a0c](https://github.com/agrc/serverless-print-proxy/commit/e187a0cf2a66a8733664f7632e113b732a29a8fa))
+* bump fast-uri from 3.1.5 to 3.1.9 ([#343](https://github.com/agrc/serverless-print-proxy/issues/343)) ([995a8d9](https://github.com/agrc/serverless-print-proxy/commit/995a8d98d868eaac82138e0d38e69bf8376adbbf))
+* bump hono from 4.13.0 to 4.13.13 ([#334](https://github.com/agrc/serverless-print-proxy/issues/334)) ([e2af5f9](https://github.com/agrc/serverless-print-proxy/commit/e2af5f9acb3542c76b5498c656aa996037e413fe))
+* bump ip-address from 10.4.0 to 10.7.4 ([#342](https://github.com/agrc/serverless-print-proxy/issues/342)) ([7dcae7c](https://github.com/agrc/serverless-print-proxy/commit/7dcae7cfd0c21f6d184839a1ef4f7ee808798aee))
+* bump js-yaml from 4.3.1 to 4.3.2 ([#326](https://github.com/agrc/serverless-print-proxy/issues/326)) ([ed6d269](https://github.com/agrc/serverless-print-proxy/commit/ed6d26914ab09fc6a8712a6f67c32d775e937e92))
+* bump morgan from 1.11.0 to 1.12.1 ([#328](https://github.com/agrc/serverless-print-proxy/issues/328)) ([a9db804](https://github.com/agrc/serverless-print-proxy/commit/a9db804c00daba807ec4346f2e0938068dea7da2))
+* bump proxy-addr from 2.0.7 to 2.0.8 ([#335](https://github.com/agrc/serverless-print-proxy/issues/335)) ([e20346a](https://github.com/agrc/serverless-print-proxy/commit/e20346a6109ce61835f5ee0e69960a8395007040))
+* bump source-map-js from 1.2.1 to 1.2.2 ([#340](https://github.com/agrc/serverless-print-proxy/issues/340)) ([ebc307a](https://github.com/agrc/serverless-print-proxy/commit/ebc307ad180d39757340b48b26be98a201c67934))
+* bump vite from 8.0.13 to 8.3.5 ([#344](https://github.com/agrc/serverless-print-proxy/issues/344)) ([f2c62dd](https://github.com/agrc/serverless-print-proxy/commit/f2c62ddc5cb9e2c1c136ee7f9205a1fac7e582ff))
+* **dev:** bump vitest from 4.1.10 to 4.1.11 ([#339](https://github.com/agrc/serverless-print-proxy/issues/339)) ([c38aab9](https://github.com/agrc/serverless-print-proxy/commit/c38aab90459316d8d00d34f6ce4f1f2be2bb369c))
+* **docker:** bump node from 24-slim to 26-slim in the docker-dependencies group ([#330](https://github.com/agrc/serverless-print-proxy/issues/330)) ([59b5022](https://github.com/agrc/serverless-print-proxy/commit/59b5022075343b2a8914b3ce1c8bd633c028f2ba))
+
 ## [2.0.13](https://github.com/agrc/serverless-print-proxy/compare/v2.0.12...v2.0.13) (2026-08-12)
 
 
