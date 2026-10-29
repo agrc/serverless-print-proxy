@@ -2,7 +2,7 @@ FROM node:26-slim
 
 WORKDIR /usr/src/app
 
-RUN corepack enable && corepack prepare pnpm@11 --activate
+RUN npm install --global pnpm@11
 
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 RUN pnpm install --frozen-lockfile
